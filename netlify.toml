@@ -1,0 +1,57 @@
+# Configurazione Netlify per ivanmaggini.com
+#
+# Il sito è composto da soli file statici: non c'è nessuno step di build, la
+# cartella del repository viene pubblicata così com'è.
+
+[build]
+  publish = "."
+  command = ""
+
+# URL puliti. Netlify offre già la funzione "Pretty URLs", ma dichiarare le
+# riscritture qui rende le rotte indipendenti da quell'impostazione: /studio
+# serve studio.html senza redirect visibile all'utente né cambio di URL.
+[[redirects]]
+  from = "/startup"
+  to = "/startup.html"
+  status = 200
+
+[[redirects]]
+  from = "/studio"
+  to = "/studio.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+# Pagina di conferma del modulo: è l'`action` del form, quindi Netlify Forms
+# ci rimanda l'utente dopo un invio andato a buon fine.
+[[redirects]]
+  from = "/grazie"
+  to = "/grazie.html"
+  status = 200
+
+# Il dominio è ivanmaggini.com senza www: la variante con www viene
+# reindirizzata in modo permanente per non spezzare l'indicizzazione.
+[[redirects]]
+  from = "https://www.ivanmaggini.com/*"
+  to = "https://ivanmaggini.com/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+# Gli asset non hanno un hash nel nome (non c'è un bundler), quindi niente
+# `immutable`: il browser rivalida ogni ora e una modifica al CSS si vede
+# subito dopo il deploy invece di restare bloccata in cache.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"

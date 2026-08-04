@@ -1,0 +1,572 @@
+/* ------------------------------------------------------------------
+   ivanmaggini.com — foglio di stile unico per tutte le pagine.
+
+   Il sito ospita due aree molto diverse (Startup e Studio) che devono
+   restare riconoscibili come lo stesso brand personale. La coerenza sta
+   nella tipografia, nella spaziatura e nel motivo del "biglietto"
+   (la riga tratteggiata perforata); la distinzione sta nel tema di
+   colore, che ogni pagina imposta scrivendo le variabili qui sotto.
+
+      home     -> .theme-hub    (inchiostro caldo, neutro)
+      startup  -> .theme-startup (navy + oro, eco di Biglietto)
+      studio   -> .theme-studio  (crema chiara + verde, pagina lunga)
+   ------------------------------------------------------------------ */
+
+:root {
+  /* Palette di base condivisa. I temi ridefiniscono solo i ruoli
+     (--bg, --fg, --accent...), mai queste costanti. */
+  --navy: #0a1e33;
+  --navy-deep: #071526;
+  --ink: #14120f;
+  --ink-deep: #0c0b09;
+  --cream: #f5f1e6;
+  --cream-warm: #faf7ef;
+  --gold: #a8801a;
+  --gold-bright: #bd9020;
+  --green: #17493c;
+  --green-deep: #0f3227;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+
+  /* Scala di spaziatura: tutto il sito usa solo questi passi. */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 40px;
+  --s5: 64px;
+  --s6: 96px;
+
+  --radius: 14px;
+  --maxw: 1080px;
+}
+
+/* --- temi ---------------------------------------------------------- */
+
+.theme-hub {
+  --bg: var(--ink);
+  --bg-alt: var(--ink-deep);
+  --fg: var(--cream);
+  --fg-soft: rgba(245, 241, 230, 0.68);
+  /* I livelli di grigio sono tarati per restare sopra il rapporto di
+     contrasto 4.5:1 richiesto da WCAG AA anche nel testo piccolo. */
+  --fg-faint: rgba(245, 241, 230, 0.52);
+  --accent: var(--gold-bright);
+  --line: rgba(245, 241, 230, 0.16);
+  --surface: rgba(245, 241, 230, 0.045);
+}
+
+.theme-startup {
+  --bg: var(--navy);
+  --bg-alt: var(--navy-deep);
+  --fg: var(--cream);
+  --fg-soft: rgba(245, 241, 230, 0.7);
+  --fg-faint: rgba(245, 241, 230, 0.52);
+  --accent: var(--gold-bright);
+  --line: rgba(245, 241, 230, 0.16);
+  --surface: rgba(245, 241, 230, 0.05);
+}
+
+.theme-studio {
+  --bg: var(--cream-warm);
+  --bg-alt: #f0ece1;
+  --fg: var(--ink);
+  --fg-soft: rgba(20, 18, 15, 0.72);
+  --fg-faint: rgba(20, 18, 15, 0.62);
+  --accent: var(--green);
+  --line: rgba(20, 18, 15, 0.14);
+  --surface: rgba(20, 18, 15, 0.035);
+}
+
+/* --- reset e base --------------------------------------------------- */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* --- layout --------------------------------------------------------- */
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--s3);
+}
+
+.wrap.narrow { max-width: 720px; }
+
+section { padding: var(--s5) 0; }
+
+@media (min-width: 768px) {
+  body { font-size: 18px; }
+  .wrap { padding: 0 var(--s4); }
+  section { padding: var(--s6) 0; }
+}
+
+.band { background: var(--bg-alt); }
+
+/* --- tipografia ------------------------------------------------------ */
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+
+h1 { font-size: clamp(2.1rem, 7.5vw, 3.6rem); }
+h2 { font-size: clamp(1.6rem, 4.6vw, 2.4rem); }
+h3 { font-size: clamp(1.1rem, 3vw, 1.3rem); letter-spacing: -0.01em; }
+
+p { color: var(--fg-soft); }
+p + p { margin-top: var(--s2); }
+
+.lead {
+  font-size: clamp(1.05rem, 3vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--fg-soft);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+}
+
+.section-head { max-width: 640px; }
+.section-head .eyebrow { margin-bottom: var(--s2); }
+.section-head h2 + p { margin-top: var(--s3); }
+
+.muted { color: var(--fg-faint); }
+.small { font-size: 0.9rem; }
+
+/* --- motivo "biglietto": riga perforata ------------------------------ */
+
+.perf {
+  position: relative;
+  border-top: 1.5px dashed var(--line);
+  margin: var(--s4) 0;
+}
+
+.perf::before, .perf::after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+}
+
+.perf::before { left: -7px; }
+.perf::after { right: -7px; }
+
+/* --- bottoni ---------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s1);
+  padding: 15px 26px;
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.97rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn.ghost {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--line);
+}
+
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  margin-top: var(--s4);
+}
+
+/* --- navigazione ------------------------------------------------------ */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.nav a { text-decoration: none; }
+
+.nav .wordmark { font-size: 1.35rem; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: 0.9rem;
+}
+
+.nav-links a { color: var(--fg-soft); padding: 4px 2px; }
+.nav-links a:hover, .nav-links a[aria-current='page'] { color: var(--fg); }
+
+.nav-links .btn { padding: 9px 18px; font-size: 0.87rem; }
+
+/* `.nav-links a` è più specifico di `.btn`, quindi senza queste due regole il
+   bottone nella barra si ritroverebbe il colore del testo di navigazione:
+   inchiostro su verde pieno, illeggibile. */
+.nav-links a.btn { color: var(--bg); }
+.nav-links a.btn.ghost { color: var(--fg); }
+
+@media (max-width: 560px) {
+  .nav-links .desk-only { display: none; }
+}
+
+/* --- card griglia ------------------------------------------------------ */
+
+.grid {
+  display: grid;
+  gap: var(--s3);
+  margin-top: var(--s4);
+}
+
+@media (min-width: 700px) {
+  .grid.two { grid-template-columns: repeat(2, 1fr); }
+  .grid.three { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s3);
+}
+
+@media (min-width: 768px) {
+  .card { padding: var(--s4) var(--s3); }
+}
+
+.card h3 { margin-bottom: var(--s1); }
+.card p { font-size: 0.97rem; }
+
+/* Le due card della homepage: cliccabili per intero e colorate con il
+   tema della sezione a cui portano, così la distinzione si vede subito. */
+.route {
+  display: block;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.route:hover { transform: translateY(-3px); border-color: var(--accent); }
+
+.route .route-tag {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 5px 11px;
+  border-radius: 999px;
+  margin-bottom: var(--s3);
+}
+
+.route.startup .route-tag { background: rgba(189, 144, 32, 0.16); color: var(--gold-bright); }
+.route.studio .route-tag { background: rgba(88, 168, 140, 0.16); color: #6fc0a3; }
+
+.route h3 { font-size: clamp(1.4rem, 4vw, 1.8rem); }
+.route .arrow { margin-top: var(--s3); color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+
+/* --- liste ------------------------------------------------------------- */
+
+.ticks { list-style: none; display: grid; gap: 12px; margin-top: var(--s3); }
+
+.ticks li {
+  position: relative;
+  padding-left: 28px;
+  color: var(--fg-soft);
+  font-size: 0.97rem;
+}
+
+.ticks li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0.62em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+}
+
+.ticks li strong { color: var(--fg); font-weight: 600; }
+
+/* --- passi numerati (metodo) -------------------------------------------- */
+
+.steps { counter-reset: step; display: grid; gap: var(--s3); margin-top: var(--s4); }
+
+@media (min-width: 860px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+
+.step {
+  counter-increment: step;
+  border-top: 2px solid var(--line);
+  padding-top: var(--s2);
+}
+
+.step::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: var(--s1);
+}
+
+.step h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.step p { font-size: 0.93rem; }
+
+/* --- pacchetti ---------------------------------------------------------- */
+
+.plans { display: grid; gap: var(--s3); margin-top: var(--s4); align-items: start; }
+
+@media (min-width: 860px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+
+.plan {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s3);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.plan.featured {
+  border-color: var(--accent);
+  border-width: 2px;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.plan-name {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.plan-price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.5rem;
+  letter-spacing: -0.02em;
+  margin-top: var(--s2);
+  line-height: 1;
+}
+
+.plan-price span {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--fg-faint);
+  letter-spacing: 0;
+}
+
+.plan .ticks { margin-top: var(--s3); flex: 1; }
+.plan .btn { margin-top: var(--s3); width: 100%; }
+
+/* --- tabella attrezzatura ------------------------------------------------ */
+
+.kit { display: grid; gap: 0; margin-top: var(--s4); border-top: 1px solid var(--line); }
+
+.kit-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px var(--s3);
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.kit-row dt { font-weight: 600; font-size: 0.97rem; }
+.kit-row dd { color: var(--fg-faint); font-size: 0.9rem; font-family: var(--font-mono); }
+
+/* --- form ---------------------------------------------------------------- */
+
+.form { display: grid; gap: var(--s3); margin-top: var(--s4); }
+
+@media (min-width: 700px) {
+  .form { grid-template-columns: 1fr 1fr; }
+  .form .full { grid-column: 1 / -1; }
+}
+
+.field { display: grid; gap: 7px; }
+
+.field label { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.01em; }
+
+.field input, .field select, .field textarea {
+  font-family: inherit;
+  font-size: 16px; /* impedisce lo zoom automatico su iOS */
+  color: var(--fg);
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 13px 14px;
+  width: 100%;
+  transition: border-color 0.15s ease;
+}
+
+.field textarea { min-height: 120px; resize: vertical; }
+
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.field input::placeholder, .field textarea::placeholder { color: var(--fg-faint); }
+
+.consent {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  font-size: 0.85rem;
+  color: var(--fg-soft);
+  line-height: 1.5;
+}
+
+.consent input { width: 18px; height: 18px; margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
+
+.hp { position: absolute; left: -9999px; opacity: 0; }
+
+/* --- FAQ ------------------------------------------------------------------ */
+
+.faq { margin-top: var(--s4); border-top: 1px solid var(--line); }
+
+.faq details { border-bottom: 1px solid var(--line); }
+
+.faq summary {
+  cursor: pointer;
+  padding: 20px 34px 20px 0;
+  font-weight: 600;
+  font-size: 1rem;
+  list-style: none;
+  position: relative;
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+.faq summary::after {
+  content: '+';
+  position: absolute;
+  right: 4px;
+  top: 18px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.faq details[open] summary::after { content: '–'; }
+
+.faq details p { padding-bottom: 20px; font-size: 0.95rem; max-width: 68ch; }
+
+/* --- footer --------------------------------------------------------------- */
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding: var(--s4) 0 var(--s5);
+  margin-top: var(--s4);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+@media (min-width: 700px) {
+  .footer-inner { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+}
+
+.footer .wordmark { font-size: 1.5rem; }
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s3);
+  font-size: 0.88rem;
+}
+
+.footer-links a { color: var(--fg-faint); text-decoration: none; }
+.footer-links a:hover { color: var(--fg); }
+
+/* --- pagine legali / testo lungo -------------------------------------------- */
+
+.legal { max-width: 720px; }
+.legal h2 { font-size: 1.35rem; margin-top: var(--s4); }
+.legal h3 { font-size: 1.05rem; margin-top: var(--s3); }
+.legal p, .legal li { font-size: 0.97rem; }
+.legal ul { margin: var(--s2) 0 0 var(--s3); display: grid; gap: 8px; }
+.legal li { color: var(--fg-soft); }
+.legal a { color: var(--accent); }
