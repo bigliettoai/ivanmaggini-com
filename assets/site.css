@@ -281,6 +281,39 @@ p + p { margin-top: var(--s2); }
   .nav-links .desk-only { display: none; }
 }
 
+/* --- selettore di lingua ------------------------------------------------ */
+
+/* Compare solo sulle pagine che esistono in entrambe le lingue (home,
+   startup, privacy). La sezione Studio si rivolge a studi lombardi ed è
+   solo in italiano, quindi lì il selettore non ha nulla da offrire. */
+.lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+.nav-links .lang a {
+  color: var(--fg-faint);
+  padding: 3px 9px;
+  border-radius: 999px;
+  line-height: 1.4;
+}
+
+.nav-links .lang a:hover { color: var(--fg); }
+
+.nav-links .lang a[aria-current='true'] {
+  color: var(--bg);
+  background: var(--accent);
+  font-weight: 700;
+}
+
 /* --- card griglia ------------------------------------------------------ */
 
 .grid {

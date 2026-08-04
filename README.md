@@ -11,6 +11,9 @@ Sito personale di Ivan Maggini. Statico, senza build step, pensato per Netlify.
 | `studio.html` | `/studio` | Ivan Maggini Studio — sezione principale: metodo, prova gratuita, attrezzatura, pacchetti, FAQ, form |
 | `privacy.html` | `/privacy` | Informativa privacy (GDPR) |
 | `grazie.html` | `/grazie` | Conferma dopo l'invio del modulo |
+| `en/index.html` | `/en/` | Homepage in inglese |
+| `en/startup.html` | `/en/startup` | Sezione startup in inglese |
+| `en/privacy.html` | `/en/privacy` | Informativa privacy in inglese |
 | `404.html` | — | Pagina di errore servita automaticamente da Netlify |
 | `assets/site.css` | — | Unico foglio di stile, con i tre temi di colore |
 | `assets/favicon.svg` | — | Monogramma |
@@ -18,6 +21,20 @@ Sito personale di Ivan Maggini. Statico, senza build step, pensato per Netlify.
 
 Le rotte senza `.html` sono dichiarate come rewrite (status 200) in
 `netlify.toml`, quindi non dipendono dall'impostazione "Pretty URLs" di Netlify.
+
+## Lingue
+
+Home, startup e privacy esistono in italiano (`/…`) e in inglese (`/en/…`),
+come pagine separate: nessun JavaScript, un URL indicizzabile per lingua e i
+`<link rel="alternate" hreflang>` incrociati su ogni pagina.
+
+La sezione **Studio è solo in italiano**, ed è una scelta: si rivolge a studi
+professionali lombardi. Le pagine inglesi ci linkano comunque, segnalando che
+il contenuto è in italiano.
+
+Il selettore IT/EN nella barra compare solo dove entrambe le versioni esistono.
+Se aggiungi una pagina bilingue, ricordati di aggiornare tre punti: il
+selettore, i tag `hreflang` di entrambe le versioni e `sitemap.xml`.
 
 ## Design
 

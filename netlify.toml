@@ -32,6 +32,24 @@
   to = "/grazie.html"
   status = 200
 
+# Versione inglese di home, startup e privacy. La sezione Studio è solo in
+# italiano — si rivolge a studi professionali lombardi — quindi da /en le
+# pagine linkano direttamente a /studio.
+[[redirects]]
+  from = "/en"
+  to = "/en/"
+  status = 301
+
+[[redirects]]
+  from = "/en/startup"
+  to = "/en/startup.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/privacy"
+  to = "/en/privacy.html"
+  status = 200
+
 # Il dominio è ivanmaggini.com senza www: la variante con www viene
 # reindirizzata in modo permanente per non spezzare l'indicizzazione.
 [[redirects]]
