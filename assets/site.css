@@ -469,22 +469,6 @@ p + p { margin-top: var(--s2); }
 .plan .ticks { margin-top: var(--s3); flex: 1; }
 .plan .btn { margin-top: var(--s3); width: 100%; }
 
-/* --- tabella attrezzatura ------------------------------------------------ */
-
-.kit { display: grid; gap: 0; margin-top: var(--s4); border-top: 1px solid var(--line); }
-
-.kit-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px var(--s3);
-  justify-content: space-between;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.kit-row dt { font-weight: 600; font-size: 0.97rem; }
-.kit-row dd { color: var(--fg-faint); font-size: 0.9rem; font-family: var(--font-mono); }
-
 /* --- form ---------------------------------------------------------------- */
 
 .form { display: grid; gap: var(--s3); margin-top: var(--s4); }
