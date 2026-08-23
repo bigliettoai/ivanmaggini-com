@@ -578,6 +578,20 @@ p + p { margin-top: var(--s2); }
 .footer-links a { color: var(--fg-faint); text-decoration: none; }
 .footer-links a:hover { color: var(--fg); }
 
+/* --- Safari su iOS: riconoscimento automatico dei dati -------------------
+   iOS trasforma sequenze come la partita IVA in link telefonici, con tanto
+   di sottolineatura e colore: un numero che sembra cliccabile ma che, se
+   toccato, prova a chiamare. Il meta `format-detection` nelle pagine lo
+   vieta; questa regola toglie lo stile nei casi in cui lo faccia comunque. */
+
+a[x-apple-data-detectors],
+a[x-apple-data-detectors] span {
+  color: inherit !important;
+  text-decoration: none !important;
+  font-weight: inherit !important;
+  pointer-events: none;
+}
+
 /* --- pagine legali / testo lungo -------------------------------------------- */
 
 .legal { max-width: 720px; }
