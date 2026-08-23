@@ -25,6 +25,11 @@
   to = "/privacy.html"
   status = 200
 
+[[redirects]]
+  from = "/condizioni"
+  to = "/condizioni.html"
+  status = 200
+
 # Pagina di conferma del modulo: è l'`action` del form, quindi Netlify Forms
 # ci rimanda l'utente dopo un invio andato a buon fine.
 [[redirects]]
