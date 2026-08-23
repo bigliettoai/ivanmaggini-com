@@ -55,6 +55,13 @@
   to = "/en/privacy.html"
   status = 200
 
+# Qualunque altro percorso sotto /en/ riceve la pagina di errore inglese,
+# non quella italiana.
+[[redirects]]
+  from = "/en/*"
+  to = "/en/404.html"
+  status = 404
+
 # Il dominio è ivanmaggini.com senza www: la variante con www viene
 # reindirizzata in modo permanente per non spezzare l'indicizzazione.
 [[redirects]]
