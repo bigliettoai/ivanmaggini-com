@@ -113,6 +113,14 @@ a { color: inherit; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
+/* --- salti alle ancore ------------------------------------------------
+   La barra del sito è sticky e alta 72px: senza questo margine, un salto a
+   un'ancora porta il titolo della sezione esattamente sotto la barra, e chi
+   arriva ci trova il testo che comincia a metà. Succedeva su #metodo e
+   #pacchetti, cioè i due link della barra stessa. */
+
+[id] { scroll-margin-top: 88px; }
+
 /* --- layout --------------------------------------------------------- */
 
 .wrap {
