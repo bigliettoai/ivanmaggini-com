@@ -18,6 +18,12 @@
   var menoMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (menoMovimento || !('IntersectionObserver' in window) || !('requestAnimationFrame' in window)) return;
 
+  // Se il foglio di stile non è arrivato, la pagina è già in difficoltà: non
+  // le si aggiunge anche del testo che si scompone. Il controllo cerca una
+  // variabile che esiste solo lì dentro.
+  var stiliPronti = getComputedStyle(document.documentElement).getPropertyValue('--paper').trim() !== '';
+  if (!stiliPronti) return;
+
   var GLIFI = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   var PASSO = 45;   // millisecondi fra un fotogramma e l'altro
   var GIRI = 7;     // quanti fotogrammi prima che una lettera si fermi
@@ -27,6 +33,11 @@
 
     var vocale = document.createElement('span');
     vocale.className = 'sr';
+    // Nascosto anche senza foglio di stile: senza questo, una pagina servita
+    // con il CSS mancante mostrerebbe lo stato scritto due volte di fila.
+    vocale.setAttribute('style', 'position:absolute;width:1px;height:1px;margin:-1px;'
+      + 'padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);'
+      + 'white-space:nowrap;border:0;user-select:none;-webkit-user-select:none');
     vocale.textContent = finale;
 
     var visibile = document.createElement('span');

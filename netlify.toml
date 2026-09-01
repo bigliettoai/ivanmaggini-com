@@ -80,10 +80,20 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
 
-# Gli asset non hanno un hash nel nome (non c'è un bundler), quindi niente
-# `immutable`: il browser rivalida ogni ora e una modifica al CSS si vede
-# subito dopo il deploy invece di restare bloccata in cache.
+# Il foglio di stile e lo script vengono richiamati con l'impronta del loro
+# contenuto nell'indirizzo (`?v=...`), quindi una modifica cambia l'URL e la
+# copia vecchia non può più essere servita. La rivalidazione a ogni richiesta
+# è la seconda rete: se un giorno l'impronta non venisse rigenerata, il
+# browser se ne accorgerebbe lo stesso. Sono venti kilobyte, e la risposta
+# è quasi sempre un 304 vuoto.
+#
+# Le immagini restano in cache un'ora: cambiano di rado e non rompono nulla.
 [[headers]]
   for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/og/*"
   [headers.values]
     Cache-Control = "public, max-age=3600, must-revalidate"
