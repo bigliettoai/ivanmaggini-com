@@ -7,7 +7,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/"/>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <priority>1.0</priority>
   </url>
 
@@ -18,35 +18,17 @@
   </url>
 
   <url>
-    <loc>https://ivanmaggini.com/startup</loc>
-    <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/startup"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/startup"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/startup"/>
-    <lastmod>2026-08-23</lastmod>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
     <loc>https://ivanmaggini.com/en/</loc>
     <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/"/>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://ivanmaggini.com/en/startup</loc>
-    <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/startup"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/startup"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/startup"/>
-    <lastmod>2026-08-23</lastmod>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
     <loc>https://ivanmaggini.com/privacy</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <priority>0.2</priority>
   </url>
 
@@ -58,7 +40,7 @@
 
   <url>
     <loc>https://ivanmaggini.com/en/privacy</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <priority>0.2</priority>
   </url>
 

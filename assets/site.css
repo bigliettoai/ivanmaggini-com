@@ -1,240 +1,279 @@
 /* ------------------------------------------------------------------
-   ivanmaggini.com — foglio di stile unico per tutte le pagine.
+   ivanmaggini.com
 
-   Il sito ospita due aree molto diverse (Startup e Studio) che devono
-   restare riconoscibili come lo stesso brand personale. La coerenza sta
-   nella tipografia, nella spaziatura e nel motivo del "biglietto"
-   (la riga tratteggiata perforata); la distinzione sta nel tema di
-   colore, che ogni pagina imposta scrivendo le variabili qui sotto.
+   Il sito di una persona che fa due mestieri lontani: costruisce
+   Biglietto, un prodotto per chi viaggia, e produce video per studi
+   professionali. Il filo che tiene insieme le due cose è che entrambe
+   hanno uno stato, e lui lo racconta man mano: il prototipo è offline
+   e torna in autunno, lo studio prende clienti adesso.
 
-      home     -> .theme-hub    (inchiostro caldo, neutro)
-      startup  -> .theme-startup (navy + oro, eco di Biglietto)
-      studio   -> .theme-studio  (crema chiara + verde, pagina lunga)
+   Da lì viene l'impianto visivo: un tabellone. Carta chiara e fredda
+   per il testo, un unico blocco nero dove gli stati vengono dichiarati,
+   ambra solo lì dentro. Il bordo superiore del blocco è perforato come
+   il margine di un biglietto staccato: è l'unico ornamento del sito ed
+   è anche l'unica cosa che si muove da sola.
+
+   Regole che il foglio si dà:
+   - niente etichette monospace tutte maiuscole sopra ai titoli: le
+     etichette stanno nel margine sinistro, in tondo minuscolo;
+   - niente griglie di card tutte uguali: le card esistono solo dove il
+     contenuto è davvero parallelo (due pubblici, tre listini);
+   - il nero è nero, non un nero tinto;
+   - nessuna freccia appesa al testo dei link;
+   - un solo momento animato, non una dissolvenza per ogni sezione.
    ------------------------------------------------------------------ */
 
 :root {
-  /* Palette di base condivisa. I temi ridefiniscono solo i ruoli
-     (--bg, --fg, --accent...), mai queste costanti. */
-  --navy: #0a1e33;
-  --navy-deep: #071526;
-  --ink: #14120f;
-  --ink-deep: #0c0b09;
-  --cream: #f5f1e6;
-  --cream-warm: #faf7ef;
-  --gold: #a8801a;
-  --gold-bright: #bd9020;
-  --green: #17493c;
-  --green-deep: #0f3227;
+  /* Carta da biglietto: grigio chiaro neutro, non crema. */
+  --paper: #ebebe8;
+  --paper-2: #e0e0dc;
+  --ink: #000000;
+  --ink-soft: rgba(0, 0, 0, 0.72);
+  --ink-mute: rgba(0, 0, 0, 0.58);
+  --rule: rgba(0, 0, 0, 0.18);
+  --rule-strong: rgba(0, 0, 0, 0.4);
 
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'Space Mono', ui-monospace, monospace;
+  /* Il tabellone. L'ambra vive solo qui: su carta non passerebbe mai
+     il contrasto, e il vincolo tiene il colore al suo posto. */
+  --board: #0c0c0c;
+  --board-fg: #ebebe8;
+  --board-mute: rgba(235, 235, 232, 0.62);
+  --board-rule: rgba(235, 235, 232, 0.2);
+  --signal: #ffab00;
 
-  /* Scala di spaziatura: tutto il sito usa solo questi passi. */
-  --s1: 8px;
-  --s2: 16px;
-  --s3: 24px;
-  --s4: 40px;
-  --s5: 64px;
-  --s6: 96px;
+  --display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --text: 'Newsreader', Georgia, 'Times New Roman', serif;
 
-  --radius: 14px;
-  --maxw: 1080px;
+  /* Passi di spaziatura: il sito usa solo questi. */
+  --s1: 6px;
+  --s2: 12px;
+  --s3: 22px;
+  --s4: 36px;
+  --s5: 60px;
+  --s6: clamp(56px, 9vw, 120px);
+
+  --rail: 168px;
+  --measure: 54ch;
 }
 
-/* --- temi ---------------------------------------------------------- */
+/* --- base ------------------------------------------------------------ */
 
-.theme-hub {
-  --bg: var(--ink);
-  --bg-alt: var(--ink-deep);
-  --fg: var(--cream);
-  --fg-soft: rgba(245, 241, 230, 0.68);
-  /* I livelli di grigio sono tarati per restare sopra il rapporto di
-     contrasto 4.5:1 richiesto da WCAG AA anche nel testo piccolo. */
-  --fg-faint: rgba(245, 241, 230, 0.52);
-  --accent: var(--gold-bright);
-  --line: rgba(245, 241, 230, 0.16);
-  --surface: rgba(245, 241, 230, 0.045);
-}
-
-.theme-startup {
-  --bg: var(--navy);
-  --bg-alt: var(--navy-deep);
-  --fg: var(--cream);
-  --fg-soft: rgba(245, 241, 230, 0.7);
-  --fg-faint: rgba(245, 241, 230, 0.52);
-  --accent: var(--gold-bright);
-  --line: rgba(245, 241, 230, 0.16);
-  --surface: rgba(245, 241, 230, 0.05);
-}
-
-.theme-studio {
-  --bg: var(--cream-warm);
-  --bg-alt: #f0ece1;
-  --fg: var(--ink);
-  --fg-soft: rgba(20, 18, 15, 0.72);
-  --fg-faint: rgba(20, 18, 15, 0.62);
-  --accent: var(--green);
-  --line: rgba(20, 18, 15, 0.14);
-  --surface: rgba(20, 18, 15, 0.035);
-}
-
-/* --- reset e base --------------------------------------------------- */
-
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-}
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-img, svg { max-width: 100%; height: auto; display: block; }
-
-a { color: inherit; }
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 4px;
+  scroll-behavior: smooth;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
-/* --- salti alle ancore ------------------------------------------------
-   La barra del sito è sticky e alta 72px: senza questo margine, un salto a
-   un'ancora porta il titolo della sezione esattamente sotto la barra, e chi
-   arriva ci trova il testo che comincia a metà. Succedeva su #metodo e
-   #pacchetti, cioè i due link della barra stessa. */
-
-[id] { scroll-margin-top: 88px; }
-
-/* --- layout --------------------------------------------------------- */
-
-.wrap {
-  width: 100%;
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 0 var(--s3);
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-
-.wrap.narrow { max-width: 720px; }
-
-section { padding: var(--s5) 0; }
 
 @media (min-width: 768px) {
-  body { font-size: 18px; }
-  .wrap { padding: 0 var(--s4); }
-  section { padding: var(--s6) 0; }
+  body { font-size: 1.125rem; }
 }
 
-.band { background: var(--bg-alt); }
+img, svg { max-width: 100%; height: auto; display: block; }
 
-/* --- tipografia ------------------------------------------------------ */
+::selection { background: var(--ink); color: var(--paper); }
 
-.wordmark {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-style: italic;
-  letter-spacing: -0.015em;
-  line-height: 1.05;
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
-h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+.board :focus-visible { outline-color: var(--signal); }
 
-h1 { font-size: clamp(2.1rem, 7.5vw, 3.6rem); }
-h2 { font-size: clamp(1.6rem, 4.6vw, 2.4rem); }
-h3 { font-size: clamp(1.1rem, 3vw, 1.3rem); letter-spacing: -0.01em; }
+/* Il salto di ancora non deve finire sotto la barra in alto. */
+[id] { scroll-margin-top: 96px; }
 
-p { color: var(--fg-soft); }
-p + p { margin-top: var(--s2); }
-
-.lead {
-  font-size: clamp(1.05rem, 3vw, 1.25rem);
-  line-height: 1.6;
-  color: var(--fg-soft);
-}
-
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: block;
-}
-
-.section-head { max-width: 640px; }
-.section-head .eyebrow { margin-bottom: var(--s2); }
-.section-head h2 + p { margin-top: var(--s3); }
-
-.muted { color: var(--fg-faint); }
-.small { font-size: 0.9rem; }
-
-/* --- motivo "biglietto": riga perforata ------------------------------ */
-
-.perf {
-  position: relative;
-  border-top: 1.5px dashed var(--line);
-  margin: var(--s4) 0;
-}
-
-.perf::before, .perf::after {
-  content: '';
+.skip {
   position: absolute;
-  top: -7px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 1.5px solid var(--line);
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  z-index: 20;
+}
+.skip:focus { left: 8px; top: 8px; }
+
+/* --- tipografia ------------------------------------------------------- */
+
+/* Il display è un grottesco variabile usato in larghezza espansa: è il
+   modo in cui è scritta la segnaletica, ed è anche il contrasto più
+   forte possibile con il serif del testo corrente. */
+h1, h2, h3, .display-xl {
+  font-family: var(--display);
+  font-weight: 650;
+  font-stretch: 112%;
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  margin: 0;
+  text-wrap: balance;
 }
 
-.perf::before { left: -7px; }
-.perf::after { right: -7px; }
+.masthead { display: grid; gap: var(--s4); }
 
-/* --- bottoni ---------------------------------------------------------- */
+@media (min-width: 940px) {
+  .masthead {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+    column-gap: var(--s5);
+    align-items: end;
+  }
+  .masthead .lede { margin-bottom: 0.5em; }
+}
+
+.display-xl {
+  font-size: clamp(3.2rem, 12vw, 8.5rem);
+  font-weight: 700;
+  font-stretch: 118%;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+
+h1 { font-size: clamp(2.1rem, 6.6vw, 4rem); font-weight: 680; font-stretch: 115%; }
+h2 { font-size: clamp(1.65rem, 4.2vw, 2.6rem); }
+h3 {
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  font-weight: 620;
+  font-stretch: 104%;
+  line-height: 1.24;
+  letter-spacing: -0.008em;
+}
+
+p { margin: 0; color: var(--ink-soft); max-width: var(--measure); }
+p + p { margin-top: var(--s3); }
+
+.lede {
+  font-size: clamp(1.2rem, 2.9vw, 1.55rem);
+  line-height: 1.46;
+  color: var(--ink);
+  max-width: 30ch;
+}
+
+@media (min-width: 700px) { .lede { max-width: 44ch; } }
+
+.small { font-size: 0.9375rem; line-height: 1.55; }
+.mute { color: var(--ink-mute); }
+
+em { font-style: italic; }
+strong { font-weight: 600; color: var(--ink); }
+
+/* --- impaginazione ---------------------------------------------------- */
+
+.shell {
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5.5vw, 64px);
+}
+
+.sec {
+  padding-block: var(--s6);
+  border-top: 1px solid var(--rule);
+}
+
+.sec.tight { padding-block: clamp(40px, 6vw, 72px); }
+.sec.open { border-top: 0; }
+
+/* L'etichetta di sezione sta nel margine sinistro, in tondo minuscolo:
+   così il titolo resta la prima cosa che si legge invece di essere
+   preceduto ogni volta da una riga di maiuscolette spaziate. */
+.sec-grid { display: grid; gap: var(--s3); }
+
+@media (min-width: 940px) {
+  .sec-grid {
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    column-gap: var(--s5);
+    row-gap: 0;
+  }
+  .sec-grid > .rail { grid-row: span 2; }
+}
+
+.rail {
+  font-family: var(--display);
+  font-size: 0.8125rem;
+  font-weight: 550;
+  font-stretch: 82%;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: var(--ink-mute);
+  align-self: start;
+}
+
+@media (min-width: 940px) {
+  .rail { position: sticky; top: 92px; }
+}
+
+.rail b { display: block; font-weight: 650; color: var(--ink); font-stretch: 88%; }
+
+.body > * + * { margin-top: var(--s3); }
+.body > h2 + p, .body > h1 + p { margin-top: var(--s3); }
+
+/* --- link e pulsanti --------------------------------------------------- */
+
+a { color: inherit; }
+
+.body a,
+p a,
+.legal a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  text-decoration-color: var(--rule-strong);
+  transition: text-decoration-color 0.18s ease, text-decoration-thickness 0.18s ease;
+}
+
+.body a:hover,
+p a:hover,
+.legal a:hover {
+  text-decoration-color: var(--ink);
+  text-decoration-thickness: 2px;
+}
+
+.body a.btn, p a.btn, .body a.mailto, p a.mailto { text-decoration: none; }
 
 .btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--s1);
-  padding: 15px 26px;
-  border: 1.5px solid var(--accent);
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--bg);
-  font-size: 0.97rem;
-  font-weight: 600;
+  gap: 10px;
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 620;
+  font-stretch: 100%;
+  line-height: 1;
+  padding: 15px 22px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
   text-decoration: none;
+  border-radius: 2px;
   cursor: pointer;
-  font-family: inherit;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition: background 0.16s ease, color 0.16s ease, transform 0.1s ease;
 }
 
-.btn:hover { opacity: 0.88; transform: translateY(-1px); }
-.btn:active { transform: translateY(0); }
+.btn:hover { background: transparent; color: var(--ink); }
+.btn:active { transform: translateY(1px); }
 
-.btn.ghost {
-  background: transparent;
-  color: var(--fg);
-  border-color: var(--line);
-}
-
-.btn.ghost:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
 
 .btn-row {
   display: flex;
@@ -243,362 +282,412 @@ p + p { margin-top: var(--s2); }
   margin-top: var(--s4);
 }
 
-/* --- navigazione ------------------------------------------------------ */
+/* L'indirizzo email è l'unica azione del sito: merita di essere leggibile
+   come un dato, non nascosto dentro una frase. */
+.mailto {
+  font-family: var(--display);
+  font-stretch: 96%;
+  font-weight: 600;
+  font-size: clamp(1.05rem, 3.4vw, 1.5rem);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border-bottom: 2px solid var(--rule-strong);
+  padding-bottom: 3px;
+  display: inline-block;
+  transition: border-color 0.18s ease;
+  word-break: break-word;
+}
+.mailto:hover { border-color: var(--ink); }
 
-.nav {
+/* --- barra in alto ----------------------------------------------------- */
+
+.top {
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
+  z-index: 10;
+  background: var(--paper);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--rule);
 }
 
-.nav-inner {
+.top-in {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--s2);
-  padding-top: 14px;
-  padding-bottom: 14px;
+  gap: var(--s3);
+  min-height: 60px;
 }
 
-.nav a { text-decoration: none; }
+.mark {
+  font-family: var(--display);
+  font-weight: 700;
+  font-stretch: 108%;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
 
-.nav .wordmark { font-size: 1.35rem; }
-
-.nav-links {
+.top nav {
   display: flex;
   align-items: center;
-  gap: var(--s2);
-  font-size: 0.9rem;
+  gap: var(--s3);
+  font-family: var(--display);
+  font-size: 0.875rem;
+  font-weight: 550;
+  font-stretch: 92%;
 }
 
-.nav-links a { color: var(--fg-soft); padding: 4px 2px; }
-.nav-links a:hover, .nav-links a[aria-current='page'] { color: var(--fg); }
+.top nav a { text-decoration: none; color: var(--ink-mute); }
+.top nav a:hover, .top nav a[aria-current] { color: var(--ink); }
 
-.nav-links .btn { padding: 9px 18px; font-size: 0.87rem; }
+.top nav .btn { padding: 9px 15px; font-size: 0.85rem; color: var(--paper); }
+.top nav .btn:hover { color: var(--ink); }
 
-/* `.nav-links a` è più specifico di `.btn`, quindi senza queste due regole il
-   bottone nella barra si ritroverebbe il colore del testo di navigazione:
-   inchiostro su verde pieno, illeggibile. */
-.nav-links a.btn { color: var(--bg); }
-.nav-links a.btn.ghost { color: var(--fg); }
-
-@media (max-width: 560px) {
-  .nav-links .desk-only { display: none; }
-}
-
-/* --- selettore di lingua ------------------------------------------------ */
-
-/* Compare solo sulle pagine che esistono in entrambe le lingue (home,
-   startup, privacy). La sezione Studio si rivolge a studi lombardi ed è
-   solo in italiano, quindi lì il selettore non ha nulla da offrire. */
 .lang {
   display: inline-flex;
-  align-items: center;
   gap: 2px;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 3px;
-  flex-shrink: 0;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.lang a { padding: 5px 8px; font-size: 0.78rem; letter-spacing: 0.04em; }
+.top nav .lang a[aria-current] { background: var(--ink); color: var(--paper); }
+
+@media (max-width: 560px) {
+  .top nav .hide-s { display: none; }
 }
 
-.nav-links .lang a {
-  color: var(--fg-faint);
-  padding: 3px 9px;
-  border-radius: 999px;
-  line-height: 1.4;
+/* --- il tabellone: l'unico blocco nero del sito ------------------------ */
+
+.board {
+  background: var(--board);
+  color: var(--board-fg);
+  padding-block: clamp(48px, 7vw, 84px) clamp(40px, 6vw, 72px);
+  position: relative;
+  margin-top: var(--s5);
 }
 
-.nav-links .lang a:hover { color: var(--fg); }
-
-.nav-links .lang a[aria-current='true'] {
-  color: var(--bg);
-  background: var(--accent);
-  font-weight: 700;
+/* Bordo superiore perforato: il margine di un biglietto staccato.
+   Sono semicerchi del colore della carta ritagliati dentro il nero. */
+.board::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 13px;
+  background-image: radial-gradient(circle at 12px 0, var(--paper) 6px, transparent 6.5px);
+  background-size: 24px 13px;
+  background-repeat: repeat-x;
 }
 
-/* --- card griglia ------------------------------------------------------ */
+.board h2, .board h3 { color: var(--board-fg); }
+.board p { color: var(--board-mute); }
+.board .rail { color: var(--board-mute); }
+.board .rail b { color: var(--board-fg); }
 
-.grid {
+.board-title {
+  font-family: var(--display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-stretch: 82%;
+  letter-spacing: 0.06em;
+  color: var(--board-mute);
+  margin: 0 0 var(--s4);
+}
+
+.rows { list-style: none; margin: 0; padding: 0; }
+
+.row {
   display: grid;
-  gap: var(--s3);
-  margin-top: var(--s4);
+  gap: 4px var(--s3);
+  padding: var(--s3) 0;
+  border-top: 1px solid var(--board-rule);
+  align-items: baseline;
 }
 
-@media (min-width: 700px) {
-  .grid.two { grid-template-columns: repeat(2, 1fr); }
-  .grid.three { grid-template-columns: repeat(3, 1fr); }
+.row:last-child { border-bottom: 1px solid var(--board-rule); }
+
+@media (min-width: 760px) {
+  .row { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr) minmax(0, 7fr); }
+  .row-state { text-align: right; }
 }
+
+.row-name {
+  font-family: var(--display);
+  font-weight: 680;
+  font-stretch: 112%;
+  font-size: clamp(1.35rem, 3.6vw, 1.9rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.row-kind {
+  font-family: var(--display);
+  font-weight: 500;
+  font-stretch: 80%;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--board-mute);
+}
+
+/* Lo stato è l'informazione per cui il tabellone esiste, ed è l'unica
+   cosa in ambra di tutto il sito. */
+.row-state {
+  font-family: var(--display);
+  font-weight: 600;
+  font-stretch: 92%;
+  font-size: clamp(0.95rem, 2.4vw, 1.0625rem);
+  letter-spacing: 0.005em;
+  color: var(--signal);
+  font-variant-numeric: tabular-nums;
+}
+
+.board a { color: var(--signal); text-decoration-color: rgba(255, 171, 0, 0.45); }
+.board a:hover { text-decoration-color: var(--signal); }
+
+.board .btn {
+  background: var(--board-fg);
+  border-color: var(--board-fg);
+  color: var(--board);
+}
+.board .btn:hover { background: transparent; color: var(--board-fg); }
+
+/* --- elenchi ----------------------------------------------------------- */
+
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+
+.list li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+
+/* Un trattino corto invece del pallino: è il segno che si usa quando si
+   spunta una riga a mano su un foglio. */
+.list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 14px;
+  height: 2px;
+  background: var(--ink);
+}
+
+@media (min-width: 780px) {
+  .list.two { grid-template-columns: 1fr 1fr; column-gap: var(--s5); }
+}
+
+/* --- passi numerati ---------------------------------------------------- */
+
+.steps { counter-reset: step; list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s4); }
+
+@media (min-width: 880px) { .steps { grid-template-columns: repeat(3, 1fr); column-gap: var(--s4); } }
+
+.step { counter-increment: step; border-top: 2px solid var(--ink); padding-top: var(--s2); }
+
+.step::before {
+  content: counter(step);
+  display: block;
+  font-family: var(--display);
+  font-weight: 700;
+  font-stretch: 78%;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--s2);
+}
+
+.step h3 { margin-bottom: var(--s1); }
+.step p { font-size: 0.9875rem; max-width: 46ch; }
+
+/* --- card: solo dove il contenuto è davvero parallelo ------------------- */
+
+.pair { display: grid; gap: var(--s3); }
+
+@media (min-width: 820px) { .pair { grid-template-columns: 1fr 1fr; column-gap: var(--s4); } }
 
 .card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: var(--s3);
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  border-radius: 2px;
+  padding: var(--s4) var(--s3);
+  display: flex;
+  flex-direction: column;
 }
 
-@media (min-width: 768px) {
-  .card { padding: var(--s4) var(--s3); }
-}
+.card > .btn { margin-top: auto; align-self: flex-start; }
+.card h2, .card h3 { margin-bottom: var(--s1); }
+.card p { font-size: 1rem; }
 
-.card h3 { margin-bottom: var(--s1); }
-.card p { font-size: 0.97rem; }
-
-/* Le due card della homepage: cliccabili per intero e colorate con il
-   tema della sezione a cui portano, così la distinzione si vede subito. */
-.route {
+.who {
   display: block;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.route:hover { transform: translateY(-3px); border-color: var(--accent); }
-
-.route .route-tag {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  display: inline-block;
-  padding: 5px 11px;
-  border-radius: 999px;
+  font-family: var(--display);
+  font-size: 0.8125rem;
+  font-weight: 550;
+  font-stretch: 82%;
+  letter-spacing: 0.02em;
+  color: var(--ink-mute);
   margin-bottom: var(--s3);
 }
 
-.route.startup .route-tag { background: rgba(189, 144, 32, 0.16); color: var(--gold-bright); }
-.route.studio .route-tag { background: rgba(88, 168, 140, 0.16); color: #6fc0a3; }
-
-.route h3 { font-size: clamp(1.4rem, 4vw, 1.8rem); }
-.route .arrow { margin-top: var(--s3); color: var(--accent); font-weight: 600; font-size: 0.95rem; }
-
-/* --- liste ------------------------------------------------------------- */
-
-.ticks { list-style: none; display: grid; gap: 12px; margin-top: var(--s3); }
-
-.ticks li {
-  position: relative;
-  padding-left: 28px;
-  color: var(--fg-soft);
-  font-size: 0.97rem;
+/* Riga di credenziale: filetto pieno a sinistra e carattere del display,
+   senza virgolette e senza corsivo. */
+.pull {
+  border-left: 3px solid var(--ink);
+  padding-left: var(--s3);
+  max-width: 54ch;
 }
 
-.ticks li::before {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: 0.62em;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
+.pull p {
+  font-family: var(--display);
+  font-weight: 550;
+  font-stretch: 98%;
+  font-size: clamp(1.05rem, 2.5vw, 1.28rem);
+  line-height: 1.42;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  max-width: none;
 }
 
-.ticks li strong { color: var(--fg); font-weight: 600; }
+.board .pull { border-left-color: var(--signal); }
+.board .pull p { color: var(--board-fg); }
 
-/* --- passi numerati (metodo) -------------------------------------------- */
+/* --- listini ------------------------------------------------------------ */
 
-.steps { counter-reset: step; display: grid; gap: var(--s3); margin-top: var(--s4); }
+.fares { display: grid; gap: var(--s3); }
 
-@media (min-width: 860px) {
-  .steps { grid-template-columns: repeat(4, 1fr); }
-  .steps.three { grid-template-columns: repeat(3, 1fr); }
-}
+@media (min-width: 880px) { .fares { grid-template-columns: repeat(3, 1fr); column-gap: var(--s3); } }
 
-/* Sotto gli 860px i tre passi stanno incolonnati e occuperebbero tutta la
-   larghezza della pagina: la riga diventerebbe troppo lunga per essere letta
-   comodamente. Sopra gli 860 la colonna è già più stretta di così. */
-.steps.three .step p { max-width: 68ch; }
-
-.step {
-  counter-increment: step;
-  border-top: 2px solid var(--line);
-  padding-top: var(--s2);
-}
-
-.step::before {
-  content: counter(step, decimal-leading-zero);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  color: var(--accent);
-  display: block;
-  margin-bottom: var(--s1);
-}
-
-.step h3 { font-size: 1.05rem; margin-bottom: 6px; }
-.step p { font-size: 0.93rem; }
-
-/* --- pacchetti ---------------------------------------------------------- */
-
-.plans { display: grid; gap: var(--s3); margin-top: var(--s4); align-items: start; }
-
-@media (min-width: 860px) { .plans { grid-template-columns: repeat(3, 1fr); } }
-
-.plan {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+.fare {
+  border: 1px solid var(--rule);
+  border-radius: 2px;
   padding: var(--s3);
-  background: var(--surface);
   display: flex;
   flex-direction: column;
-  height: 100%;
+  background: var(--paper-2);
 }
 
-.plan.featured {
-  border-color: var(--accent);
-  border-width: 2px;
-  background: color-mix(in srgb, var(--accent) 7%, transparent);
+.fare.pick { border-color: var(--ink); border-width: 2px; background: transparent; }
+
+.fare-name {
+  font-family: var(--display);
+  font-weight: 650;
+  font-stretch: 84%;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
 }
 
-.plan-name {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
+.fare.pick .fare-name { color: var(--ink); }
 
-.plan-price {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 2.5rem;
-  letter-spacing: -0.02em;
-  margin-top: var(--s2);
+.fare-price {
+  font-family: var(--display);
+  font-weight: 700;
+  font-stretch: 108%;
+  font-size: clamp(2.1rem, 5.4vw, 2.7rem);
+  letter-spacing: -0.03em;
   line-height: 1;
+  margin-top: var(--s3);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
 }
 
-.plan-price span {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
+.fare-price .from,
+.fare-price .per {
+  display: block;
+  font-family: var(--text);
+  font-size: 0.9375rem;
   font-weight: 400;
-  color: var(--fg-faint);
   letter-spacing: 0;
+  color: var(--ink-mute);
 }
+.fare-price .from { margin-bottom: 2px; }
+.fare-price .per { margin-top: var(--s1); }
 
-.plan .ticks { margin-top: var(--s3); flex: 1; }
-.plan .btn { margin-top: var(--s3); width: 100%; }
+.fare p:not(.fare-price) { font-size: 0.9875rem; margin-top: var(--s3); flex: 1; }
+.fare .btn { margin-top: var(--s3); justify-content: center; }
 
-/* --- form ---------------------------------------------------------------- */
+/* --- domande ------------------------------------------------------------ */
 
-.form { display: grid; gap: var(--s3); margin-top: var(--s4); }
-
-@media (min-width: 700px) {
-  .form { grid-template-columns: 1fr 1fr; }
-  .form .full { grid-column: 1 / -1; }
-}
-
-.field { display: grid; gap: 7px; }
-
-.field label { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.01em; }
-
-.field input, .field select, .field textarea {
-  font-family: inherit;
-  font-size: 16px; /* impedisce lo zoom automatico su iOS */
-  color: var(--fg);
-  background: var(--bg);
-  border: 1.5px solid var(--line);
-  border-radius: 10px;
-  padding: 13px 14px;
-  width: 100%;
-  transition: border-color 0.15s ease;
-}
-
-.field textarea { min-height: 120px; resize: vertical; }
-
-.field input:focus, .field select:focus, .field textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.field input::placeholder, .field textarea::placeholder { color: var(--fg-faint); }
-
-.consent {
-  display: flex;
-  gap: 11px;
-  align-items: flex-start;
-  font-size: 0.85rem;
-  color: var(--fg-soft);
-  line-height: 1.5;
-}
-
-.consent input { width: 18px; height: 18px; margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
-
-.hp { position: absolute; left: -9999px; opacity: 0; }
-
-/* --- FAQ ------------------------------------------------------------------ */
-
-.faq { margin-top: var(--s4); border-top: 1px solid var(--line); }
-
-.faq details { border-bottom: 1px solid var(--line); }
+.faq { border-top: 1px solid var(--rule); }
+.faq details { border-bottom: 1px solid var(--rule); }
 
 .faq summary {
-  cursor: pointer;
-  padding: 20px 34px 20px 0;
-  font-weight: 600;
-  font-size: 1rem;
   list-style: none;
+  cursor: pointer;
+  padding: var(--s3) 40px var(--s3) 0;
   position: relative;
+  font-family: var(--display);
+  font-weight: 620;
+  font-stretch: 104%;
+  font-size: clamp(1.02rem, 2.4vw, 1.15rem);
+  letter-spacing: -0.008em;
+  line-height: 1.3;
 }
 
 .faq summary::-webkit-details-marker { display: none; }
 
-.faq summary::after {
-  content: '+';
+/* Una croce che ruota di 45 gradi diventa un meno: due tratti, niente
+   glifo tipografico che cambia. */
+.faq summary::after,
+.faq summary::before {
+  content: '';
   position: absolute;
   right: 4px;
-  top: 18px;
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: var(--accent);
-  line-height: 1;
+  top: 50%;
+  width: 15px;
+  height: 2px;
+  background: var(--ink);
+  transition: transform 0.25s ease;
+}
+.faq summary::before { transform: translateY(-50%); }
+.faq summary::after { transform: translateY(-50%) rotate(90deg); }
+.faq details[open] summary::after { transform: translateY(-50%) rotate(180deg); }
+
+.faq details > div {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s ease;
+}
+.faq details[open] > div { grid-template-rows: 1fr; }
+.faq details > div > div { overflow: hidden; }
+.faq details p { padding-bottom: var(--s3); max-width: 66ch; }
+
+/* --- pagine legali ------------------------------------------------------ */
+
+.legal { max-width: 56ch; }
+.legal h2 { font-size: clamp(1.2rem, 2.8vw, 1.45rem); margin-top: var(--s5); }
+.legal h3 { margin-top: var(--s4); }
+.legal p, .legal li { font-size: 1rem; max-width: none; }
+.legal ul { margin: var(--s3) 0 0; padding-left: var(--s3); display: grid; gap: var(--s2); }
+.legal li { color: var(--ink-soft); }
+.legal > * + * { margin-top: var(--s3); }
+
+/* --- piede -------------------------------------------------------------- */
+
+.foot {
+  border-top: 1px solid var(--rule);
+  padding-block: var(--s5) var(--s5);
+  font-size: 0.9375rem;
 }
 
-.faq details[open] summary::after { content: '–'; }
+.foot-in { display: grid; gap: var(--s4); }
 
-.faq details p { padding-bottom: 20px; font-size: 0.95rem; max-width: 68ch; }
-
-/* --- footer --------------------------------------------------------------- */
-
-.footer {
-  border-top: 1px solid var(--line);
-  padding: var(--s4) 0 var(--s5);
-  margin-top: var(--s4);
+@media (min-width: 760px) {
+  .foot-in { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
 }
 
-.footer-inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s3);
-}
+.foot nav { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s3); font-family: var(--display); font-size: 0.875rem; font-stretch: 94%; font-weight: 550; }
+.foot nav a { text-decoration: none; color: var(--ink-mute); }
+.foot nav a:hover { color: var(--ink); }
+.foot .mark { font-size: 1.25rem; }
+.foot address { font-style: normal; color: var(--ink-mute); margin-top: var(--s2); }
 
-@media (min-width: 700px) {
-  .footer-inner { flex-direction: row; justify-content: space-between; align-items: flex-end; }
-}
-
-.footer .wordmark { font-size: 1.5rem; }
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s2) var(--s3);
-  font-size: 0.88rem;
-}
-
-.footer-links a { color: var(--fg-faint); text-decoration: none; }
-.footer-links a:hover { color: var(--fg); }
-
-/* --- Safari su iOS: riconoscimento automatico dei dati -------------------
-   iOS trasforma sequenze come la partita IVA in link telefonici, con tanto
-   di sottolineatura e colore: un numero che sembra cliccabile ma che, se
-   toccato, prova a chiamare. Il meta `format-detection` nelle pagine lo
-   vieta; questa regola toglie lo stile nei casi in cui lo faccia comunque. */
+/* --- iOS: riconoscimento automatico dei dati ---------------------------
+   Safari trasforma sequenze come la partita IVA in link telefonici. Il
+   meta `format-detection` nelle pagine lo vieta; questa regola toglie lo
+   stile nei casi in cui lo faccia comunque. */
 
 a[x-apple-data-detectors],
 a[x-apple-data-detectors] span {
@@ -608,91 +697,46 @@ a[x-apple-data-detectors] span {
   pointer-events: none;
 }
 
-/* --- pagine legali / testo lungo -------------------------------------------- */
+/* --- movimento ----------------------------------------------------------
+   Due sole cose si muovono da sole: le righe del titolo in apertura, e
+   gli stati del tabellone che si fermano come le palette di un tabellone
+   di partenze. Tutto il resto si muove solo se lo tocchi. */
 
-.legal { max-width: 720px; }
-.legal h2 { font-size: 1.35rem; margin-top: var(--s4); }
-.legal h3 { font-size: 1.05rem; margin-top: var(--s3); }
-.legal p, .legal li { font-size: 0.97rem; }
-.legal ul { margin: var(--s2) 0 0 var(--s3); display: grid; gap: 8px; }
-.legal li { color: var(--fg-soft); }
-.legal a { color: var(--accent); }
-
-/* --- pagina studio: blocchi introdotti con la versione di settembre -------
-
-   Il blocco "per chi" ha due card che nominano i due pubblici del servizio:
-   sono loro gli H2 della sezione, quindi il titolo del blocco è un elemento
-   display senza semantica di heading. `.display` serve solo a quello.       */
-
-.display {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.6rem, 4.6vw, 2.4rem);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: var(--fg);
-}
-
-.card h2 { font-size: clamp(1.25rem, 3.4vw, 1.55rem); margin-bottom: 6px; }
-
-/* Riga con le professioni a cui la card si rivolge. */
-.card .who {
+/* La maschera deve lasciare fuori le discendenti: senza questo margine la
+   doppia g di "Maggini" viene tagliata a metà. */
+.reveal > span {
   display: block;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  color: var(--fg-faint);
-  margin-bottom: var(--s2);
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
 }
 
-.card .btn { margin-top: var(--s3); }
-
-/* Elenco "cosa è incluso": su schermi larghi sta su due colonne. Il flusso è
-   per colonna e non per riga, così si legge dall'alto in basso come una lista
-   sola invece che a zig-zag fra le due metà. */
-@media (min-width: 760px) {
-  .ticks.col-4-3 {
-    display: block;
-    column-count: 2;
-    column-gap: var(--s4);
-  }
-  .ticks.col-4-3 li { break-inside: avoid; margin-bottom: 12px; }
-}
-
-/* Riga di credenziale: filetto d'accento e carattere display, senza
-   virgolette e senza corsivo. */
-.pull {
-  border-left: 3px solid var(--accent);
-  padding-left: var(--s3);
-  margin-top: var(--s4);
-  max-width: 62ch;
-}
-
-.pull p {
-  font-family: var(--font-display);
-  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
-  line-height: 1.5;
-  color: var(--fg);
-}
-
-/* Prezzi di partenza: il "da" sta sopra la cifra, non accanto, così la cifra
-   resta l'elemento che si legge per primo. */
-.plan-price .from {
+.reveal > span > span {
   display: block;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  color: var(--fg-faint);
-  margin-bottom: 4px;
+  transform: translateY(102%);
+  animation: sali 0.72s cubic-bezier(0.16, 0.84, 0.3, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms + 60ms);
 }
 
-.plan-note { font-size: 0.95rem; margin-top: var(--s3); flex: 1; }
+@keyframes sali { to { transform: translateY(0); } }
 
-/* Card affiancate con un pulsante in fondo: il pulsante va appoggiato alla
-   base della card, non alla fine del proprio paragrafo. */
-.card.with-cta { display: flex; flex-direction: column; }
-.card.with-cta > .btn { margin-top: auto; align-self: flex-start; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal > span > span { transform: none; animation: none; }
+}
 
-/* Spazio fra la cifra e "/ mese": senza, i due pezzi si toccano. */
-.plan-price span:not(.from) { margin-left: 5px; }
+[data-flip] { display: inline-block; min-height: 1em; }
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}

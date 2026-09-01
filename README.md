@@ -1,105 +1,83 @@
 # ivanmaggini.com
 
-Sito personale di Ivan Maggini. Statico, senza build step, pensato per Netlify.
+Sito personale di Ivan Maggini. Due cose in un posto solo: chi è e cosa sta
+costruendo (Biglietto), e il servizio video per studi professionali in
+Lombardia (Ivan Maggini Studio).
 
-## Struttura
+Sono file statici: HTML, un foglio di stile, ottanta righe di JavaScript.
+Nessun build step, nessuna dipendenza, nessun framework. Si apre `index.html`
+e c'è tutto.
 
-| File | Rotta | Contenuto |
-| --- | --- | --- |
-| `index.html` | `/` | Homepage: presenta le due aree e linka a ciascuna |
-| `startup.html` | `/startup` | Biglietto (stato del prodotto, link) + accenno al secondo progetto |
-| `studio.html` | `/studio` | Ivan Maggini Studio — sezione principale: metodo, prova gratuita, attrezzatura, pacchetti, FAQ, form |
-| `privacy.html` | `/privacy` | Informativa privacy (GDPR) |
-| `grazie.html` | `/grazie` | Conferma dopo l'invio del modulo |
-| `en/index.html` | `/en/` | Homepage in inglese |
-| `en/startup.html` | `/en/startup` | Sezione startup in inglese |
-| `en/privacy.html` | `/en/privacy` | Informativa privacy in inglese |
-| `404.html` | — | Pagina di errore servita automaticamente da Netlify |
-| `assets/site.css` | — | Unico foglio di stile, con i tre temi di colore |
-| `assets/favicon.svg` | — | Monogramma |
-| `netlify.toml` | — | Publish directory, URL puliti, redirect www, header di sicurezza |
+## Pagine
 
-Le rotte senza `.html` sono dichiarate come rewrite (status 200) in
-`netlify.toml`, quindi non dipendono dall'impostazione "Pretty URLs" di Netlify.
+| Rotta          | File               | Cosa c'è                                        |
+| -------------- | ------------------ | ----------------------------------------------- |
+| `/`            | `index.html`       | Chi sono, il tabellone, Biglietto, Studio        |
+| `/studio`      | `studio.html`      | La pagina di vendita del servizio video          |
+| `/privacy`     | `privacy.html`     | Informativa privacy                              |
+| `/condizioni`  | `condizioni.html`  | Condizioni generali di servizio                  |
+| `/en/`         | `en/index.html`    | Versione inglese: profilo e Biglietto            |
+| `/en/privacy`  | `en/privacy.html`  | Informativa privacy in inglese                   |
 
-## Lingue
+La sezione Studio esiste solo in italiano: si rivolge a studi professionali
+lombardi. Biglietto non ha una pagina propria, è una sezione della home, e i
+vecchi indirizzi `/startup` e `/en/startup` ci reindirizzano.
 
-Home, startup e privacy esistono in italiano (`/…`) e in inglese (`/en/…`),
-come pagine separate: nessun JavaScript, un URL indicizzabile per lingua e i
-`<link rel="alternate" hreflang>` incrociati su ogni pagina.
+## Il sistema visivo
 
-La sezione **Studio è solo in italiano**, ed è una scelta: si rivolge a studi
-professionali lombardi. Le pagine inglesi ci linkano comunque, segnalando che
-il contenuto è in italiano.
+L'idea di fondo è un tabellone di partenze. Le cose che Ivan fa hanno uno
+stato e lui lo dichiara: il prodotto è offline e torna in autunno, lo studio
+prende clienti adesso.
 
-Il selettore IT/EN nella barra compare solo dove entrambe le versioni esistono.
-Se aggiungi una pagina bilingue, ricordati di aggiornare tre punti: il
-selettore, i tag `hreflang` di entrambe le versioni e `sitemap.xml`.
+- **Carta**, `#ebebe8`: un grigio chiaro neutro, non una crema calda.
+- **Nero vero**, `#000000`, per il testo. Il tabellone è `#0c0c0c`.
+- **Ambra**, `#ffab00`, solo dentro il blocco nero. Su carta non passerebbe
+  mai il contrasto, e il vincolo tiene il colore al suo posto.
+- **Archivo** variabile, usato in larghezza espansa (`font-stretch` fino a
+  118%) per titoli e dati: è il modo in cui è scritta la segnaletica.
+- **Newsreader** per il testo corrente. Un serif, cioè l'opposto della
+  combinazione display-serif più corpo-sans che si vede ovunque.
+- Le etichette di sezione stanno nel margine sinistro, in tondo minuscolo.
+  Non ci sono maiuscolette spaziate sopra ai titoli.
+- Le card esistono solo dove il contenuto è davvero parallelo: i due pubblici
+  del servizio e i tre listini. Tutto il resto è testo impaginato.
 
-## Design
+Il bordo superiore del blocco nero è perforato come il margine di un
+biglietto staccato. È l'unico ornamento del sito.
 
-Un solo foglio di stile, tre temi applicati con una classe sul `<body>`:
+## Il movimento
 
-- `.theme-hub` — inchiostro caldo, neutro (home, privacy, 404)
-- `.theme-startup` — navy e oro, eco visiva di Biglietto (`/startup`)
-- `.theme-studio` — crema chiara e verde profondo (`/studio`)
+Due cose sole si muovono da sole, ed è tutto in `assets/site.js` (ottanta
+righe, nessuna libreria):
 
-Le due sezioni si distinguono a colpo d'occhio, ma restano lo stesso brand:
-tipografia condivisa (Fraunces / Inter / Space Mono), stessa scala di
-spaziature, stesso motivo del biglietto perforato.
+1. Le righe della testata salgono da una maschera, una dopo l'altra.
+2. Gli stati sul tabellone si assestano come le palette di un tabellone di
+   partenze: passano per qualche carattere sbagliato e poi si fermano.
+   Succede una volta sola, quando il blocco entra in vista.
 
-Tutto è mobile-first: il layout parte da una colonna sola e i breakpoint
-(`700px`, `768px`, `860px`) aggiungono le griglie.
+Con `prefers-reduced-motion: reduce` non succede niente di tutto questo e il
+testo compare fermo. Il testo definitivo resta sempre nel documento in una
+copia riservata ai lettori vocali, quindi la scomposizione non arriva mai a
+chi legge con la voce.
 
-## Form di contatto
+## Nessun modulo
 
-Il modulo di `/studio` usa **Netlify Forms**: nessun backend da gestire.
+Sul sito non c'è nessun form. L'unica azione possibile è scrivere a
+`general@ivanmaggini.com`. È una scelta: senza raccolta non ci sono dati da
+custodire, e l'informativa privacy si accorcia di conseguenza.
 
-- `name="studio-contatto"` — il nome con cui compare nel pannello Netlify
-- `data-netlify="true"` — Netlify registra il form analizzando l'HTML al deploy
-- `netlify-honeypot="bot-field"` — trappola anti-spam
-- `action="/grazie"` — pagina di conferma dopo l'invio
+## Pubblicazione
 
-Dopo il primo deploy, in **Netlify → Site configuration → Forms**:
+Deploy su Netlify dal branch `main`, senza build. `netlify.toml` tiene gli
+URL puliti, i reindirizzamenti delle vecchie rotte, il 404 separato per le
+pagine inglesi e le intestazioni di sicurezza.
 
-1. Verifica che `studio-contatto` compaia nell'elenco.
-2. In **Form notifications** aggiungi una notifica email verso
-   `studio@ivanmaggini.com`, altrimenti gli invii restano solo nel pannello.
+## Lavorarci
 
-I form vanno registrati con un deploy: se modifichi i campi, l'aggiornamento è
-visibile solo dopo il deploy successivo.
-
-## Deploy su Netlify
-
-1. **Add new site → Import an existing project** e collega questo repository.
-2. Build command: vuoto. Publish directory: la root del repository (`.`).
-   Se il sito vive in una sottocartella del repo, imposta quella cartella come
-   *base directory*.
-3. **Domain management → Add a custom domain** → `ivanmaggini.com`.
-4. Punta i DNS del dominio a Netlify (nameserver Netlify, oppure record A/ALIAS
-   verso il load balancer indicato nel pannello) e attiva il certificato HTTPS
-   gratuito Let's Encrypt.
-5. Il redirect `www → apex` è già in `netlify.toml`.
-
-## Sviluppo in locale
-
-Non serve nessuna toolchain:
-
-```sh
+```
 python3 -m http.server 8000
 ```
 
-Nota: con un server statico semplice le rotte pulite (`/studio`) non vengono
-riscritte — apri `studio.html`. Con `netlify dev` (Netlify CLI) le rewrite di
-`netlify.toml` funzionano come in produzione.
-
-## Da completare
-
-- **Link Instagram**: in `startup.html` il pulsante social è commentato, in
-  attesa dell'URL esatto del profilo (non l'ho inventato per non pubblicare un
-  link sbagliato). Togli il commento e inserisci l'handle.
-- **Immagini Open Graph**: le pagine dichiarano `og:title` e `og:description`
-  ma non `og:image`. Quando ci sarà una foto o una copertina, aggiungila in
-  `assets/` e referenziala nei `<meta>`.
-- **Dati fiscali**: se e quando l'attività avrà partita IVA, vanno aggiunti nel
-  footer e nella sezione 1 della privacy policy.
+Basta per leggere il contenuto. Per provare le rotte pulite (`/studio` invece
+di `/studio.html`) serve un server che applichi le riscritture di
+`netlify.toml`, oppure `netlify dev`.

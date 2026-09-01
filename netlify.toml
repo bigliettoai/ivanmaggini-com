@@ -10,10 +10,17 @@
 # URL puliti. Netlify offre già la funzione "Pretty URLs", ma dichiarare le
 # riscritture qui rende le rotte indipendenti da quell'impostazione: /studio
 # serve studio.html senza redirect visibile all'utente né cambio di URL.
+# Biglietto non ha più una pagina propria: il racconto è una sezione della
+# home, quindi i vecchi indirizzi ci portano dentro invece di sparire.
 [[redirects]]
   from = "/startup"
-  to = "/startup.html"
-  status = 200
+  to = "/#biglietto"
+  status = 301
+
+[[redirects]]
+  from = "/en/startup"
+  to = "/en/#biglietto"
+  status = 301
 
 [[redirects]]
   from = "/studio"
@@ -30,25 +37,20 @@
   to = "/condizioni.html"
   status = 200
 
-# Pagina di conferma del modulo: è l'`action` del form, quindi Netlify Forms
-# ci rimanda l'utente dopo un invio andato a buon fine.
+# Il modulo di contatto non esiste più: si scrive una email e basta. La pagina
+# di conferma è stata rimossa, ma la sua rotta resta mappata sulla home perché
+# qualcuno potrebbe averla ancora fra i preferiti o in un vecchio messaggio.
 [[redirects]]
   from = "/grazie"
-  to = "/grazie.html"
-  status = 200
+  to = "/"
+  status = 301
 
-# Versione inglese di home, startup e privacy. La sezione Studio è solo in
-# italiano — si rivolge a studi professionali lombardi — quindi da /en le
-# pagine linkano direttamente a /studio.
+# Versione inglese di home e privacy. La sezione Studio è solo in italiano,
+# perché si rivolge agli studi professionali lombardi.
 [[redirects]]
   from = "/en"
   to = "/en/"
   status = 301
-
-[[redirects]]
-  from = "/en/startup"
-  to = "/en/startup.html"
-  status = 200
 
 [[redirects]]
   from = "/en/privacy"

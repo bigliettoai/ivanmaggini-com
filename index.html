@@ -4,29 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
-<title>Ivan Maggini · Founder e content creator</title>
-<meta name="description" content="Ivan Maggini, 19 anni, founder. Costruisco startup e produco contenuti video per studi professionali in Lombardia con Ivan Maggini Studio.">
+<title>Ivan Maggini, founder di Biglietto</title>
+<meta name="description" content="Ho 19 anni e costruisco Biglietto, un prodotto per chi viaggia. Con Ivan Maggini Studio giro video per studi professionali in Lombardia.">
 <link rel="canonical" href="https://ivanmaggini.com/">
 <link rel="alternate" hreflang="it" href="https://ivanmaggini.com/">
 <link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/">
 <link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/">
-<meta name="theme-color" content="#14120f">
+<meta name="theme-color" content="#ebebe8">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ivan Maggini">
-<meta property="og:title" content="Ivan Maggini · Founder e content creator">
-<meta property="og:description" content="Costruisco startup e produco contenuti video per studi professionali in Lombardia.">
+<meta property="og:title" content="Ivan Maggini, founder di Biglietto">
+<meta property="og:description" content="Costruisco Biglietto, un prodotto per chi viaggia. Racconto tutto mentre succede, anche le cose che vanno male.">
 <meta property="og:url" content="https://ivanmaggini.com/">
 <meta property="og:locale" content="it_IT">
 <meta property="og:image" content="https://ivanmaggini.com/assets/og/og-home.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Ivan Maggini: costruisco prodotti e racconto storie">
+<meta property="og:image:alt" content="Ivan Maggini: lo stato dei lavori, settembre 2026">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400..500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 
@@ -38,18 +38,21 @@
   "url": "https://ivanmaggini.com/",
   "jobTitle": "Founder",
   "email": "general@ivanmaggini.com",
-  "nationality": "IT"
+  "address": { "@type": "PostalAddress", "addressLocality": "Lurano", "addressRegion": "BG", "addressCountry": "IT" },
+  "sameAs": ["https://biglietto.ai", "https://instagram.com/ivan.maggini"]
 }
 </script>
 </head>
 
-<body class="theme-hub">
+<body>
 
-<header class="nav">
-  <div class="wrap nav-inner">
-    <a href="/" class="wordmark" aria-current="page">Ivan Maggini</a>
-    <nav class="nav-links" aria-label="Sezioni principali">
-      <a href="/startup">Startup</a>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+
+<header class="top">
+  <div class="shell top-in">
+    <a href="/" class="mark" aria-current="page">Ivan Maggini</a>
+    <nav aria-label="Sezioni">
+      <a href="#biglietto" class="hide-s">Biglietto</a>
       <a href="/studio">Studio</a>
       <span class="lang">
         <a href="/" lang="it" hreflang="it" aria-current="true">IT</a>
@@ -59,113 +62,206 @@
   </div>
 </header>
 
-<main>
+<main id="contenuto">
 
-  <section>
-    <div class="wrap">
-      <span class="eyebrow">Ivan Maggini · Italia</span>
-      <h1 style="margin-top:var(--s3);max-width:15ch">Costruisco prodotti e racconto storie.</h1>
-      <p class="lead" style="margin-top:var(--s3);max-width:56ch">
-        Ho 19 anni e sono founder. Da una parte costruisco startup, dall'altra
-        porto in video il lavoro degli studi professionali, con lo stesso
-        metodo con cui ho costruito una community da 30.000 persone.
+  <!-- ===================== TESTATA ===================== -->
+  <section class="sec open tight">
+    <div class="shell masthead">
+      <h1 class="display-xl reveal">
+        <span><span style="--i:0">Ivan</span></span>
+        <span><span style="--i:1">Maggini</span></span>
+      </h1>
+      <p class="lede">
+        Ho 19 anni. Costruisco Biglietto, un prodotto per chi viaggia, e giro
+        i video degli studi professionali in Lombardia. Racconto le due cose
+        mentre succedono, anche quando vanno male.
       </p>
+    </div>
+  </section>
 
-      <div class="perf"></div>
+  <!-- ============ IL TABELLONE: TUTTO IN UNA SCHERMATA ============ -->
+  <!--
+    Le quattro righe sono il sito intero in un colpo d'occhio: cosa sto
+    facendo e a che punto è. Gli stati in ambra si assestano da soli quando
+    il blocco entra in vista, una riga dopo l'altra, e non lo fanno se il
+    sistema chiede meno movimento.
+  -->
+  <section class="board" id="stato" aria-labelledby="stato-titolo">
+    <div class="shell">
+      <p class="board-title" id="stato-titolo">Stato dei lavori, settembre 2026</p>
+      <ol class="rows">
+        <li class="row">
+          <span class="row-name">Biglietto</span>
+          <span class="row-kind">prodotto</span>
+          <span class="row-state" data-flip>Offline, torna in autunno</span>
+        </li>
+        <li class="row">
+          <span class="row-name">Ivan Maggini Studio</span>
+          <span class="row-kind">servizio</span>
+          <span class="row-state" data-flip>Prende nuovi studi</span>
+        </li>
+        <li class="row">
+          <span class="row-name">Instagram</span>
+          <span class="row-kind">community</span>
+          <span class="row-state" data-flip>30.000 persone</span>
+        </li>
+        <li class="row">
+          <span class="row-name">Secondo progetto</span>
+          <span class="row-kind">idea</span>
+          <span class="row-state" data-flip>Ancora riservato</span>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-      <p class="small muted" style="max-width:60ch">
-        Due percorsi, un'unica persona dietro. Scegli quello che ti interessa.
-      </p>
-
-      <div class="grid two">
-
-        <a class="card route startup" href="/startup">
-          <span class="route-tag">Startup</span>
-          <h3>Biglietto e i progetti che sto costruendo</h3>
-          <p style="margin-top:var(--s2)">
-            Biglietto vuole essere il posto unico che tiene insieme ogni tuo
-            viaggio, dalla prenotazione a quando succede davvero, e ti dice
-            cosa fare prima che tu ci pensi.
-          </p>
-          <div class="arrow">Vai alla sezione startup →</div>
-        </a>
-
-        <a class="card route studio" href="/studio">
-          <span class="route-tag">Studio</span>
-          <h3>Ivan Maggini Studio: video per studi professionali</h3>
-          <p style="margin-top:var(--s2)">
-            Contenuti video brevi per avvocati, commercialisti, notai, dentisti e
-            architetti in Lombardia. Vengo io in studio e in una sessione
-            registriamo 10–15 video. I primi 5 sono gratis.
-          </p>
-          <div class="arrow">Scopri il servizio →</div>
-        </a>
-
+  <!-- ===================== CHI SONO ===================== -->
+  <section class="sec" id="chi-sono">
+    <div class="shell sec-grid">
+      <p class="rail">Chi sono<b>19 anni, Lurano (BG)</b></p>
+      <div class="body">
+        <h2>Una persona sola, due mestieri.</h2>
+        <p>
+          Ho 19 anni e vivo a Lurano, in provincia di Bergamo.
+        </p>
+        <p>
+          Faccio due cose. Costruisco Biglietto, un prodotto per chi viaggia.
+          E con Ivan Maggini Studio produco video per studi professionali in
+          Lombardia: vado io sul posto, giro, monto e pubblico.
+        </p>
+        <p>
+          Sotto ci sta una cosa sola. Ho passato gli ultimi anni a raccontare
+          viaggi su Instagram e sono arrivato a 30.000 persone senza spendere
+          niente in pubblicità. Lì ho imparato cosa fa fermare qualcuno a
+          guardare e cosa invece scorre via, ed è da lì che è venuta fuori
+          l'idea di Biglietto.
+        </p>
+        <p>
+          Non ho una formazione tecnica e non fingo di averla. Quello che so
+          fare è partire da un problema che ho avuto davvero e insistere finché
+          non diventa qualcosa che funziona, dicendo per strada anche quello
+          che non funziona.
+        </p>
       </div>
     </div>
   </section>
 
-  <section class="band">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Chi sono</span>
-        <h2>In breve</h2>
-      </div>
-
-      <div class="grid two">
-        <div class="card">
-          <h3>19 anni, founder</h3>
-          <p>
-            Costruisco prodotti digitali partendo da problemi che ho vissuto
-            in prima persona viaggiando. Biglietto è il progetto principale,
-            sviluppato in pubblico.
-          </p>
-        </div>
-        <div class="card">
-          <h3>30.000 follower</h3>
-          <p>
-            Una community travel costruita su Instagram senza budget
-            pubblicitario: solo contenuti autentici, pubblicati con costanza.
-            È lo stesso metodo che porto negli studi dei miei clienti.
-          </p>
+  <!-- ===================== BIGLIETTO ===================== -->
+  <section class="sec" id="biglietto">
+    <div class="shell sec-grid">
+      <p class="rail">Il prodotto<b>Offline fino all'autunno</b></p>
+      <div class="body">
+        <h2>Biglietto</h2>
+        <p class="lede" style="max-width:52ch">
+          Sto costruendo Biglietto: un posto solo dove vive tutto il tuo
+          viaggio, e sopra, a pagamento, la parte che nessuno ti dice, cioè
+          cosa comprare davvero, in che ordine e dove.
+        </p>
+        <p>
+          Viaggiare è bellissimo. Comprare un viaggio no. Le prenotazioni
+          finiscono sparse tra sei app, e il biglietto giusto quasi mai è
+          quello che ti mostrano per primo, perché chi te lo vende non ha
+          nessun interesse a dirtelo.
+        </p>
+        <p>
+          Il prototipo è stato online tutta l'estate. L'avevo costruito io, con
+          l'AI, senza saper programmare, e ha fatto il suo lavoro: mi ha
+          dimostrato che l'idea regge. Adesso è offline, perché un prodotto che
+          tiene i dati di viaggio delle persone deve essere costruito da chi sa
+          leggere il proprio codice. Torna in autunno, rifatto per bene.
+        </p>
+        <p>
+          Dove voglio arrivare è più in là: una volta che qualcosa conosce
+          tutto il tuo viaggio, non deve più aspettare che sia tu a chiedere.
+          Un assistente che agisce prima che tu te ne accorga, non uno che
+          risponde. È lavoro di anni, e non fingo il contrario.
+        </p>
+        <p>
+          Racconto tutto ogni giorno, anche le cose che vanno male.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="https://biglietto.ai" target="_blank" rel="noopener">biglietto.ai</a>
+          <a class="btn ghost" href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="wrap narrow" style="text-align:center">
-      <span class="eyebrow">Contatti</span>
-      <h2 style="margin-top:var(--s2)">Parliamone</h2>
-      <p style="margin-top:var(--s3)">
-        Per il servizio video, per un progetto o semplicemente per scambiare
-        due idee: scrivimi.
-      </p>
-      <div class="btn-row" style="justify-content:center">
-        <a class="btn" href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
-        <a class="btn ghost" href="/studio#contatto">Sessione di prova gratuita</a>
+  <!-- ================== IL SECONDO PROGETTO ================== -->
+  <section class="sec" id="secondo-progetto">
+    <div class="shell sec-grid">
+      <p class="rail">In corso<b>Non ancora pubblico</b></p>
+      <div class="body">
+        <h2>Un secondo progetto</h2>
+        <p>
+          Parallelamente a Biglietto sto lavorando a un'altra cosa, ancora in
+          fase iniziale. Per ora resta riservata: preferisco parlarne quando ci
+          sarà qualcosa di concreto da mostrare, non prima.
+        </p>
+        <p class="small mute">
+          Se costruisci nello stesso spazio, o hai semplicemente un consiglio
+          utile, scrivimi: rispondo sempre.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LO STUDIO ===================== -->
+  <section class="sec" id="studio">
+    <div class="shell sec-grid">
+      <p class="rail">Il servizio<b>Lombardia</b></p>
+      <div class="body">
+        <h2>Ivan Maggini Studio</h2>
+        <p>
+          Produco video brevi per studi professionali: dentisti, avvocati,
+          notai, commercialisti, architetti, ingegneri. Vado io in studio a
+          girare, e poi monto e pubblico io. È lo stesso metodo con cui ho
+          costruito la community, portato dentro il lavoro di qualcun altro.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="/studio">Come funziona, e quanto costa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTATTI ===================== -->
+  <section class="sec" id="contatti">
+    <div class="shell sec-grid">
+      <p class="rail">Contatti<b>Rispondo entro 24 ore</b></p>
+      <div class="body">
+        <h2>Scrivimi.</h2>
+        <p>
+          Non c'è nessun modulo da compilare su questo sito, di proposito:
+          preferisco non tenere i dati di nessuno. Una email basta e avanza.
+        </p>
+        <p style="margin-top:var(--s4)">
+          <a class="mailto" href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
+        </p>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="footer">
-  <div class="wrap footer-inner">
+<footer class="foot">
+  <div class="shell foot-in">
     <div>
-      <div class="wordmark">Ivan Maggini</div>
-      <p class="small muted" style="margin-top:6px">© 2026 Ivan Maggini<br>Lurano, Italia · P. IVA 04924920160</p>
+      <span class="mark">Ivan Maggini</span>
+      <address class="small">
+        Lurano, Italia<br>
+        P. IVA 04924920160
+      </address>
     </div>
-    <nav class="footer-links" aria-label="Link del footer">
-      <a href="/">Home</a>
-      <a href="/startup">Startup</a>
+    <nav aria-label="Link del footer">
       <a href="/studio">Studio</a>
-      <a href="/privacy">Privacy policy</a>
-      <a href="/condizioni">Condizioni di servizio</a>
+      <a href="/en/">English</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/condizioni">Condizioni</a>
       <a href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
     </nav>
   </div>
 </footer>
 
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
