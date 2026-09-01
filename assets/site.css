@@ -406,7 +406,15 @@ p + p { margin-top: var(--s2); }
 
 .steps { counter-reset: step; display: grid; gap: var(--s3); margin-top: var(--s4); }
 
-@media (min-width: 860px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 860px) {
+  .steps { grid-template-columns: repeat(4, 1fr); }
+  .steps.three { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Sotto gli 860px i tre passi stanno incolonnati e occuperebbero tutta la
+   larghezza della pagina: la riga diventerebbe troppo lunga per essere letta
+   comodamente. Sopra gli 860 la colonna è già più stretta di così. */
+.steps.three .step p { max-width: 68ch; }
 
 .step {
   counter-increment: step;
@@ -609,3 +617,82 @@ a[x-apple-data-detectors] span {
 .legal ul { margin: var(--s2) 0 0 var(--s3); display: grid; gap: 8px; }
 .legal li { color: var(--fg-soft); }
 .legal a { color: var(--accent); }
+
+/* --- pagina studio: blocchi introdotti con la versione di settembre -------
+
+   Il blocco "per chi" ha due card che nominano i due pubblici del servizio:
+   sono loro gli H2 della sezione, quindi il titolo del blocco è un elemento
+   display senza semantica di heading. `.display` serve solo a quello.       */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 4.6vw, 2.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--fg);
+}
+
+.card h2 { font-size: clamp(1.25rem, 3.4vw, 1.55rem); margin-bottom: 6px; }
+
+/* Riga con le professioni a cui la card si rivolge. */
+.card .who {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--fg-faint);
+  margin-bottom: var(--s2);
+}
+
+.card .btn { margin-top: var(--s3); }
+
+/* Elenco "cosa è incluso": su schermi larghi sta su due colonne. Il flusso è
+   per colonna e non per riga, così si legge dall'alto in basso come una lista
+   sola invece che a zig-zag fra le due metà. */
+@media (min-width: 760px) {
+  .ticks.col-4-3 {
+    display: block;
+    column-count: 2;
+    column-gap: var(--s4);
+  }
+  .ticks.col-4-3 li { break-inside: avoid; margin-bottom: 12px; }
+}
+
+/* Riga di credenziale: filetto d'accento e carattere display, senza
+   virgolette e senza corsivo. */
+.pull {
+  border-left: 3px solid var(--accent);
+  padding-left: var(--s3);
+  margin-top: var(--s4);
+  max-width: 62ch;
+}
+
+.pull p {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--fg);
+}
+
+/* Prezzi di partenza: il "da" sta sopra la cifra, non accanto, così la cifra
+   resta l'elemento che si legge per primo. */
+.plan-price .from {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--fg-faint);
+  margin-bottom: 4px;
+}
+
+.plan-note { font-size: 0.95rem; margin-top: var(--s3); flex: 1; }
+
+/* Card affiancate con un pulsante in fondo: il pulsante va appoggiato alla
+   base della card, non alla fine del proprio paragrafo. */
+.card.with-cta { display: flex; flex-direction: column; }
+.card.with-cta > .btn { margin-top: auto; align-self: flex-start; }
+
+/* Spazio fra la cifra e "/ mese": senza, i due pezzi si toccano. */
+.plan-price span:not(.from) { margin-left: 5px; }
