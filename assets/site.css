@@ -134,7 +134,7 @@ h1, h2, h3, .display-xl {
 
 @media (min-width: 940px) {
   .masthead {
-    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
     column-gap: var(--s5);
     align-items: end;
   }
@@ -142,7 +142,7 @@ h1, h2, h3, .display-xl {
 }
 
 .display-xl {
-  font-size: clamp(3.2rem, 12vw, 8.5rem);
+  font-size: clamp(3.2rem, 10.8vw, 8.5rem);
   font-weight: 700;
   font-stretch: 118%;
   line-height: 0.92;
