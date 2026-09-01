@@ -12,6 +12,15 @@
   </url>
 
   <url>
+    <loc>https://ivanmaggini.com/biglietto</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/biglietto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/biglietto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/biglietto"/>
+    <lastmod>2026-09-01</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://ivanmaggini.com/studio</loc>
     <lastmod>2026-09-01</lastmod>
     <priority>0.9</priority>
@@ -24,6 +33,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/"/>
     <lastmod>2026-09-01</lastmod>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ivanmaggini.com/en/biglietto</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/biglietto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/biglietto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/biglietto"/>
+    <lastmod>2026-09-01</lastmod>
+    <priority>0.7</priority>
   </url>
 
   <url>

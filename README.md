@@ -10,24 +10,27 @@ e c'è tutto.
 
 ## Pagine
 
-| Rotta          | File               | Cosa c'è                                        |
-| -------------- | ------------------ | ----------------------------------------------- |
-| `/`            | `index.html`       | Chi sono, il tabellone, Biglietto, Studio        |
-| `/studio`      | `studio.html`      | La pagina di vendita del servizio video          |
-| `/privacy`     | `privacy.html`     | Informativa privacy                              |
-| `/condizioni`  | `condizioni.html`  | Condizioni generali di servizio                  |
-| `/en/`         | `en/index.html`    | Versione inglese: profilo e Biglietto            |
-| `/en/privacy`  | `en/privacy.html`  | Informativa privacy in inglese                   |
+| Rotta            | File                 | Cosa c'è                                |
+| ---------------- | -------------------- | --------------------------------------- |
+| `/`              | `index.html`         | Chi sono, e le due porte del sito       |
+| `/biglietto`     | `biglietto.html`     | Il prodotto, e il secondo progetto      |
+| `/studio`        | `studio.html`        | La pagina di vendita del servizio video |
+| `/privacy`       | `privacy.html`       | Informativa privacy                     |
+| `/condizioni`    | `condizioni.html`    | Condizioni generali di servizio         |
+| `/en/`           | `en/index.html`      | Versione inglese: chi sono              |
+| `/en/biglietto`  | `en/biglietto.html`  | Il prodotto, in inglese                 |
+| `/en/privacy`    | `en/privacy.html`    | Informativa privacy in inglese          |
 
-La sezione Studio esiste solo in italiano: si rivolge a studi professionali
-lombardi. Biglietto non ha una pagina propria, è una sezione della home, e i
-vecchi indirizzi `/startup` e `/en/startup` ci reindirizzano.
+Biglietto ha una pagina propria in entrambe le lingue. La sezione Studio
+esiste solo in italiano: si rivolge a studi professionali lombardi. I vecchi
+indirizzi `/startup` e `/en/startup` reindirizzano alle pagine Biglietto.
 
 ## Il sistema visivo
 
-L'idea di fondo è un tabellone di partenze. Le cose che Ivan fa hanno uno
-stato e lui lo dichiara: il prodotto è offline e torna in autunno, lo studio
-prende clienti adesso.
+L'idea di fondo viene dal nome del prodotto: un biglietto è un oggetto di
+carta sottile, con un bordo strappato e i dati incolonnati. Da lì la carta
+grigia fredda per il testo e un unico blocco nero per pagina, con il bordo
+superiore perforato.
 
 - **Carta**, `#ebebe8`: un grigio chiaro neutro, non una crema calda.
 - **Nero vero**, `#000000`, per il testo. Il tabellone è `#0c0c0c`.
@@ -47,18 +50,23 @@ biglietto staccato. È l'unico ornamento del sito.
 
 ## Il movimento
 
-Due cose sole si muovono da sole, ed è tutto in `assets/site.js` (ottanta
-righe, nessuna libreria):
+Due cose sole si muovono da sole:
 
-1. Le righe della testata salgono da una maschera, una dopo l'altra.
-2. Gli stati sul tabellone si assestano come le palette di un tabellone di
-   partenze: passano per qualche carattere sbagliato e poi si fermano.
-   Succede una volta sola, quando il blocco entra in vista.
+1. Le righe della testata salgono da una maschera, una dopo l'altra. Sta
+   tutto nel CSS, `.reveal`.
+2. L'indirizzo email nel blocco nero entra una lettera per volta, quando il
+   blocco arriva in vista. Sono sessanta righe in `assets/site.js`, nessuna
+   libreria. Le lettere sono sempre quelle giuste: un indirizzo che passa per
+   caratteri a caso sembra un errore, non un tabellone.
 
 Con `prefers-reduced-motion: reduce` non succede niente di tutto questo e il
-testo compare fermo. Il testo definitivo resta sempre nel documento in una
-copia riservata ai lettori vocali, quindi la scomposizione non arriva mai a
-chi legge con la voce.
+testo compare fermo. Lo script non parte nemmeno se il foglio di stile non
+risulta applicato, e una rete di sicurezza mostra comunque l'indirizzo dopo
+tre secondi se l'osservatore non scattasse: è l'unico modo per contattare, e
+non può restare invisibile.
+
+Il testo resta leggibile per i lettori vocali attraverso `aria-label`, mentre
+le lettere spezzettate sono marcate `aria-hidden`.
 
 ## Nessun modulo
 
@@ -71,6 +79,31 @@ custodire, e l'informativa privacy si accorcia di conseguenza.
 Deploy su Netlify dal branch `main`, senza build. `netlify.toml` tiene gli
 URL puliti, i reindirizzamenti delle vecchie rotte, il 404 separato per le
 pagine inglesi e le intestazioni di sicurezza.
+
+**Il foglio di stile e lo script si richiamano con l'impronta del loro
+contenuto nell'indirizzo** (`/assets/site.css?v=...`). Non è un vezzo: senza,
+un browser che ha in cache la versione precedente continua a servirla, e se
+nel frattempo sono cambiati i nomi delle classi la pagina esce senza stile.
+Dopo ogni modifica a `assets/site.css` o `assets/site.js` va rigenerata
+l'impronta in tutte le pagine:
+
+```
+python3 - <<'EOF'
+import hashlib, re
+from pathlib import Path
+h = lambda f: hashlib.sha256(Path(f).read_bytes()).hexdigest()[:10]
+css, js = h('assets/site.css'), h('assets/site.js')
+for f in Path('.').glob('**/*.html'):
+    t = f.read_text(encoding='utf-8')
+    t = re.sub(r'href="/assets/site\.css(\?v=[0-9a-f]+)?"', f'href="/assets/site.css?v={css}"', t)
+    t = re.sub(r'src="/assets/site\.js(\?v=[0-9a-f]+)?"', f'src="/assets/site.js?v={js}"', t)
+    f.write_text(t, encoding='utf-8')
+print(css, js)
+EOF
+```
+
+Gli asset sono comunque dichiarati `max-age=0, must-revalidate`: è la seconda
+rete, per il giorno in cui l'impronta non venisse rigenerata.
 
 ## Lavorarci
 

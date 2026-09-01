@@ -10,16 +10,26 @@
 # URL puliti. Netlify offre già la funzione "Pretty URLs", ma dichiarare le
 # riscritture qui rende le rotte indipendenti da quell'impostazione: /studio
 # serve studio.html senza redirect visibile all'utente né cambio di URL.
-# Biglietto non ha più una pagina propria: il racconto è una sezione della
-# home, quindi i vecchi indirizzi ci portano dentro invece di sparire.
+[[redirects]]
+  from = "/biglietto"
+  to = "/biglietto.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/biglietto"
+  to = "/en/biglietto.html"
+  status = 200
+
+# La sezione si chiamava "startup" nella prima versione del sito: chi ha
+# ancora quel link in giro finisce sulla pagina giusta.
 [[redirects]]
   from = "/startup"
-  to = "/#biglietto"
+  to = "/biglietto"
   status = 301
 
 [[redirects]]
   from = "/en/startup"
-  to = "/en/#biglietto"
+  to = "/en/biglietto"
   status = 301
 
 [[redirects]]

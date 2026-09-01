@@ -1,94 +1,72 @@
 /* Un solo comportamento in tutto il sito.
 
-   Gli stati sul tabellone si fermano come le palette di un tabellone di
-   partenze: passano per qualche carattere sbagliato e poi si assestano,
-   una riga dopo l'altra. Succede una volta sola, quando il blocco entra
-   in vista, e non succede affatto se il sistema operativo chiede meno
-   movimento o se manca IntersectionObserver.
+   L'indirizzo email nel blocco nero entra una lettera per volta, salendo da
+   una maschera: è la stessa cosa che fa la testata, applicata a un carattere
+   alla volta invece che a una riga. Le lettere sono sempre quelle giuste e
+   non passano mai per caratteri sbagliati, perché un indirizzo scomposto
+   sembra un errore, non un tabellone.
 
-   Il testo definitivo resta sempre nel documento in una copia riservata
-   ai lettori vocali: quello che si scompone è solo la parte visibile,
-   marcata aria-hidden. */
+   Succede una volta sola, quando il blocco entra in vista. Non succede
+   affatto se il sistema operativo chiede meno movimento, se mancano gli
+   strumenti del browser, o se il foglio di stile non risulta applicato: una
+   pagina già in difficoltà non va peggiorata.
+
+   Il testo resta leggibile per i lettori vocali attraverso aria-label
+   sull'elemento, mentre le lettere spezzettate sono marcate aria-hidden. */
 (function () {
   'use strict';
 
-  var celle = [].slice.call(document.querySelectorAll('[data-flip]'));
-  if (!celle.length) return;
+  var righe = [].slice.call(document.querySelectorAll('[data-rise]'));
+  if (!righe.length) return;
 
-  var menoMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (menoMovimento || !('IntersectionObserver' in window) || !('requestAnimationFrame' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
 
-  // Se il foglio di stile non è arrivato, la pagina è già in difficoltà: non
-  // le si aggiunge anche del testo che si scompone. Il controllo cerca una
-  // variabile che esiste solo lì dentro.
-  var stiliPronti = getComputedStyle(document.documentElement).getPropertyValue('--paper').trim() !== '';
-  if (!stiliPronti) return;
+  // Se il foglio di stile non è arrivato la pagina è già in difficoltà: senza
+  // le regole di `.rise` le lettere resterebbero spostate in basso e basta.
+  if (getComputedStyle(document.documentElement).getPropertyValue('--paper').trim() === '') return;
 
-  var GLIFI = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  var PASSO = 45;   // millisecondi fra un fotogramma e l'altro
-  var GIRI = 7;     // quanti fotogrammi prima che una lettera si fermi
+  righe.forEach(function (riga) {
+    var testo = riga.textContent.trim();
+    if (!testo) return;
 
-  celle.forEach(function (cella, indice) {
-    var finale = cella.textContent;
+    riga.setAttribute('aria-label', testo);
 
-    var vocale = document.createElement('span');
-    vocale.className = 'sr';
-    // Nascosto anche senza foglio di stile: senza questo, una pagina servita
-    // con il CSS mancante mostrerebbe lo stato scritto due volte di fila.
-    vocale.setAttribute('style', 'position:absolute;width:1px;height:1px;margin:-1px;'
-      + 'padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);'
-      + 'white-space:nowrap;border:0;user-select:none;-webkit-user-select:none');
-    vocale.textContent = finale;
+    var involucro = document.createElement('span');
+    involucro.setAttribute('aria-hidden', 'true');
 
-    var visibile = document.createElement('span');
-    visibile.setAttribute('aria-hidden', 'true');
-    visibile.textContent = finale;
-
-    cella.textContent = '';
-    cella.appendChild(vocale);
-    cella.appendChild(visibile);
-    cella.dataset.ritardo = String(indice * 140);
-  });
-
-  function scomponi(cella) {
-    var visibile = cella.lastChild;
-    var finale = cella.firstChild.textContent;
-    var lettere = finale.split('');
-    var fermata = lettere.map(function (_, i) { return GIRI + i * 1.6; });
-    var giro = 0;
-    var inizio = null;
-
-    function fotogramma(ora) {
-      if (inizio === null) inizio = ora;
-      if (ora - inizio < giro * PASSO) return requestAnimationFrame(fotogramma);
-      giro++;
-
-      var testo = '';
-      var finito = true;
-      for (var i = 0; i < lettere.length; i++) {
-        var c = lettere[i];
-        if (giro >= fermata[i] || c === ' ' || c === ',' || c === '.') {
-          testo += c;
-        } else {
-          finito = false;
-          testo += GLIFI.charAt((Math.random() * GLIFI.length) | 0);
-        }
-      }
-      visibile.textContent = testo;
-      if (!finito) requestAnimationFrame(fotogramma);
-      else visibile.textContent = finale;
+    for (var i = 0; i < testo.length; i++) {
+      var maschera = document.createElement('span');
+      maschera.className = 'rise';
+      var lettera = document.createElement('i');
+      lettera.style.setProperty('--c', String(i));
+      // Lo spazio in un elemento inline verrebbe collassato: serve quello unificatore.
+      lettera.textContent = testo.charAt(i) === ' ' ? ' ' : testo.charAt(i);
+      maschera.appendChild(lettera);
+      involucro.appendChild(maschera);
     }
 
-    requestAnimationFrame(fotogramma);
+    riga.textContent = '';
+    riga.appendChild(involucro);
+    riga.classList.add('in-attesa');
+  });
+
+  function mostra(riga) {
+    if (!riga.classList.contains('in-attesa')) return;
+    osservatore.unobserve(riga);
+    riga.classList.remove('in-attesa');
+    riga.classList.add('parte');
   }
 
   var osservatore = new IntersectionObserver(function (voci) {
-    voci.forEach(function (voce) {
-      if (!voce.isIntersecting) return;
-      osservatore.unobserve(voce.target);
-      window.setTimeout(function () { scomponi(voce.target); }, Number(voce.target.dataset.ritardo || 0));
-    });
-  }, { threshold: 0.45 });
+    voci.forEach(function (voce) { if (voce.isIntersecting) mostra(voce.target); });
+  }, { threshold: 0.4 });
 
-  celle.forEach(function (cella) { osservatore.observe(cella); });
+  righe.forEach(function (riga) {
+    osservatore.observe(riga);
+    // Rete di sicurezza: l'indirizzo email è l'unico modo per contattare, e
+    // non può restare invisibile se per qualsiasi motivo l'osservatore non
+    // scatta. Dopo tre secondi compare comunque.
+    window.setTimeout(function () { mostra(riga); }, 3000);
+  });
 })();
