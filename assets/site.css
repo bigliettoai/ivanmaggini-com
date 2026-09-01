@@ -248,7 +248,8 @@ p a:hover,
   text-decoration-thickness: 2px;
 }
 
-.body a.btn, p a.btn, .body a.mailto, p a.mailto { text-decoration: none; }
+.body a.btn, p a.btn, .legal a.btn,
+.body a.mailto, p a.mailto, .legal a.mailto { text-decoration: none; }
 
 .btn {
   display: inline-flex;
@@ -307,6 +308,7 @@ p a:hover,
   z-index: 10;
   background: var(--paper);
   background: color-mix(in srgb, var(--paper) 88%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px);
   backdrop-filter: saturate(1.4) blur(10px);
   border-bottom: 1px solid var(--rule);
 }
