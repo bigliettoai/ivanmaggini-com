@@ -50,7 +50,7 @@ var TRIP = {
       to: { time: '10:50', place: 'Zürich HB' }
     },
 
-    { type: 'gap', text: '3h 15m in Zurich, then 12 minutes out to the airport' },
+    { type: 'gap', id: 'gapZurich', text: '3h 15m in Zurich, then 12 minutes out to the airport' },
 
     {
       type: 'leg',
@@ -64,7 +64,7 @@ var TRIP = {
       to: { time: '15:10', place: 'Munich Airport' }
     },
 
-    { type: 'gap', text: 'S-Bahn into the city, 45 minutes' },
+    { type: 'gap', id: 'gapMunich', text: 'S-Bahn into the city, 45 minutes' },
 
     {
       type: 'leg',
@@ -114,23 +114,28 @@ var TRIP = {
 
 var DISRUPTION = {
 
-  state: 'Cancelled',
-  subject: 'Swiss LX 1064, 14:05 Zurich to Munich',
+  /* Tutte e tre le schermate del blocco nero hanno la stessa forma:
+     lo stato in ambra, di cosa si parla, una riga di prosa, e due
+     blocchi con l'etichetta a sinistra. Cambiano le parole. */
+  board: {
+    state: 'Cancelled',
+    subject: 'Swiss LX 1064, 14:05 Zurich to Munich',
 
-  /* La riga che dice la cosa più importante: nessuno ha chiesto. */
-  noticed: 'Noticed at 09:14, while you were still on the train to Zurich. Nobody asked it to look.',
+    /* La riga che dice la cosa più importante: nessuno ha chiesto. */
+    noticed: 'Noticed at 09:14, while you were still on the train to Zurich. Nobody asked it to look.',
 
-  breaks: {
-    label: 'What it takes down with it',
-    items: [
-      'Tonight’s room in Munich, booked and paid for',
-      'Tomorrow’s 09:26 train to Vienna, out of a city you would not be in'
-    ]
-  },
+    breaks: {
+      label: 'What it takes down with it',
+      items: [
+        'Tonight’s room in Munich, booked and paid for',
+        'Tomorrow’s 09:26 train to Vienna, out of a city you would not be in'
+      ]
+    },
 
-  offer: {
-    label: 'What Swiss offers',
-    text: 'A seat on LX 1074, tomorrow at 11:20, landing in Munich at 12:25. Twenty-one hours later, a night to pay for in Zurich, and the train to Vienna already gone.'
+    offer: {
+      label: 'What Swiss offers',
+      text: 'A seat on LX 1074, tomorrow at 11:20, landing in Munich at 12:25. Twenty-one hours later, a night to pay for in Zurich, and the train to Vienna already gone.'
+    }
   },
 
   /* Come si segna la sequenza. La prenotazione cancellata è la causa,
@@ -143,4 +148,169 @@ var DISRUPTION = {
   },
 
   brokenFrom: 'lx1064'
+};
+
+
+/* ------------------------------------------------------------------
+   Tappa 3, primo passo: le due risposte, una accanto all'altra.
+
+   A sinistra quella della compagnia aerea, che conosce solo il proprio
+   volo. A destra quella di chi ha davanti tutto il viaggio: tre treni
+   e due cambi, che partono da Zurigo mezz'ora dopo l'orario del volo e
+   arrivano a Monaco la sera stessa.
+
+   La cifra sopra ogni colonna è la stessa misura per tutti e due:
+   quanto si arriva tardi a Monaco rispetto alle 15:10 previste. Il
+   volo di riprotezione atterra alle 12:25 del giorno dopo, cioè
+   ventuno ore e un quarto più tardi; i treni alle 19:04 di stasera,
+   cioè tre ore e cinquantaquattro. È l'unico confronto che serve.
+
+   Gli orari dei treni stanno insieme: 14:33 Zurigo, 15:37 San Gallo,
+   quattordici minuti di cambio, 15:51, 16:47 Lindau, diciassette
+   minuti, 17:04, 19:04 Monaco. Quattro ore e mezza in tutto.
+   ------------------------------------------------------------------ */
+
+var ALTERNATIVE = {
+
+  board: {
+    state: 'Munich tonight',
+    subject: 'Zürich HB 14:33, München Hbf 19:04',
+    noticed: 'You leave Zurich half an hour after the flight would have. You lose the evening, not the day.',
+
+    breaks: {
+      label: 'What it saves',
+      items: [
+        'Tonight’s room, held instead of lost',
+        'Tomorrow’s 09:26 to Vienna, still yours'
+      ]
+    },
+
+    offer: {
+      label: 'Against the airline’s answer',
+      text: 'Twenty-one hours earlier into Munich, and no night to pay for in Zurich.'
+    }
+  },
+
+  options: [
+    {
+      tone: 'dead',
+      label: 'What Swiss offers',
+      figure: '+21 h 15 m',
+      caption: 'late into Munich',
+      legs: [
+        {
+          from: { time: '11:20', place: 'Zurich Airport' },
+          to: { time: '12:25', place: 'Munich Airport' },
+          meta: 'LX 1074, tomorrow'
+        }
+      ],
+      costs: [
+        'A night in Zurich to pay for',
+        'The 09:26 to Vienna, missed'
+      ]
+    },
+    {
+      tone: 'live',
+      label: 'On the ground, tonight',
+      figure: '+3 h 54 m',
+      caption: 'late into Munich',
+      legs: [
+        {
+          from: { time: '14:33', place: 'Zürich HB' },
+          to: { time: '15:37', place: 'St. Gallen' },
+          meta: 'IC 5, Swiss Federal Railways'
+        },
+        { change: '14 minutes to change' },
+        {
+          from: { time: '15:51', place: 'St. Gallen' },
+          to: { time: '16:47', place: 'Lindau-Reutin' },
+          meta: 'S-Bahn, ÖBB'
+        },
+        { change: '17 minutes to change' },
+        {
+          from: { time: '17:04', place: 'Lindau-Reutin' },
+          to: { time: '19:04', place: 'München Hbf' },
+          meta: 'ECE 195, Deutsche Bahn'
+        }
+      ]
+    }
+  ]
+};
+
+
+/* ------------------------------------------------------------------
+   Tappa 3, secondo passo: il viaggio ricomposto.
+
+   Non è una schermata nuova: è la stessa sequenza della tappa 1 con
+   tre sostituzioni e una correzione, scritte qui sotto. Il volo
+   cancellato diventa un tratto solo, "tre treni, due cambi", venduto
+   da tre compagnie diverse; le due attese intorno cambiano testo
+   perché adesso si parte e si arriva da una stazione, non da un
+   aeroporto; e il check-in dell'albergo si sposta alle 19:35, con la
+   camera tenuta per arrivo tardi.
+
+   Le tre righe che nella tappa 2 dicevano Cancelled, Out of reach e
+   At risk sono esattamente le stesse che qui dicono New, Moved e
+   Confirmed. Stesse posizioni, stesse forme di targhetta: è la stessa
+   catena, letta al contrario.
+   ------------------------------------------------------------------ */
+
+var RESOLUTION = {
+
+  board: {
+    state: 'Rebooked',
+    subject: 'Zürich HB 14:33, München Hbf 19:04',
+    noticed: 'Bought while you were still on the first train. The hotel knows you are coming late, and the room is held.',
+
+    breaks: {
+      label: 'What changed',
+      items: [
+        'The flight became three trains',
+        'Check-in moved to 19:35, the room held',
+        'Tomorrow’s 09:26 to Vienna, untouched'
+      ]
+    },
+
+    offer: {
+      label: 'What it cost you',
+      text: 'Four hours into Munich. Not a day, not a night in Zurich, and not the Vienna leg.'
+    }
+  },
+
+  /* Le sostituzioni nella sequenza, per id. */
+  edits: [
+    {
+      id: 'gapZurich',
+      with: { type: 'gap', text: '3h 43m in Zürich HB, the afternoon you already had' }
+    },
+    {
+      id: 'lx1064',
+      with: {
+        type: 'leg',
+        id: 'ground',
+        kind: 'train',
+        mode: 'Train',
+        service: '3 trains, 2 changes',
+        seller: 'SBB, ÖBB, DB',
+        ref: '3 tickets',
+        from: { time: '14:33', place: 'Zürich HB' },
+        to: { time: '19:04', place: 'München Hbf' }
+      }
+    },
+    {
+      id: 'gapMunich',
+      with: { type: 'gap', text: 'Ten minutes on the U-Bahn to the hotel' }
+    }
+  ],
+
+  /* L'albergo resta quello: cambia solo l'ora a cui ti aspettano. */
+  adjust: {
+    stay: { time: '19:35', service: 'One night, room held' }
+  },
+
+  marks: {
+    ground: { state: 'new', tag: 'New', kind: 'cause' },
+    stay: { state: 'fixed', tag: 'Moved', kind: 'effect' },
+    rjx63: { state: 'fixed', tag: 'Confirmed', kind: 'effect' }
+  }
 };

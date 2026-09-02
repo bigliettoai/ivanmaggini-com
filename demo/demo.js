@@ -150,47 +150,84 @@
     rail.appendChild(facts);
   }
 
-  /* La spalla diventa il blocco nero: prima lo stato, poi da chi e
-     quando è stato visto, poi cosa cade insieme al volo, e in fondo
-     quello che offre la compagnia aerea. L'ordine è quello: la
+  /* La spalla diventa il blocco nero, e da lì in poi è il sistema che
+     parla. La forma è sempre la stessa: lo stato in ambra, di cosa si
+     parla, una riga di prosa, e due blocchi con l'etichetta sopra.
+     L'ordine dei due blocchi non cambia mai, ed è quello che conta: la
      conseguenza prima della proposta, perché è la conseguenza la cosa
      che nessun altro ti dice. */
-  function drawAlertRail(alert) {
+  function drawBoard(board) {
     var rail = railElement();
     rail.setAttribute('data-board', '');
 
-    rail.appendChild(el('p', 'state', alert.state));
-    rail.appendChild(el('p', 'subject', alert.subject));
-    rail.appendChild(el('p', 'noticed', alert.noticed));
+    rail.appendChild(el('p', 'state', board.state));
+    rail.appendChild(el('p', 'subject', board.subject));
+    rail.appendChild(el('p', 'noticed', board.noticed));
 
     var breaks = el('div', 'block');
-    breaks.appendChild(el('p', 'label', alert.breaks.label));
+    breaks.appendChild(el('p', 'label', board.breaks.label));
     var list = el('ul', 'consequences');
-    alert.breaks.items.forEach(function (line) {
+    board.breaks.items.forEach(function (line) {
       list.appendChild(el('li', null, line));
     });
     breaks.appendChild(list);
     rail.appendChild(breaks);
 
     var offer = el('div', 'block');
-    offer.appendChild(el('p', 'label', alert.offer.label));
-    offer.appendChild(el('p', 'offer', alert.offer.text));
+    offer.appendChild(el('p', 'label', board.offer.label));
+    offer.appendChild(el('p', 'offer', board.offer.text));
     rail.appendChild(offer);
   }
 
-  /* La sequenza sa disegnare due cose: il viaggio, e il viaggio con una
-     rottura dentro. Da 'brokenFrom' in giù tutto viene segnato come non
-     più valido, comprese le attese e il cambio di giornata: la catena
-     si vede perché continua a scendere, non perché la si racconta. */
-  function drawSequence(trip, disruption) {
-    var seq = document.getElementById('seq');
-    var marks = (disruption && disruption.marks) || {};
-    var from = disruption && disruption.brokenFrom;
+  /* --- la colonna di destra ------------------------------------------ */
+
+  function stage() {
+    var trip = document.getElementById('trip');
+    trip.textContent = '';
+    return trip;
+  }
+
+  /* Una prenotazione sostituita o corretta. L'originale non viene mai
+     toccato: il viaggio comprato resta uno solo, in cima a data.js. */
+  function rewrite(item, change) {
+    if (!change || !item.id) { return item; }
+
+    var i;
+    if (change.edits) {
+      for (i = 0; i < change.edits.length; i++) {
+        if (change.edits[i].id === item.id) { return change.edits[i].with; }
+      }
+    }
+
+    var tweak = change.adjust && change.adjust[item.id];
+    if (!tweak) { return item; }
+
+    return {
+      type: item.type,
+      id: item.id,
+      kind: item.kind,
+      mode: item.mode,
+      service: tweak.service || item.service,
+      seller: item.seller,
+      ref: item.ref,
+      from: { time: tweak.time || item.from.time, place: item.from.place },
+      to: item.to
+    };
+  }
+
+  /* La sequenza disegna sempre lo stesso viaggio. Quello che cambia è
+     cosa gli è successo: niente, una rottura, o una riparazione. Da
+     'brokenFrom' in giù tutto viene segnato come non più valido,
+     comprese le attese e il cambio di giornata, così la catena si vede
+     scendere invece di essere raccontata. */
+  function drawSequence(trip, change) {
+    var seq = el('ol', 'seq');
+    var marks = (change && change.marks) || {};
+    var from = change && change.brokenFrom;
     var broken = false;
 
-    seq.textContent = '';
-
-    trip.items.forEach(function (item) {
+    trip.items.forEach(function (original) {
+      var item = rewrite(original, change);
       var make = ROW[item.type];
       if (!make) { return; }
 
@@ -203,6 +240,68 @@
 
       seq.appendChild(li);
     });
+
+    stage().appendChild(seq);
+  }
+
+  /* --- le due risposte, affiancate ------------------------------------
+     Stessa grammatica della sequenza, più stretta: la linea, i nodi
+     pieni e vuoti, gli orari incolonnati. Quella della compagnia aerea
+     è disegnata come un vicolo cieco, con la linea sbiadita. */
+
+  function miniLeg(leg) {
+    if (leg.change) {
+      var pause = el('li', 'item gap');
+      pause.appendChild(el('p', null, leg.change));
+      return pause;
+    }
+
+    var li = el('li', 'item leg');
+
+    var top = el('div', 'row');
+    top.appendChild(el('span', 'node'));
+    top.appendChild(el('time', 't', leg.from.time));
+    top.appendChild(el('span', 'place', leg.from.place));
+
+    var bottom = el('div', 'row');
+    bottom.appendChild(el('span', 'node hollow'));
+    bottom.appendChild(el('time', 't', leg.to.time));
+    bottom.appendChild(el('span', 'place', leg.to.place));
+
+    li.appendChild(top);
+    li.appendChild(bottom);
+    li.appendChild(el('p', 'mini-meta', leg.meta));
+    return li;
+  }
+
+  function drawComparison(alternative) {
+    var compare = el('div', 'compare');
+
+    alternative.options.forEach(function (option) {
+      var column = el('section', 'option');
+      column.setAttribute('data-tone', option.tone);
+
+      column.appendChild(el('p', 'opt-label', option.label));
+
+      /* La cifra è la stessa misura per tutte e due le colonne: quanto
+         si arriva tardi. È l'unico confronto che serve. */
+      column.appendChild(el('p', 'opt-figure', option.figure));
+      column.appendChild(el('p', 'opt-caption', option.caption));
+
+      var seq = el('ol', 'seq mini');
+      option.legs.forEach(function (leg) { seq.appendChild(miniLeg(leg)); });
+      column.appendChild(seq);
+
+      if (option.costs) {
+        var costs = el('ul', 'cost');
+        option.costs.forEach(function (line) { costs.appendChild(el('li', null, line)); });
+        column.appendChild(costs);
+      }
+
+      compare.appendChild(column);
+    });
+
+    stage().appendChild(compare);
   }
 
   /* --- il passo della demo -------------------------------------------
@@ -221,8 +320,25 @@
           Vienna. Cambia la spalla e cambia la sequenza: la stessa
           schermata, letta due volte. */
     function theCancellation() {
-      drawAlertRail(DISRUPTION);
+      drawBoard(DISRUPTION.board);
       drawSequence(TRIP, DISRUPTION);
+    },
+
+    /* 3. Le due risposte una accanto all'altra: quella di chi conosce
+          solo il proprio volo, e quella di chi ha davanti tutto il
+          viaggio. Qui la sequenza lascia il posto al confronto. */
+    function theWayRound() {
+      drawBoard(ALTERNATIVE.board);
+      drawComparison(ALTERNATIVE);
+    },
+
+    /* 4. Il viaggio ricomposto. Torna la sequenza intera, con la linea
+          di nuovo continua da cima a fondo: le tre righe che dicevano
+          Cancelled, Out of reach e At risk adesso dicono New, Moved e
+          Confirmed, nelle stesse identiche posizioni. */
+    function theTripPutBack() {
+      drawBoard(RESOLUTION.board);
+      drawSequence(TRIP, RESOLUTION);
     }
   ];
 
