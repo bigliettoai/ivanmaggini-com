@@ -10,6 +10,11 @@
    comprate da quattro venditori diversi. I riferimenti di prenotazione
    hanno formati diversi apposta: è il segno che arrivano da sistemi
    che non si parlano.
+
+   Sui nomi: le città in inglese (Milan, Zurich, Munich, Vienna), le
+   stazioni con il nome che hanno sul biglietto (Zürich HB, München
+   Hbf, Wien Hbf), gli aeroporti con il nome inglese. È la regola che
+   usano i prodotti veri, ed è l'unica che non produce ibridi.
    ------------------------------------------------------------------ */
 
 var TRIP = {
@@ -53,7 +58,7 @@ var TRIP = {
       service: 'LX 1064',
       seller: 'Swiss',
       ref: 'booking XQ7T2M',
-      from: { time: '14:05', place: 'Zürich Airport' },
+      from: { time: '14:05', place: 'Zurich Airport' },
       to: { time: '15:10', place: 'Munich Airport' }
     },
 
