@@ -595,7 +595,6 @@ p a:hover,
   color: var(--ink);
 }
 
-.fare-price .from,
 .fare-price .per {
   display: block;
   font-family: var(--text);
@@ -603,11 +602,26 @@ p a:hover,
   font-weight: 400;
   letter-spacing: 0;
   color: var(--ink-mute);
+  margin-top: var(--s1);
 }
-.fare-price .from { margin-bottom: 2px; }
-.fare-price .per { margin-top: var(--s1); }
 
 .fare p:not(.fare-price) { font-size: 0.9875rem; margin-top: var(--s3); flex: 1; }
+
+/* Targhetta del prezzo di lancio: è un dato, non una decorazione, quindi sta
+   attaccata alla cifra e non ha bisogno di colore. */
+.fare-tag {
+  align-self: flex-start;
+  margin-top: var(--s2);
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-weight: 650;
+  font-stretch: 84%;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  padding: 3px 8px;
+}
 .fare .btn { margin-top: var(--s3); justify-content: center; }
 
 /* --- domande ------------------------------------------------------------ */
