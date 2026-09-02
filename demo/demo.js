@@ -65,9 +65,11 @@
   /* --- le righe della sequenza -------------------------------------- */
 
   /* Una prenotazione: due righe sulla stessa griglia. Sopra la
-     partenza, sotto l'arrivo; a destra chi l'ha venduta e con quale
-     riferimento, che ogni venditore scrive a modo suo. */
-  function legRow(item) {
+     partenza, sotto l'arrivo; in mezzo la colonna dello stato, che
+     resta vuota finché non c'è niente da dire; a destra chi l'ha
+     venduta e con quale riferimento, che ogni venditore scrive a modo
+     suo. */
+  function legRow(item, mark) {
     var li = el('li', 'item leg');
     li.setAttribute('data-kind', item.kind);
 
@@ -75,6 +77,7 @@
     top.appendChild(el('span', 'node'));
     top.appendChild(el('time', 't', item.from.time));
     top.appendChild(el('span', 'place', item.from.place));
+    top.appendChild(mark ? el('span', 'tag ' + mark.kind, mark.tag) : el('span'));
     top.appendChild(modeCell(item));
     top.appendChild(el('span', 'seller', item.seller));
 
@@ -82,6 +85,7 @@
     bottom.appendChild(el('span', 'node hollow'));
     bottom.appendChild(el('time', 't', item.to.time));
     bottom.appendChild(el('span', 'place', item.to.place));
+    bottom.appendChild(el('span'));
     bottom.appendChild(el('span', 'meta', item.service));
     bottom.appendChild(el('span', 'meta', item.ref));
 
@@ -112,9 +116,15 @@
 
   /* --- le due colonne ------------------------------------------------ */
 
-  function drawRail(trip) {
+  function railElement() {
     var rail = document.getElementById('rail');
     rail.textContent = '';
+    return rail;
+  }
+
+  function drawTripRail(trip) {
+    var rail = railElement();
+    rail.removeAttribute('data-board');
 
     rail.appendChild(el('p', 'label', 'Your trip'));
 
@@ -140,12 +150,58 @@
     rail.appendChild(facts);
   }
 
-  function drawSequence(trip) {
+  /* La spalla diventa il blocco nero: prima lo stato, poi da chi e
+     quando è stato visto, poi cosa cade insieme al volo, e in fondo
+     quello che offre la compagnia aerea. L'ordine è quello: la
+     conseguenza prima della proposta, perché è la conseguenza la cosa
+     che nessun altro ti dice. */
+  function drawAlertRail(alert) {
+    var rail = railElement();
+    rail.setAttribute('data-board', '');
+
+    rail.appendChild(el('p', 'state', alert.state));
+    rail.appendChild(el('p', 'subject', alert.subject));
+    rail.appendChild(el('p', 'noticed', alert.noticed));
+
+    var breaks = el('div', 'block');
+    breaks.appendChild(el('p', 'label', alert.breaks.label));
+    var list = el('ul', 'consequences');
+    alert.breaks.items.forEach(function (line) {
+      list.appendChild(el('li', null, line));
+    });
+    breaks.appendChild(list);
+    rail.appendChild(breaks);
+
+    var offer = el('div', 'block');
+    offer.appendChild(el('p', 'label', alert.offer.label));
+    offer.appendChild(el('p', 'offer', alert.offer.text));
+    rail.appendChild(offer);
+  }
+
+  /* La sequenza sa disegnare due cose: il viaggio, e il viaggio con una
+     rottura dentro. Da 'brokenFrom' in giù tutto viene segnato come non
+     più valido, comprese le attese e il cambio di giornata: la catena
+     si vede perché continua a scendere, non perché la si racconta. */
+  function drawSequence(trip, disruption) {
     var seq = document.getElementById('seq');
+    var marks = (disruption && disruption.marks) || {};
+    var from = disruption && disruption.brokenFrom;
+    var broken = false;
+
     seq.textContent = '';
+
     trip.items.forEach(function (item) {
       var make = ROW[item.type];
-      if (make) { seq.appendChild(make(item)); }
+      if (!make) { return; }
+
+      var mark = item.id ? marks[item.id] : null;
+      var li = make(item, mark);
+
+      if (from && item.id === from) { broken = true; }
+      if (broken) { li.setAttribute('data-broken', ''); }
+      if (mark) { li.setAttribute('data-state', mark.state); }
+
+      seq.appendChild(li);
     });
   }
 
@@ -154,9 +210,19 @@
      ora ce n'è uno solo: il viaggio come l'utente l'ha comprato. */
 
   var STEPS = [
+
+    /* 1. Il viaggio come l'utente l'ha comprato. */
     function tripAsBooked() {
-      drawRail(TRIP);
-      drawSequence(TRIP);
+      drawTripRail(TRIP);
+      drawSequence(TRIP, null);
+    },
+
+    /* 2. Il volo salta, e con lui la notte a Monaco e il treno per
+          Vienna. Cambia la spalla e cambia la sequenza: la stessa
+          schermata, letta due volte. */
+    function theCancellation() {
+      drawAlertRail(DISRUPTION);
+      drawSequence(TRIP, DISRUPTION);
     }
   ];
 

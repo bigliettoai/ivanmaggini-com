@@ -40,6 +40,7 @@ var TRIP = {
 
     {
       type: 'leg',
+      id: 'ec314',
       kind: 'train',
       mode: 'Train',
       service: 'EC 314',
@@ -53,6 +54,7 @@ var TRIP = {
 
     {
       type: 'leg',
+      id: 'lx1064',
       kind: 'flight',
       mode: 'Flight',
       service: 'LX 1064',
@@ -66,6 +68,7 @@ var TRIP = {
 
     {
       type: 'leg',
+      id: 'stay',
       kind: 'stay',
       mode: 'Stay',
       service: 'One night',
@@ -81,6 +84,7 @@ var TRIP = {
 
     {
       type: 'leg',
+      id: 'rjx63',
       kind: 'train',
       mode: 'Train',
       service: 'RJX 63',
@@ -91,4 +95,52 @@ var TRIP = {
     }
 
   ]
+};
+
+
+/* ------------------------------------------------------------------
+   Tappa 2: quello che si rompe.
+
+   Il volo delle 14:05 viene cancellato mentre l'utente è ancora sul
+   treno per Zurigo. Non è una notifica arrivata all'utente: è il
+   sistema che se ne accorge da solo, alle 09:14, e che sa già cosa
+   viene giù insieme al volo, perché ha davanti tutto il viaggio e non
+   solo la prenotazione della compagnia aerea.
+
+   L'orario del riscontro, 09:14, cade fra la partenza da Milano
+   (07:20) e l'arrivo a Zurigo (10:50): l'utente è a metà del primo
+   treno e non ha chiesto niente.
+   ------------------------------------------------------------------ */
+
+var DISRUPTION = {
+
+  state: 'Cancelled',
+  subject: 'Swiss LX 1064, 14:05 Zurich to Munich',
+
+  /* La riga che dice la cosa più importante: nessuno ha chiesto. */
+  noticed: 'Noticed at 09:14, while you were still on the train to Zurich. Nobody asked it to look.',
+
+  breaks: {
+    label: 'What it takes down with it',
+    items: [
+      'Tonight’s room in Munich, booked and paid for',
+      'Tomorrow’s 09:26 train to Vienna, out of a city you would not be in'
+    ]
+  },
+
+  offer: {
+    label: 'What Swiss offers',
+    text: 'A seat on LX 1074, tomorrow at 11:20, landing in Munich at 12:25. Twenty-one hours later, a night to pay for in Zurich, and the train to Vienna already gone.'
+  },
+
+  /* Come si segna la sequenza. La prenotazione cancellata è la causa,
+     le altre due sono l'effetto: da qui in giù la linea del viaggio
+     non tiene più. */
+  marks: {
+    lx1064: { state: 'cancelled', tag: 'Cancelled', kind: 'cause' },
+    stay: { state: 'broken', tag: 'Out of reach', kind: 'effect' },
+    rjx63: { state: 'broken', tag: 'At risk', kind: 'effect' }
+  },
+
+  brokenFrom: 'lx1064'
 };

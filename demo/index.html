@@ -62,15 +62,17 @@
   --rule: rgba(0, 0, 0, 0.18);
   --rule-strong: rgba(0, 0, 0, 0.4);
 
-  /* Il tabellone e la sua ambra: riservati alle tappe successive. */
+  /* Il tabellone: compare quando c'è uno stato da dichiarare, e l'ambra
+     vive solo lì dentro. */
   --board: #0c0c0c;
   --board-fg: #ebebe8;
+  --board-mute: rgba(235, 235, 232, 0.62);
   --signal: #ffab00;
 
   --display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --text: 'Newsreader', Georgia, 'Times New Roman', serif;
 
-  --rail: 36cqh;
+  --rail: 44cqh;
   --spine: 1.3cqh;
 }
 
@@ -254,7 +256,10 @@ body {
   border-top: 1px solid var(--rule);
 }
 
-.facts:last-child { margin-top: auto; }
+/* Nella tappa 1 il conto delle prenotazioni si appoggia in fondo, così
+   la spalla è tenuta sopra e sotto. L'avviso no: un avviso si legge di
+   fila dall'alto, e un buco in mezzo lo spezzerebbe in due. */
+.rail:not([data-board]) > :last-child { margin-top: auto; }
 
 .facts div {
   display: flex;
@@ -282,6 +287,92 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* --- il tabellone ----------------------------------------------------
+   Quando c'è qualcosa da dichiarare, la spalla diventa il blocco nero
+   del sito: uno solo, e l'ambra vive lì dentro e da nessun'altra parte.
+   La fila di fori che divideva le due colonne non cambia posto, cambia
+   colore: diventa il bordo strappato del blocco. */
+
+.rail[data-board] {
+  background: var(--board);
+  color: var(--board-fg);
+}
+
+.rail[data-board]::after {
+  background-image: radial-gradient(circle at 1.5px 4.5px, var(--paper) 1.1px, transparent 1.5px);
+}
+
+/* Lo stato è l'informazione per cui il blocco esiste, ed è l'unica cosa
+   in ambra di tutta la demo. */
+.state {
+  font-family: var(--display);
+  font-size: 4cqh;
+  font-weight: 650;
+  font-stretch: 100%;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--signal);
+  margin: 0;
+}
+
+.subject {
+  font-family: var(--display);
+  font-size: 1.85cqh;
+  font-weight: 600;
+  font-stretch: 90%;
+  color: var(--board-fg);
+  margin: 1.6cqh 0 0;
+}
+
+.noticed {
+  font-size: 2cqh;
+  line-height: 1.46;
+  color: var(--board-fg);
+  margin: 3.4cqh 0 0;
+}
+
+.block { margin-top: 3.8cqh; }
+
+.rail[data-board] .label {
+  color: var(--board-mute);
+  margin-bottom: 1.5cqh;
+}
+
+/* Un trattino corto al posto del pallino: è il segno che si usa quando
+   si spunta una riga a mano su un foglio. Viene dal sito. */
+.consequences {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.4cqh;
+}
+
+.consequences li {
+  position: relative;
+  padding-left: 3cqh;
+  font-size: 1.85cqh;
+  line-height: 1.4;
+  color: var(--board-fg);
+}
+
+.consequences li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 1.7cqh;
+  height: 1.5px;
+  background: var(--signal);
+}
+
+.offer {
+  margin: 0;
+  font-size: 1.85cqh;
+  line-height: 1.44;
+  color: var(--board-mute);
+}
+
 /* --- la sequenza ----------------------------------------------------
    Una linea sola scende per tutta la colonna e non si interrompe mai:
    passa dentro le prenotazioni e dentro le attese fra una e l'altra.
@@ -297,6 +388,7 @@ body {
 .item {
   position: relative;
   padding-left: 4.4cqh;
+  --spine-color: var(--rule-strong);
 }
 
 .item.leg { padding-block: 0.9cqh; }
@@ -308,7 +400,7 @@ body {
   top: 0;
   bottom: 0;
   width: 1px;
-  background: var(--rule-strong);
+  background: var(--spine-color);
 }
 
 /* La notte in albergo non è uno spostamento: lì la linea si spezza. */
@@ -316,7 +408,7 @@ body {
   background: transparent;
   background-image: repeating-linear-gradient(
     to bottom,
-    var(--rule-strong) 0 3px,
+    var(--spine-color) 0 3px,
     transparent 3px 8px
   );
 }
@@ -328,7 +420,8 @@ body {
 .row {
   position: relative;
   display: grid;
-  grid-template-columns: 7.4cqh minmax(26cqh, max-content) 15cqh minmax(21cqh, 1fr);
+  grid-template-columns:
+    7.4cqh minmax(26cqh, max-content) 14cqh 15cqh minmax(21cqh, 1fr);
   column-gap: 2.6cqh;
   align-items: baseline;
   padding: 0.85cqh 0;
@@ -407,6 +500,59 @@ body {
   font-stretch: 84%;
   color: var(--ink-mute);
   font-variant-numeric: tabular-nums;
+}
+
+/* --- quello che si rompe ---------------------------------------------
+   Sulla carta l'ambra non passerebbe mai il contrasto, e sul sito vive
+   solo dentro il blocco nero: qui nella sequenza lo stato si dice in
+   nero. Targhetta piena per la causa, targhetta vuota per le due
+   conseguenze. La differenza fra le due forme è l'informazione. */
+
+.tag {
+  display: inline-block;
+  align-self: center;
+  font-family: var(--display);
+  font-size: 1.45cqh;
+  font-weight: 650;
+  font-stretch: 84%;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  padding: 0.62cqh 0.85cqh;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.tag.cause { background: var(--ink); color: var(--paper); }
+
+.tag.effect {
+  border: 1px solid var(--rule-strong);
+  color: var(--ink-soft);
+  padding: 0.5cqh 0.75cqh;
+}
+
+/* Da qui in giù il viaggio non tiene più: il testo si attenua e la
+   linea sbiadisce. Il testo resta comunque sopra il contrasto minimo,
+   perché scolorito non vuol dire illeggibile. */
+.item[data-broken] {
+  color: var(--ink-mute);
+  --spine-color: var(--rule);
+}
+
+.item[data-broken] .node { background: var(--ink-mute); }
+
+.item[data-broken] .node.hollow {
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1.5px var(--ink-mute);
+}
+
+/* Sulla prenotazione cancellata la linea è tagliata, non sbiadita: è lì
+   che il viaggio si interrompe. */
+.item[data-state='cancelled'] { --spine-color: transparent; }
+
+.item[data-state='cancelled'] .t,
+.item[data-state='cancelled'] .place {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
 }
 
 /* --- attese e cambio di giornata ------------------------------------- */
