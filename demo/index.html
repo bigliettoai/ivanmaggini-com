@@ -259,7 +259,9 @@ body {
 /* Nella tappa 1 il conto delle prenotazioni si appoggia in fondo, così
    la spalla è tenuta sopra e sotto. L'avviso no: un avviso si legge di
    fila dall'alto, e un buco in mezzo lo spezzerebbe in due. */
-.rail:not([data-board]) > :last-child { margin-top: auto; }
+/* ...ma solo se c'è qualcosa sopra: nella schermata della richiesta la
+   spalla ha una riga sola, e una riga sola sta in alto. */
+.rail:not([data-board]) > :last-child:not(:first-child) { margin-top: auto; }
 
 .facts div {
   display: flex;
@@ -588,6 +590,62 @@ body {
 
 .day .mark-row { position: relative; }
 
+/* --- la richiesta -----------------------------------------------------
+   La prima schermata di tutta la demo, e la più vuota: il viaggio non
+   esiste ancora. Una frase sola, grande, nel serif della prosa, perché
+   è lingua e non un dato. Il cursore in fondo è un rettangolo fermo:
+   dice "appena scritto" senza lampeggiare, e in questa demo non si
+   muove niente da solo. */
+
+.trip[data-mode='ask'] {
+  display: grid;
+  align-content: center;
+}
+
+.ask {
+  margin: 0;
+  max-width: 30ch;
+  font-size: 4.3cqh;
+  line-height: 1.34;
+  letter-spacing: -0.004em;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.09em;
+  height: 0.86em;
+  margin-left: 0.16em;
+  vertical-align: -0.1em;
+  background: var(--ink);
+}
+
+/* --- il percorso proposto ---------------------------------------------
+   Al posto del venditore, la durata: non c'è ancora niente di comprato.
+   Sotto ogni tratta, il motivo per cui il mezzo è quello, in prosa e
+   incolonnato sotto il nome del luogo. */
+
+.duration {
+  font-family: var(--display);
+  font-size: 1.85cqh;
+  font-weight: 600;
+  font-stretch: 90%;
+  font-variant-numeric: tabular-nums;
+}
+
+.reason {
+  margin: 0.7cqh 0 0;
+  padding-left: 10cqh;
+  max-width: 74ch;
+  font-size: 1.85cqh;
+  line-height: 1.4;
+  color: var(--ink-mute);
+}
+
+.plan .item.leg { padding-block: 1.1cqh; }
+.plan .gap { padding-top: 1.7cqh; padding-bottom: 1.7cqh; }
+
 /* --- le due risposte, affiancate -------------------------------------
    Stessa grammatica della sequenza, più stretta. Ogni colonna si apre
    con quanto si arriva tardi, misurato allo stesso modo per tutte e
@@ -666,8 +724,17 @@ body {
 .mini .gap { padding-top: 1.9cqh; padding-bottom: 1.9cqh; }
 .mini .gap p { font-size: 1.7cqh; }
 
+/* Sotto ogni tratta, la tariffa; e a filo destro, quando c'è, l'ordine
+   in cui va comprata. Che la metà svizzera sia la seconda del viaggio e
+   la prima da comprare è il contenuto della schermata, quindi le due
+   targhette stanno una sopra l'altra, incolonnate, e la contraddizione
+   si vede senza doverla leggere. */
 .mini-meta {
-  margin: 0.5cqh 0 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2.4cqh;
+  margin: 0.7cqh 0 0;
   padding-left: 9.6cqh;
   font-family: var(--display);
   font-size: 1.55cqh;
@@ -675,6 +742,8 @@ body {
   font-stretch: 84%;
   color: var(--ink-mute);
 }
+
+.mini-meta .tag { flex: none; }
 
 /* Il vicolo cieco: la linea sbiadisce come nella sequenza rotta. */
 .option[data-tone='dead'] .item {
@@ -792,6 +861,9 @@ body {
     grid-template-columns: minmax(0, 1fr);
     row-gap: 4.5cqh;
   }
+
+  .ask { font-size: 3.4cqh; max-width: none; }
+  .reason { padding-left: 9.2cqh; }
 
   .mini .row { grid-template-columns: 6.6cqh minmax(0, 1fr); }
   .mini-meta { padding-left: 9.2cqh; }

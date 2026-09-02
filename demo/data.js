@@ -6,8 +6,12 @@
    rete, nessun servizio esterno, nessun orario calcolato al momento.
    Rilanciata domani, la demo dice esattamente le stesse cose di oggi.
 
-   Lo scenario: Milano - Vienna in due giorni, quattro prenotazioni
-   comprate da quattro venditori diversi. I riferimenti di prenotazione
+   Lo scenario: Milano - Vienna a metà ottobre, quattro prenotazioni
+   comprate da quattro venditori diversi. Le date sono quelle che
+   escono dalla richiesta della fase 1, "four days, mid October": il
+   viaggio di andata occupa il giovedì e il venerdì mattina, e il fine
+   settimana a Vienna non compare qui perché non ha niente da
+   decidere. I riferimenti di prenotazione
    hanno formati diversi apposta: è il segno che arrivano da sistemi
    che non si parlano.
 
@@ -17,10 +21,203 @@
    usano i prodotti veri, ed è l'unica che non produce ibridi.
    ------------------------------------------------------------------ */
 
+/* ------------------------------------------------------------------
+   Fase 1, passo A: la richiesta.
+
+   Una frase scritta a mano, come l'avrebbe digitata l'utente. Non c'è
+   nessun campo di testo: è testo fisso, e resta identico a ogni
+   riesecuzione. Il cursore che si vede in fondo è disegnato fermo,
+   non lampeggia: in questa demo non si muove niente da solo.
+   ------------------------------------------------------------------ */
+
+var ASK = 'Milan to Vienna, four days, mid October. I’d rather stay on the ground where it makes sense, and I don’t want to waste a day in transit.';
+
+
+/* ------------------------------------------------------------------
+   Fase 1, passo B: il percorso proposto.
+
+   Le stesse tratte che diventeranno le prenotazioni, ma prima di
+   comprarle: qui non c'è ancora nessun venditore e nessun
+   riferimento, e al loro posto, a filo destro, c'è la durata.
+
+   Sotto ogni tratta c'è il motivo per cui il mezzo è quello. È il
+   punto della schermata: la scelta è ragionata tratta per tratta, e
+   su tre spostamenti l'aereo ne vince uno solo. Che poi sia proprio
+   quello a saltare, due passi più avanti, non è un caso: è il pezzo
+   che l'utente non controlla.
+
+   Niente righe di cambio giornata qui: le due giornate le dice il
+   blocco nero, e lo spazio serve ai motivi.
+   ------------------------------------------------------------------ */
+
+var PLAN = {
+
+  board: {
+    state: 'Vienna on Friday',
+    subject: 'Milan 07:20 Thursday, Vienna 13:32 Friday',
+    noticed: 'You said stay on the ground where it makes sense. On this route that is two legs out of three.',
+
+    breaks: {
+      label: 'Why this shape',
+      items: [
+        'A night in Munich instead of a thirteen-hour day',
+        'Vienna at 13:32, with the afternoon still yours'
+      ]
+    },
+
+    offer: {
+      label: 'The way back',
+      text: 'Sunday evening, direct to Milan. Nothing to choose there.'
+    }
+  },
+
+  items: [
+    {
+      type: 'leg',
+      kind: 'train',
+      mode: 'Train',
+      service: 'EC 314',
+      duration: '3h 30m',
+      from: { time: '07:20', place: 'Milano Centrale' },
+      to: { time: '10:50', place: 'Zürich HB' },
+      reason: 'Centre to centre in three and a half hours. The flight is 55 minutes and four hours of airport.'
+    },
+
+    {
+      type: 'gap',
+      text: '3h 15m in Zurich. Long enough for lunch, and long enough that a late train costs you nothing.'
+    },
+
+    {
+      type: 'leg',
+      kind: 'flight',
+      mode: 'Flight',
+      service: 'LX 1064',
+      duration: '1h 05m',
+      from: { time: '14:05', place: 'Zurich Airport' },
+      to: { time: '15:10', place: 'Munich Airport' },
+      reason: 'The one leg where the plane wins: the same afternoon by train is 4h 30m and a change.'
+    },
+
+    { type: 'gap', text: 'S-Bahn into the city, 45 minutes' },
+
+    {
+      type: 'leg',
+      kind: 'stay',
+      mode: 'Stay',
+      service: 'One night',
+      duration: '',
+      from: { time: '16:30', place: 'Hotel Isarblick, Munich' },
+      to: { time: '08:15', place: 'Check-out, Friday morning' },
+      reason: 'Breaking the day here is what buys you Friday afternoon in Vienna.'
+    },
+
+    {
+      type: 'leg',
+      kind: 'train',
+      mode: 'Train',
+      service: 'RJX 63',
+      duration: '4h 06m',
+      from: { time: '09:26', place: 'München Hbf' },
+      to: { time: '13:32', place: 'Wien Hbf' },
+      reason: 'Four hours direct, and it puts you in the middle of Vienna rather than at its airport.'
+    }
+  ]
+};
+
+
+/* ------------------------------------------------------------------
+   Fase 1, passo C: cosa comprare, e in che ordine.
+
+   È il momento centrale di tutta la demo. Non dice che esiste un
+   percorso: dice che lo stesso identico posto sullo stesso identico
+   treno si compra a due prezzi diversi, e che la differenza sta nel
+   modo e nell'ordine in cui lo compri.
+
+   La meccanica è quella vera dei valichi: il biglietto internazionale
+   Milano-Zurigo ha un prezzo unico a contingenti, e quando i
+   contingenti bassi sono finiti resta caro. Spezzato al confine,
+   ogni metà torna a essere un biglietto nazionale: la parte italiana
+   è una tariffa regionale fissa, che non si muove mai, e la parte
+   svizzera è un risparmio a posti limitati.
+
+   Da lì l'ordine, che è il vero contenuto della schermata: prima la
+   metà svizzera, perché è quella che si esaurisce; la metà italiana
+   può aspettare, perché costa uguale adesso e fra un'ora.
+
+   EC 314 ferma a Chiasso, che è il confine: non si scende dal treno.
+   I numeri sono plausibili, non gonfiati: 89,00 contro 41,40.
+   ------------------------------------------------------------------ */
+
+var FARE = {
+
+  board: {
+    state: '€47.60 less',
+    subject: 'Milan to Zurich, EC 314, the same seat',
+    noticed: 'One international ticket is one fare bucket, and the cheap ones are gone. Split it at the border and each half is priced at home.',
+
+    breaks: {
+      label: 'And in this order',
+      items: [
+        'The Swiss half first: its saver seats are the ones that run out',
+        'The Italian half second: a regional fare that never moves'
+      ]
+    },
+
+    offer: {
+      label: 'Why nobody tells you',
+      text: 'The company selling the through ticket is the one losing the €47.60.'
+    }
+  },
+
+  options: [
+    {
+      tone: 'dead',
+      label: 'On the carrier’s site',
+      figure: '€89.00',
+      caption: 'Milan to Zurich, one ticket',
+      legs: [
+        {
+          from: { time: '07:20', place: 'Milano Centrale' },
+          to: { time: '10:50', place: 'Zürich HB' },
+          meta: 'EC 314, international fare'
+        }
+      ],
+      costs: [
+        'One price for the whole crossing',
+        'Cheap at three months out, not at three weeks'
+      ]
+    },
+    {
+      tone: 'live',
+      label: 'Bought as two',
+      figure: '€41.40',
+      caption: 'the same seat, on the same train',
+      legs: [
+        {
+          from: { time: '07:20', place: 'Milano Centrale' },
+          to: { time: '08:16', place: 'Chiasso' },
+          meta: 'Regional fare, €12.40',
+          order: 'Buy second'
+        },
+        { change: 'You do not get off. Chiasso is the border, not a change.' },
+        {
+          from: { time: '08:16', place: 'Chiasso' },
+          to: { time: '10:50', place: 'Zürich HB' },
+          meta: 'SBB Supersaver, €29.00',
+          order: 'Buy first',
+          first: true
+        }
+      ]
+    }
+  ]
+};
+
+
 var TRIP = {
 
   route: { from: 'Milan', to: 'Vienna' },
-  dates: 'Thursday 12 to Friday 13 March',
+  dates: 'Thursday 15 to Friday 16 October',
   lede: 'Everything you booked, in the order you will travel it.',
 
   /* Il conto che rende evidente il punto: un viaggio solo, quattro
@@ -36,7 +233,7 @@ var TRIP = {
      I tempi di attesa sono scritti a mano, non calcolati. */
   items: [
 
-    { type: 'day', label: 'Thursday 12 March' },
+    { type: 'day', label: 'Thursday 15 October' },
 
     {
       type: 'leg',
@@ -78,7 +275,7 @@ var TRIP = {
       to: { time: '08:15', place: 'Check-out, Friday morning' }
     },
 
-    { type: 'day', label: 'Friday 13 March' },
+    { type: 'day', label: 'Friday 16 October' },
 
     { type: 'gap', text: 'Breakfast, then 15 minutes to München Hbf' },
 

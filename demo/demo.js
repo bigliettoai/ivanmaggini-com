@@ -184,6 +184,7 @@
   function stage() {
     var trip = document.getElementById('trip');
     trip.textContent = '';
+    trip.removeAttribute('data-mode');
     return trip;
   }
 
@@ -244,6 +245,66 @@
     stage().appendChild(seq);
   }
 
+  /* --- la richiesta ---------------------------------------------------
+     La prima schermata della demo. Una frase, grande, nel carattere
+     della prosa: perché è lingua, non un dato. Il cursore in fondo è
+     fermo e disegnato, non un campo di testo e non un lampeggio. */
+
+  function drawAsk(text) {
+    var rail = railElement();
+    rail.removeAttribute('data-board');
+    rail.appendChild(el('p', 'label', 'You asked'));
+
+    var block = el('blockquote', 'ask', text);
+    block.appendChild(el('span', 'caret'));
+
+    var trip = stage();
+    trip.setAttribute('data-mode', 'ask');
+    trip.appendChild(block);
+  }
+
+  /* --- il percorso proposto --------------------------------------------
+     Stessa griglia della sequenza comprata, con due differenze: al
+     posto del venditore c'è la durata, perché non c'è ancora niente di
+     comprato, e sotto ogni tratta c'è il motivo per cui il mezzo è
+     quello. Il motivo è in prosa, non in dati: è un ragionamento. */
+
+  function planRow(item) {
+    var li = el('li', 'item leg');
+    li.setAttribute('data-kind', item.kind);
+
+    var top = el('div', 'row');
+    top.appendChild(el('span', 'node'));
+    top.appendChild(el('time', 't', item.from.time));
+    top.appendChild(el('span', 'place', item.from.place));
+    top.appendChild(el('span'));
+    top.appendChild(modeCell(item));
+    top.appendChild(el('span', 'duration', item.duration));
+
+    var bottom = el('div', 'row');
+    bottom.appendChild(el('span', 'node hollow'));
+    bottom.appendChild(el('time', 't', item.to.time));
+    bottom.appendChild(el('span', 'place', item.to.place));
+    bottom.appendChild(el('span'));
+    bottom.appendChild(el('span', 'meta', item.service));
+    bottom.appendChild(el('span'));
+
+    li.appendChild(top);
+    li.appendChild(bottom);
+    li.appendChild(el('p', 'reason', item.reason));
+    return li;
+  }
+
+  function drawPlan(plan) {
+    var seq = el('ol', 'seq plan');
+
+    plan.items.forEach(function (item) {
+      seq.appendChild(item.type === 'leg' ? planRow(item) : gapRow(item));
+    });
+
+    stage().appendChild(seq);
+  }
+
   /* --- le due risposte, affiancate ------------------------------------
      Stessa grammatica della sequenza, più stretta: la linea, i nodi
      pieni e vuoti, gli orari incolonnati. Quella della compagnia aerea
@@ -270,7 +331,17 @@
 
     li.appendChild(top);
     li.appendChild(bottom);
-    li.appendChild(el('p', 'mini-meta', leg.meta));
+
+    /* La tariffa e, quando c'è, l'ordine in cui va comprata. L'ordine
+       d'acquisto non è quello di viaggio: la metà svizzera è la seconda
+       che percorri e la prima che devi comprare, ed è tutto il punto
+       della schermata. */
+    var foot = el('p', 'mini-meta');
+    foot.appendChild(el('span', null, leg.meta));
+    if (leg.order) {
+      foot.appendChild(el('span', 'tag ' + (leg.first ? 'cause' : 'effect'), leg.order));
+    }
+    li.appendChild(foot);
     return li;
   }
 
@@ -310,7 +381,33 @@
 
   var STEPS = [
 
-    /* 1. Il viaggio come l'utente l'ha comprato. */
+    /* --- Fase 1: il viaggio non esiste ancora ------------------------ */
+
+    /* A. La richiesta, scritta in lingua. Da qui parte tutto. */
+    function theAsk() {
+      drawAsk(ASK);
+    },
+
+    /* B. Il percorso proposto, con il motivo di ogni mezzo sotto la
+          tratta a cui si riferisce. */
+    function thePlan() {
+      drawBoard(PLAN.board);
+      drawPlan(PLAN);
+    },
+
+    /* C. Il momento centrale: lo stesso posto sullo stesso treno, a due
+          prezzi. Stessa griglia del confronto della fase 3, perché è lo
+          stesso gesto: due modi di fare la stessa cosa, affiancati. */
+    function whatToBuy() {
+      drawBoard(FARE.board);
+      drawComparison(FARE);
+    },
+
+    /* --- Fase 2: il viaggio in un posto solo -------------------------- */
+
+    /* D. L'utente conferma, e le prenotazioni compaiono nel contenitore.
+          È la schermata che c'era già: le prenotazioni che si romperanno
+          sono esattamente quelle appena pianificate. */
     function tripAsBooked() {
       drawTripRail(TRIP);
       drawSequence(TRIP, null);
