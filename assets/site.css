@@ -509,6 +509,17 @@ p a:hover,
 
 @media (min-width: 820px) { .pair { grid-template-columns: 1fr 1fr; column-gap: var(--s4); } }
 
+/* Con tre card in fila serve più larghezza: sotto i 1040px restano
+   incolonnate, perché tre colonne da meno di trecento pixel spezzano il
+   testo in righe troppo corte. */
+@media (min-width: 820px) and (max-width: 1039px) { .pair.three { grid-template-columns: 1fr; } }
+@media (min-width: 1040px) {
+  .pair.three { grid-template-columns: repeat(3, 1fr); column-gap: var(--s3); }
+  /* In colonna stretta il titolo alla misura piena andrebbe a cinque righe e
+     mangerebbe la card: qui scende di un gradino. */
+  .pair.three .card h2 { font-size: clamp(1.12rem, 1.55vw, 1.34rem); }
+}
+
 .card {
   border: 1px solid var(--rule);
   background: var(--paper-2);
