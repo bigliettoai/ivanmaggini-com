@@ -1,8 +1,8 @@
 # ivanmaggini.com
 
 Sito personale di Ivan Maggini. Due cose in un posto solo: chi è e cosa sta
-costruendo (Biglietto), e il servizio video per studi professionali in
-Milano, Bergamo e Brescia (Ivan Maggini Studio).
+costruendo (Biglietto), e il servizio video per studi professionali e
+aziende in tutta Italia (Ivan Maggini Studio).
 
 Sono file statici: HTML, un foglio di stile, ottanta righe di JavaScript.
 Nessun build step, nessuna dipendenza, nessun framework. Si apre `index.html`
@@ -22,8 +22,8 @@ e c'è tutto.
 | `/en/privacy`    | `en/privacy.html`    | Informativa privacy in inglese          |
 
 Biglietto ha una pagina propria in entrambe le lingue. La sezione Studio
-esiste solo in italiano: si rivolge a studi professionali di Milano, Bergamo
-e Brescia. I vecchi
+esiste solo in italiano: si rivolge a studi professionali e aziende in
+Italia. I vecchi
 indirizzi `/startup` e `/en/startup` reindirizzano alle pagine Biglietto.
 
 ## Il sistema visivo
