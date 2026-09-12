@@ -1,6 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ivan Maggini">
-  <rect width="64" height="64" rx="14" fill="#14120f"/>
-  <!-- Perforazione: lo stesso motivo "biglietto" usato nelle pagine. -->
-  <line x1="12" y1="46" x2="52" y2="46" stroke="#bd9020" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round" opacity="0.75"/>
-  <text x="32" y="38" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="600" font-size="30" fill="#f5f1e6">IM</text>
+  <!-- Stessa tavolozza del sito: fondo del tabellone, testo carta, ambra.
+       Il bordo perforato è il motivo che tiene insieme tutte le pagine. -->
+  <rect width="64" height="64" rx="12" fill="#0c0c0c"/>
+  <line x1="11" y1="45" x2="53" y2="45" stroke="#ffab00" stroke-width="2.5"
+        stroke-dasharray="3.5 4.5" stroke-linecap="round"/>
+  <text x="32" y="37" text-anchor="middle"
+        font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+        font-weight="700" font-size="30" letter-spacing="-1" fill="#ebebe8">IM</text>
 </svg>
