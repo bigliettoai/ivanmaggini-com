@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- =====================================================================
+     MODELLO DI ARTICOLO. Non è una pagina del sito: è il foglio bianco.
+     Per fare un articolo nuovo si copia questo file dentro la cartella
+     della sezione giusta e gli si dà un nome tutto minuscolo con i
+     trattini al posto degli spazi. Quel nome diventa l'indirizzo.
+
+     Esempio: guide/treni/interrail-quanto-costa.html
+     diventa  ivanmaggini.com/guide/treni/interrail-quanto-costa
+
+     Poi si cambia soltanto quello che sta fra i blocchi marcati
+     "SI CAMBIA". Tutto il resto si lascia stare.
+     ===================================================================== -->
+
+<!-- ========================= SI CAMBIA: 1 di 3 =========================
+     Le prime due righe sono quelle che si leggono su Google. La terza è
+     l'indirizzo della pagina: deve essere identico al nome del file,
+     con davanti https://ivanmaggini.com/ e senza .html finale.
+     ===================================================================== -->
+<title>TITOLO DELL'ARTICOLO</title>
+<meta name="description" content="Una frase che dice di cosa parla l'articolo. Due righe, non di più.">
+<link rel="canonical" href="https://ivanmaggini.com/guide/SEZIONE/NOME-DEL-FILE">
+<link rel="alternate" hreflang="it" href="https://ivanmaggini.com/guide/SEZIONE/NOME-DEL-FILE">
+<link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/guide/SEZIONE/NOME-DEL-FILE">
+<!-- Se e quando esiste anche la versione inglese, si aggiunge qui sotto
+     questa riga, e la stessa cosa si fa nel file inglese al contrario:
+<link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/guides/SECTION/FILE-NAME">
+     Finché la versione inglese non esiste, questa riga non ci va. -->
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ivan Maggini">
+<meta property="og:title" content="TITOLO DELL'ARTICOLO">
+<meta property="og:description" content="La stessa frase di sopra.">
+<meta property="og:url" content="https://ivanmaggini.com/guide/SEZIONE/NOME-DEL-FILE">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+<!-- ===================== FINE DI "SI CAMBIA: 1 di 3" ==================== -->
+
+<meta name="theme-color" content="#ebebe8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=ea73ed9713">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+</head>
+
+<body>
+
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+
+<header class="top">
+  <div class="shell top-in">
+    <a href="/" class="mark">Ivan Maggini</a>
+    <nav aria-label="Sezioni">
+      <a href="/guide">Guide</a>
+      <span class="lang">
+        <a href="/guide/SEZIONE/NOME-DEL-FILE" lang="it" hreflang="it" aria-current="true">IT</a>
+        <a href="/en/guides" lang="en" hreflang="en">EN</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main id="contenuto">
+
+  <!-- ========================= SI CAMBIA: 2 di 3 =========================
+       Il titolo grande. Si spezza a mano in righe: ogni riga sta fra
+       <span><span style="--i:N"> e </span></span>, e il numero N cresce
+       di uno a ogni riga. Serve solo a far salire le righe una dopo
+       l'altra quando si apre la pagina.
+       ===================================================================== -->
+  <section class="sec open tight">
+    <div class="shell masthead">
+      <h1 class="reveal">
+        <span><span style="--i:0">Prima riga del titolo,</span></span>
+        <span><span style="--i:1">seconda riga.</span></span>
+      </h1>
+      <p class="lede">
+        Due righe che dicono perché vale la pena leggere. Non un riassunto.
+      </p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="shell sec-grid">
+      <!-- Il nome della sezione nel margine. Va cambiato solo se l'articolo
+           sta in un'altra sezione: treni, itinerari, racconti. -->
+      <p class="rail"><a href="/guide#compagnie-aeree">Compagnie aeree</a><b>Guida</b></p>
+
+      <div class="body testo">
+
+        <!-- ======================= SI CAMBIA: 3 di 3 =====================
+             L'articolo. Ogni paragrafo sta fra <p> e </p>.
+             Ogni titoletto sta fra <h2> e </h2>.
+             Un elenco puntato si scrive così:
+               <ul><li>prima voce</li><li>seconda voce</li></ul>
+             Un link si scrive così:
+               <a href="https://sito.it">le parole cliccabili</a>
+             Non serve altro.
+             =============================================================== -->
+
+        <p>
+          Primo paragrafo.
+        </p>
+
+        <h2>Un titoletto</h2>
+        <p>
+          Altro paragrafo.
+        </p>
+
+        <!-- ================= IL BLOCCO DEI DATI (facoltativo) =============
+             Serve solo se l'articolo contiene numeri che scadono: prezzi,
+             misure, regole, requisiti di ingresso. Se non ce ne sono, si
+             cancella tutto il blocco da <aside> a </aside>.
+
+             Per aggiungere una riga: si copia un <li class="dati-riga">
+             intero, dalla riga <li> alla riga </li>, e si cambiano le due
+             scritte. Quando un numero cambia si corregge qui e si aggiorna
+             la data in fondo. L'articolo non si tocca.
+
+             È l'unico punto di tutta la pagina in cui si vede una data.
+             ================================================================ -->
+        <aside class="dati" aria-labelledby="dati-titolo">
+          <h2 id="dati-titolo">I numeri</h2>
+          <p>
+            Quello che scade sta qui. Il resto dell'articolo vale anche quando
+            questi numeri non valgono più.
+          </p>
+          <ul class="dati-righe">
+            <li class="dati-riga">
+              <span class="dati-voce">Nome della cosa</span>
+              <span class="dati-valore">Il valore<small>Una nota corta, se serve.</small></span>
+            </li>
+            <li class="dati-riga">
+              <span class="dati-voce">Un'altra cosa</span>
+              <span class="dati-valore">Un altro valore<small>Anche questa nota si può cancellare.</small></span>
+            </li>
+          </ul>
+          <p class="dati-data">Verificato il <b>GIORNO MESE ANNO</b></p>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="shell foot-in">
+    <div>
+      <span class="mark">Ivan Maggini</span>
+      <address class="small">
+        Lurano (BG), Italia<br>
+        P. IVA 04924920160
+      </address>
+    </div>
+    <nav aria-label="Link del footer">
+      <a href="/">Home</a>
+      <a href="/guide">Guide</a>
+      <a href="/chi-sono">Chi sono</a>
+      <a href="/en/guides">English</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/condizioni">Condizioni</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/assets/site.js?v=e2f15b517a" defer></script>
+</body>
+</html>

@@ -356,8 +356,16 @@ p a:hover,
 .lang a { padding: 5px 8px; font-size: 0.78rem; letter-spacing: 0.04em; }
 .top nav .lang a[aria-current] { background: var(--ink); color: var(--paper); }
 
+/* Con quattro sezioni la riga in alto non ci sta più su un telefono. Sotto
+   i 560px va a capo su due righe, e in cambio smette di restare appiccicata
+   in alto: due righe fisse si mangerebbero un sesto dello schermo. */
 @media (max-width: 560px) {
+  .top { position: static; }
+  .top-in { flex-wrap: wrap; row-gap: var(--s1); padding-block: var(--s2); min-height: 0; }
+  .top-in > nav { width: 100%; }
+  .top nav { flex-wrap: wrap; gap: var(--s2) var(--s3); font-size: 0.8125rem; }
   .top nav .hide-s { display: none; }
+  .rail { position: static; }
 }
 
 /* --- il tabellone: l'unico blocco nero del sito ------------------------ */
@@ -621,6 +629,233 @@ p a:hover,
 .legal ul { margin: var(--s3) 0 0; padding-left: var(--s3); display: grid; gap: var(--s2); }
 .legal li { color: var(--ink-soft); }
 .legal > * + * { margin-top: var(--s3); }
+
+/* --- biblioteca --------------------------------------------------------
+   La sezione /guide non è un blog: non ha date, non ha ordine cronologico
+   e non ha un "ultimi articoli". È uno scaffale. Ogni ripiano è una delle
+   quattro sezioni fisse, e dentro ci sono i titoli, uno sotto l'altro,
+   come in un indice. Quando passano sei mesi senza pubblicare niente,
+   uno scaffale sembra uguale a prima. Un blog sembra abbandonato. */
+
+.scaffale { display: grid; gap: var(--s6); }
+
+.ripiano { border-top: 2px solid var(--ink); padding-top: var(--s2); }
+.ripiano > h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
+.ripiano > p { margin-top: var(--s1); color: var(--ink-mute); font-size: 0.9875rem; }
+
+.titoli { list-style: none; margin: var(--s3) 0 0; padding: 0; }
+.titoli li { border-bottom: 1px solid var(--rule); }
+
+.titoli a {
+  display: block;
+  padding: var(--s2) 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.voce-nome {
+  display: block;
+  font-family: var(--display);
+  font-weight: 600;
+  font-stretch: 100%;
+  font-size: 1.0625rem;
+  line-height: 1.24;
+  letter-spacing: -0.008em;
+}
+
+.titoli a:hover .voce-nome { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; }
+
+.voce-nota {
+  display: block;
+  margin-top: 3px;
+  color: var(--ink-mute);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  max-width: 62ch;
+}
+
+/* Etichetta per un pezzo che esiste in una lingua sola. Non è un errore
+   e non deve sembrarlo: è un'informazione, come "solo in sala". */
+.solo-lingua {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 7px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  font-family: var(--display);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  font-stretch: 92%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  vertical-align: 0.18em;
+  white-space: nowrap;
+}
+
+/* --- pagina di lettura --------------------------------------------------
+   Il corpo di un articolo è più grande di quello delle pagine di servizio:
+   qui si legge per dieci minuti, non per dieci secondi. */
+
+.testo { font-size: 1.0625rem; }
+.testo p { line-height: 1.66; }
+.testo > * + * { margin-top: var(--s3); }
+.testo h2 { font-size: clamp(1.3rem, 3vw, 1.7rem); margin-top: var(--s5); }
+.testo h3 { margin-top: var(--s4); }
+.testo h2 + p, .testo h3 + p { margin-top: var(--s2); }
+/* Gli elenchi del testo. L'esclusione serve perché il blocco dati è a sua
+   volta un elenco, ma non deve prendersi il trattino né il rientro. */
+.testo ul:not(.dati-righe) { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.testo ul:not(.dati-righe) li { position: relative; padding-left: var(--s3); color: var(--ink-soft); max-width: var(--measure); }
+.testo ul:not(.dati-righe) li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.66em;
+  width: 10px;
+  height: 1px;
+  background: var(--ink);
+}
+
+@media (min-width: 768px) { .testo { font-size: 1.125rem; } }
+
+/* --- blocco dati --------------------------------------------------------
+   I numeri che scadono non stanno nel testo: stanno qui, su fondo nero,
+   come su un tabellone di partenze. Un tabellone dice cosa è vero adesso
+   e quando è stato aggiornato, e nessuno si aspetta che resti uguale per
+   sempre. Per correggere un prezzo si tocca solo questo blocco, e si
+   cambia la data in fondo. Il resto dell'articolo non si riscrive. */
+
+.dati {
+  margin-top: var(--s5);
+  background: var(--board);
+  color: var(--board-fg);
+  padding: var(--s4) var(--s3) var(--s3);
+  border-radius: 3px;
+}
+
+@media (min-width: 768px) { .dati { padding: var(--s4); } }
+
+.dati h2, .dati h3 { color: var(--board-fg); font-size: clamp(1.05rem, 2.2vw, 1.25rem); font-weight: 620; font-stretch: 104%; }
+.dati p { color: var(--board-mute); max-width: 60ch; }
+.dati > h2 + p, .dati > h3 + p { margin-top: var(--s1); font-size: 0.9375rem; }
+
+.dati-righe { list-style: none; margin: var(--s3) 0 0; padding: 0; }
+
+.dati-riga {
+  display: grid;
+  gap: 2px;
+  padding: var(--s2) 0;
+  border-top: 1px solid var(--board-rule);
+}
+
+/* L'ultima riga non si chiude con una linea sua: la chiude quella della
+   data, che sta subito sotto. Due linee a mezzo centimetro di distanza si
+   vedono e sembrano un errore. */
+
+@media (min-width: 620px) {
+  .dati-riga { grid-template-columns: minmax(0, 7fr) minmax(0, 9fr); gap: var(--s3); align-items: baseline; }
+}
+
+.dati-voce {
+  font-family: var(--display);
+  font-weight: 600;
+  font-stretch: 96%;
+  font-size: 0.9375rem;
+  color: var(--board-fg);
+  line-height: 1.3;
+}
+
+.dati-valore {
+  font-family: var(--display);
+  font-weight: 550;
+  font-stretch: 92%;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--signal);
+  font-variant-numeric: tabular-nums;
+}
+
+.dati-valore small { display: block; color: var(--board-mute); font-family: var(--text); font-size: 0.9375rem; font-weight: 400; margin-top: 2px; }
+
+/* L'unica data visibile di tutta la pagina. Sta qui dentro di proposito. */
+.dati-data {
+  max-width: none;
+  margin-top: var(--s3);
+  padding-top: var(--s2);
+  border-top: 1px solid var(--board-rule);
+  font-family: var(--display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-stretch: 92%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--board-mute);
+}
+
+.dati-data b { color: var(--signal); font-weight: 600; }
+.dati a { color: var(--signal); }
+
+/* --- guide lunghe: le tappe --------------------------------------------
+   Una guida lunga è una cartella, non una pagina sola. La pagina della
+   guida è il suo indice; ogni tappa è una pagina a sé, corta abbastanza
+   da leggersi sul telefono e da correggersi senza aprire un file enorme. */
+
+.tappe { list-style: none; margin: var(--s3) 0 0; padding: 0; counter-reset: tappa; }
+
+.tappe li { counter-increment: tappa; border-bottom: 1px solid var(--rule); }
+.tappe li:first-child { border-top: 1px solid var(--rule); }
+
+.tappe a {
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 1fr);
+  gap: var(--s2);
+  align-items: baseline;
+  padding: var(--s2) 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.tappe a::before {
+  content: counter(tappa, decimal-leading-zero);
+  font-family: var(--display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-stretch: 92%;
+  color: var(--ink-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+.tappe a:hover .voce-nome { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; }
+
+/* --- avanti e indietro fra le tappe ------------------------------------ */
+
+.scorri {
+  display: grid;
+  gap: var(--s3);
+  margin-top: var(--s5);
+  padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 620px) { .scorri { grid-template-columns: 1fr 1fr; } }
+
+.scorri a { text-decoration: none; color: inherit; display: block; }
+.scorri .small { color: var(--ink-mute); display: block; }
+.scorri .voce-nome { margin-top: 3px; }
+.scorri a:hover .voce-nome { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; }
+.scorri > :last-child:nth-child(2) { text-align: right; }
+
+/* --- nota di lingua -----------------------------------------------------
+   Quando un pezzo esiste in una lingua sola, la riga qui sotto lo dice e
+   manda all'indice dell'altra lingua. Nessuna pagina vuota, nessun 404,
+   nessuna traduzione automatica. */
+
+.lingua-nota {
+  margin-top: var(--s3);
+  font-size: 0.9375rem;
+  color: var(--ink-mute);
+}
 
 /* --- piede -------------------------------------------------------------- */
 

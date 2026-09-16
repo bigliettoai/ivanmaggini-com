@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /_modelli/
 
 Sitemap: https://ivanmaggini.com/sitemap.xml

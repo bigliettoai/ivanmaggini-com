@@ -32,6 +32,36 @@
   to = "/en/biglietto"
   status = 301
 
+# La cartella _modelli contiene il foglio bianco da cui si copiano gli
+# articoli nuovi. Non è una pagina del sito e non deve essere raggiungibile:
+# force = true serve proprio a far vincere questa regola sul file che esiste.
+[[redirects]]
+  from = "/_modelli/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Chi sono.
+[[redirects]]
+  from = "/chi-sono"
+  to = "/chi-sono.html"
+  status = 200
+
+# La biblioteca. Queste due regole bastano per sempre: la seconda copre
+# qualunque indirizzo dentro /guide, a qualunque profondità, quindi
+# aggiungere un articolo non richiede mai di toccare questo file.
+#   /guide/treni/interrail          ->  guide/treni/interrail.html
+#   /guide/itinerari/italia/roma    ->  guide/itinerari/italia/roma.html
+[[redirects]]
+  from = "/guide"
+  to = "/guide.html"
+  status = 200
+
+[[redirects]]
+  from = "/guide/*"
+  to = "/guide/:splat.html"
+  status = 200
+
 [[redirects]]
   from = "/studio"
   to = "/studio.html"
@@ -65,6 +95,19 @@
 [[redirects]]
   from = "/en/privacy"
   to = "/en/privacy.html"
+  status = 200
+
+# La biblioteca in inglese. Stesse due regole, stesso motivo. Devono stare
+# sopra la cattura /en/* qui sotto, altrimenti finirebbero sulla pagina di
+# errore inglese invece che sull'articolo.
+[[redirects]]
+  from = "/en/guides"
+  to = "/en/guides.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/guides/*"
+  to = "/en/guides/:splat.html"
   status = 200
 
 # Qualunque altro percorso sotto /en/ riceve la pagina di errore inglese,
