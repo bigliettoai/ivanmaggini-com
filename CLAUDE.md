@@ -1,0 +1,159 @@
+# CLAUDE.md
+
+Sito personale di Ivan Maggini, ivanmaggini.com. È tutto statico: HTML scritto
+a mano, un foglio di stile e un piccolo script. Non ci sono build, dipendenze
+o framework. Il deploy va su Netlify dal branch `main`, e la cartella del
+repository viene pubblicata così com'è (`publish = "."`).
+
+Il README spiega il perché delle scelte visive e tecniche. Questo file dice
+come si lavora sul sito senza rompere niente.
+
+## File
+
+| File | A cosa serve |
+| --- | --- |
+| `index.html` | Home IT: chi sono, e i link a Biglietto e a Studio |
+| `biglietto.html` | Il prodotto Biglietto, più il secondo progetto |
+| `studio.html` | Pagina di vendita di Ivan Maggini Studio (**solo IT**) |
+| `privacy.html` | Informativa privacy IT (include §2.4, comunicazioni commerciali) |
+| `condizioni.html` | Condizioni generali del servizio video (**solo IT**) |
+| `404.html` | Errore IT, `noindex` |
+| `en/index.html`, `en/biglietto.html`, `en/privacy.html` | Versioni inglesi |
+| `en/404.html` | Errore EN, servito per ogni `/en/*` sconosciuto |
+| `assets/site.css` | L'unico foglio di stile del sito |
+| `assets/site.js` | Anima l'email lettera per lettera negli elementi `[data-rise]` |
+| `assets/og/og-*.png` | Immagini Open Graph 1200×630, una per pagina (`-en` per l'inglese) |
+| `assets/favicon.svg`, `assets/apple-touch-icon.png` | Icone |
+| `netlify.toml` | URL puliti, redirect delle vecchie rotte, 404 EN, header, cache |
+| `sitemap.xml` | Tutte le pagine indicizzabili, con le coppie `hreflang` |
+| `robots.txt` | Permette tutto e punta alla sitemap |
+
+Quello che è solo in italiano (Studio, condizioni) resta così: il servizio è
+rivolto a studi e aziende in Italia. Nelle pagine inglesi non compare nessun
+link a Studio.
+
+## Struttura di ogni pagina
+
+Tutte le pagine hanno lo stesso scheletro. Per crearne una nuova si copia
+quella più simile, non si parte da zero.
+
+- **`<head>`**, in quest'ordine: `charset`, `viewport`,
+  `format-detection telephone=no`, `title`, `description`, `canonical`
+  (URL pulito, senza `.html`), le tre righe `hreflang` (`it`, `en`,
+  `x-default` → versione IT) solo se esiste la controparte, `theme-color
+  #ebebe8`, il blocco Open Graph (`og:url`, `og:locale`, `og:image` con
+  width/height/alt, `twitter:card`), i due `preconnect` e il link a Google
+  Fonts (identico ovunque), `site.css?v=…`, favicon e apple-touch-icon.
+- **`<body>`**: link `.skip`, poi `header.top` con `.mark` e il `nav`.
+  La voce della pagina corrente ha `aria-current="page"`. Nel selettore
+  `.lang`, `aria-current="true"` va sulla lingua corrente e ogni link punta
+  alla controparte dell'altra lingua; se la controparte non c'è, alla home di
+  quella lingua. Poi `main`, con le sezioni `.sec` > `.shell.sec-grid` >
+  `p.rail` + `.body` (oppure `.legal` per i testi legali), al massimo un
+  blocco `.board` nero per pagina, e infine `footer.foot` con indirizzo,
+  P. IVA e link.
+- **`site.js`** si carica (`defer`, con impronta) solo nelle pagine che hanno
+  un elemento `data-rise`. La testata `.reveal` è solo CSS.
+- Le pagine IT usano `id="contenuto"`, le EN `id="content"`.
+
+Le regole del sistema visivo (niente maiuscolette sopra i titoli, card solo
+per contenuti paralleli, ambra solo nel `.board`, un solo momento animato)
+sono scritte in testa a `assets/site.css` e nel README, e vanno rispettate.
+Si usano solo le variabili `--s1`…`--s6` per le spaziature e i colori definiti
+in `:root`.
+
+## Aggiungere una pagina nuova
+
+Esempio: la rotta `/nome`, con la versione inglese `/en/nome`.
+
+1. **File HTML.** Si copia la pagina più simile (`privacy.html` per un testo
+   legale, `biglietto.html` per una pagina di contenuto) in `nome.html`. Poi
+   si aggiornano `title`, `description`, `canonical`
+   `https://ivanmaggini.com/nome`, tutto il blocco OG (`og:url`,
+   `og:title`, `og:description`, `og:image`, `og:image:alt`), gli
+   `aria-current` del nav e i link del selettore lingua.
+2. **Immagine OG.** Si crea `assets/og/og-nome.png` a 1200×630 (e
+   `og-nome-en.png` per l'inglese).
+3. **`netlify.toml`.** Si aggiunge la riscrittura, con `status = 200` (non
+   301: l'URL resta pulito):
+   ```toml
+   [[redirects]]
+     from = "/nome"
+     to = "/nome.html"
+     status = 200
+   ```
+   Netlify applica la prima regola che corrisponde. Le regole `/en/…` vanno
+   quindi **prima** del catch-all `from = "/en/*"` → `/en/404.html`,
+   altrimenti la pagina inglese risponde 404. Se una rotta viene rinominata,
+   si aggiunge un 301 dalla vecchia alla nuova, come per `/startup`.
+4. **`sitemap.xml`.** Si aggiunge un `<url>` con `loc` pulito, `lastmod` di
+   oggi (`AAAA-MM-GG`) e `priority`: 0.9 per le pagine principali, 0.7–0.8
+   per le versioni EN, 0.2 per le pagine legali. Se la pagina è bilingue,
+   entrambe le voci (IT ed EN) portano le tre righe `xhtml:link` (`it`, `en`,
+   `x-default` → IT). Le pagine 404 non vanno nella sitemap.
+5. **Versione inglese**, se serve. Si crea `en/nome.html` partendo da
+   un'altra pagina in `en/`: `lang="en"`, skip "Skip to content" con
+   `#content`, `aria-label="Sections"` / `"Footer links"`, `og:locale en_GB`
+   più `og:locale:alternate it_IT`, footer con "Italy" / "VAT", nessun link
+   a Studio. Stessi `canonical` e `hreflang`, ma con i ruoli invertiti.
+   Poi va aggiornata **anche la pagina IT**: le tre righe `hreflang` e il
+   link EN nel selettore lingua. Si aggiungono anche la regola in
+   `netlify.toml` (prima di `/en/*`) e la voce nella sitemap.
+6. **Link in entrata.** Se la pagina deve essere raggiungibile, la si
+   aggiunge al `nav` e/o al footer di tutte le pagine della stessa lingua.
+   Le pagine sono indipendenti: non c'è un template condiviso, quindi la
+   modifica va ripetuta a mano in ogni file.
+7. **Impronta.** Si lancia lo script qui sotto. Mette l'impronta giusta
+   anche nella pagina nuova, e rilanciarlo non fa danni.
+8. **README.** Si aggiorna la tabella "Pagine".
+
+## Regola dell'impronta del CSS (e del JS)
+
+`site.css` e `site.js` si richiamano sempre con l'impronta del contenuto:
+`/assets/site.css?v=<primi 10 caratteri dello sha256>`. Senza, un browser
+con la versione vecchia in cache servirebbe CSS vecchio a HTML nuovo, e la
+pagina resterebbe senza stile.
+
+**Dopo ogni modifica a `assets/site.css` o `assets/site.js`, e dopo aver
+creato una pagina**, prima del commit si rigenera l'impronta in tutte le
+pagine:
+
+```
+python3 - <<'EOF'
+import hashlib, re
+from pathlib import Path
+h = lambda f: hashlib.sha256(Path(f).read_bytes()).hexdigest()[:10]
+css, js = h('assets/site.css'), h('assets/site.js')
+for f in Path('.').glob('**/*.html'):
+    t = f.read_text(encoding='utf-8')
+    t = re.sub(r'href="/assets/site\.css(\?v=[0-9a-f]+)?"', f'href="/assets/site.css?v={css}"', t)
+    t = re.sub(r'src="/assets/site\.js(\?v=[0-9a-f]+)?"', f'src="/assets/site.js?v={js}"', t)
+    f.write_text(t, encoding='utf-8')
+print(css, js)
+EOF
+```
+
+Per controllare, deve uscire una sola impronta per file:
+
+```
+grep -ho 'site\.\(css\|js\)?v=[0-9a-f]*' $(git ls-files '*.html') | sort | uniq -c
+```
+
+La seconda rete è l'header `Cache-Control: max-age=0, must-revalidate` su
+`/assets/*`, in `netlify.toml`. Non sostituisce l'impronta. Le immagini in
+`/assets/og/` hanno invece un'ora di cache.
+
+## Provare in locale
+
+`python3 -m http.server 8000` basta per leggere le pagine, aprendole come
+`/nome.html`. Per le rotte pulite e il 404 inglese serve `netlify dev`.
+
+## Convenzioni
+
+- Tutto è in italiano: testi, commenti nel codice e messaggi di commit. I
+  commenti spiegano il *perché* di una scelta, non il cosa.
+- Sul sito non ci sono moduli: l'unico contatto è `general@ivanmaggini.com`.
+  Non si aggiungono form, analytics o cookie senza aggiornare l'informativa
+  privacy, in entrambe le lingue.
+- Quando cambia un'informativa o una condizione, si aggiorna la data nella
+  `.rail` ("Ultimo aggiornamento") e il `lastmod` nella sitemap.
