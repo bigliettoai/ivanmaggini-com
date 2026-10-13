@@ -13,9 +13,8 @@ come si lavora sul sito senza rompere niente.
 
 | File | A cosa serve |
 | --- | --- |
-| `index.html` | Home IT: i due mestieri come due righe, poi chi sono |
+| `index.html` | Home IT: la pagina di vendita di Ivan Maggini Studio (`/studio` vi rimanda con un 301) |
 | `biglietto.html` | Il prodotto Biglietto, più il secondo progetto |
-| `studio.html` | Pagina di vendita di Ivan Maggini Studio |
 | `privacy.html` | Informativa privacy IT (include §2.4, comunicazioni commerciali) |
 | `condizioni.html` | Condizioni generali del servizio video |
 | `404.html` | Errore IT, `noindex` |

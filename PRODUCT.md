@@ -13,13 +13,10 @@ prima i clienti di Studio**: è il servizio che oggi deve portare lavoro.
 
 - **Clienti di Ivan Maggini Studio** (pubblico primario). Titolari di studi
   professionali e di aziende in tutta Italia, e presto all'estero. Tre
-  gruppi, come li nomina `studio.html`:
-  - professioni che si scelgono per fiducia: dentisti, avvocati, notai,
-    commercialisti, studi medici;
-  - studi che vivono di progetti: architetti, ingegneri, studi di design,
-    imprese di costruzione;
-  - aziende che vendono un prodotto: manifattura, alimentare di qualità,
-    artigianato, e-commerce.
+  gruppi, come li nomina la home (`index.html`):
+  - professioni di fiducia: avvocati, commercialisti, medici, veterinari;
+  - studi di progetto: architetti, ingegneri, designer;
+  - aziende con un prodotto.
 
   Hanno poco tempo, tengono alla propria reputazione e diffidano dei
   contenuti "acchiappaclick". Il loro compito sul sito è capire se il

@@ -12,9 +12,8 @@ step, nessuna dipendenza, nessun framework, nessun JavaScript. Si apre
 
 | Rotta            | File                 | Cosa c'è                                |
 | ---------------- | -------------------- | --------------------------------------- |
-| `/`              | `index.html`         | Chi sono, e le due porte del sito       |
+| `/`              | `index.html`         | La pagina di vendita dello Studio       |
 | `/biglietto`     | `biglietto.html`     | Il prodotto, e il secondo progetto      |
-| `/studio`        | `studio.html`        | La pagina di vendita del servizio video |
 | `/privacy`       | `privacy.html`       | Informativa privacy                     |
 | `/condizioni`    | `condizioni.html`    | Condizioni generali di servizio         |
 | `/en/`           | `en/index.html`      | Home in inglese                         |
@@ -26,7 +25,8 @@ step, nessuna dipendenza, nessun framework, nessun JavaScript. Si apre
 Ogni pagina esiste in tutte e due le lingue: Studio lavora in tutta Italia e
 presto anche all'estero. Le versioni inglesi dei testi legali sono
 traduzioni, e in caso di differenze prevale l'italiano. I vecchi indirizzi
-`/startup` e `/en/startup` reindirizzano alle pagine Biglietto.
+`/startup` e `/en/startup` reindirizzano alle pagine Biglietto, e `/studio`
+alla home, che ora è la pagina dello Studio.
 
 ## Il sistema visivo
 
@@ -111,6 +111,6 @@ rete, per il giorno in cui l'impronta non venisse rigenerata.
 python3 -m http.server 8000
 ```
 
-Basta per leggere il contenuto. Per provare le rotte pulite (`/studio` invece
-di `/studio.html`) serve un server che applichi le riscritture di
+Basta per leggere il contenuto. Per provare le rotte pulite (`/biglietto` invece
+di `/biglietto.html`) serve un server che applichi le riscritture di
 `netlify.toml`, oppure `netlify dev`.
