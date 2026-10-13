@@ -37,10 +37,11 @@ costruita con la dimensione e lo spazio bianco, senza decorazioni.
   dalla colonna 1, tutto il contenuto dalla colonna 4. Il testo corrente
   occupa le colonne 4–9, circa sessanta caratteri, e le colonne 10–12
   restano vuote apposta. Niente è centrato.
-- **Hanken Grotesk**, in due pesi soli, 400 e 500. La differenza fra i due è
-  piccola apposta: se un titolo non si distingue, lo distingue la
-  dimensione. È ospitato sul sito, così per leggere una pagina il browser
-  non contatta server di terzi.
+- **Archivo**, a larghezza normale e in due pesi soli, 400 e 500. La
+  differenza fra i due è piccola apposta: se un titolo non si distingue, lo
+  distingue la dimensione. È ospitato sul sito, così per leggere una pagina
+  il browser non contatta server di terzi. Licenza in
+  `assets/fonts/OFL-archivo.txt`.
 - **Sei dimensioni**: 13, 18, 24, 36, 64 px (e il testo a 16 su mobile). I
   gradini sono vicini in basso, dove si legge, e lontani in alto, dove si
   annuncia.

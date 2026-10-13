@@ -7,6 +7,41 @@
   publish = "."
   command = ""
 
+# La radice del repository viene pubblicata tutta, quindi anche i file di
+# lavoro sarebbero leggibili da chiunque. Rispondono con la pagina di errore e
+# lo stato 404. force = true serve perché questi file esistono davvero, e
+# senza forzatura Netlify servirebbe il file invece della regola. Stanno in
+# testa, perché vale la prima regola che corrisponde.
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/CLAUDE.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/PRODUCT.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/DESIGN.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.claude/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 # URL puliti. Netlify offre già la funzione "Pretty URLs", ma dichiarare le
 # riscritture qui rende le rotte indipendenti da quell'impostazione: /studio
 # serve studio.html senza redirect visibile all'utente né cambio di URL.

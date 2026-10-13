@@ -22,7 +22,7 @@ come si lavora sul sito senza rompere niente.
 | `en/index.html`, `en/biglietto.html`, `en/studio.html`, `en/privacy.html`, `en/terms.html` | Versioni inglesi (`/en/terms` è la controparte di `/condizioni`) |
 | `en/404.html` | Errore EN, servito per ogni `/en/*` sconosciuto |
 | `assets/site.css` | L'unico foglio di stile del sito |
-| `assets/fonts/hanken-grotesk.woff2` | Hanken Grotesk, pesi 400–500, solo caratteri latini; licenza in `OFL.txt` |
+| `assets/fonts/archivo.woff2` | Archivo a larghezza normale, pesi 400–500, solo caratteri latini; licenza in `OFL-archivo.txt` |
 | `assets/og/og-*.png` | Immagini Open Graph 1200×630, una per pagina (`-en` per l'inglese) |
 | `assets/favicon.svg`, `assets/apple-touch-icon.png` | Icone |
 | `netlify.toml` | URL puliti, redirect delle vecchie rotte, 404 EN, header, cache |
@@ -43,7 +43,7 @@ quella più simile, non si parte da zero.
   (URL pulito, senza `.html`), le tre righe `hreflang` (`it`, `en`,
   `x-default` → versione IT), `theme-color #ebebe8`, il blocco Open Graph
   (`og:url`, `og:locale`, `og:image` con width/height/alt, `twitter:card`),
-  il `preload` di `/assets/fonts/hanken-grotesk.woff2` (identico ovunque),
+  il `preload` di `/assets/fonts/archivo.woff2` (identico ovunque),
   `site.css?v=…`, favicon e apple-touch-icon. Nessuna risorsa esterna:
   niente Google Fonts, niente CDN.
 - **`<body>`**: link `.skip`, poi `header.top` con `.mark` e il `nav`.
