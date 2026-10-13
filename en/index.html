@@ -55,10 +55,11 @@
 
 <header class="top">
   <div class="shell top-in">
-    <a href="/en/" class="mark">Ivan Maggini</a>
-    <!-- Studio viene per primo: è il servizio, ed è questa pagina. -->
+    <a href="/en/" class="mark" aria-current="page">Ivan Maggini</a>
+    <!-- Studio viene per primo: è il servizio, e porta alla sua sezione
+         subito sotto l'ingresso. -->
     <nav aria-label="Sections">
-      <a href="/en/" aria-current="page">Studio</a>
+      <a href="/en/#studio">Studio</a>
       <a href="/en/biglietto">Biglietto</a>
       <span class="lang">
         <a href="/" lang="it" hreflang="it">IT</a>
@@ -70,15 +71,52 @@
 
 <main id="content">
 
-  <!-- La home è la pagina dello Studio. L'azione è una sola, la consulenza
-       gratuita via email, e ogni pulsante porta allo stesso mailto. -->
-  <section class="sec open">
+  <!-- L'ingresso: chi arriva sa subito chi c'è dietro il sito e sceglie la
+       sua porta. Niente pulsanti qui: l'azione della pagina sta nella
+       sezione Studio, subito sotto. -->
+  <section class="sec open ingresso" id="welcome" aria-labelledby="welcome-t">
     <div class="shell sec-grid">
-      <p class="rail">Ivan Maggini Studio<b>across Italy</b></p>
+      <p class="rail">Welcome</p>
       <div class="body">
         <!-- Il titolo viene scoperto da sinistra: è l'unico momento animato
              della pagina, e sta sulla prima cosa che si legge. -->
-        <h1 class="largo scopri">Half a day of filming. I&nbsp;take care of the rest.</h1>
+        <h1 class="largo scopri" id="welcome-t">Nice to meet you, I'm Ivan.</h1>
+        <p class="lede">
+          I'm 19, I live in Lurano, near Bergamo, and I work on two things:
+          Ivan Maggini Studio, video for professional firms and companies, and
+          <a href="/en/biglietto">Biglietto</a>, a product for people who travel.
+        </p>
+        <!-- Le due porte: colonne pure, come quelle di "Who it's for". -->
+        <div class="cols">
+          <div class="col">
+            <p><strong>Looking for someone to film videos for your firm or company?</strong></p>
+            <a href="#studio">Go to the Studio</a>
+          </div>
+          <div class="col">
+            <p><strong>Here for the travel?</strong></p>
+            <p>
+              I'm putting together a site just for my travel guides and
+              stories. It isn't ready yet: in the meantime I share my travels
+              on Instagram.
+            </p>
+            <!-- quando esiste il sito dei viaggi: sostituire questo link e il testo -->
+            <a href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Go to Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lo Studio. L'azione è una sola, la consulenza gratuita via email, e
+       ogni pulsante porta allo stesso mailto. -->
+  <section class="sec" id="studio" aria-labelledby="studio-t">
+    <div class="shell sec-grid">
+      <p class="rail">Ivan Maggini Studio<b>across Italy</b></p>
+      <div class="body">
+        <!-- Il titolo dello Studio ha la stessa dimensione dell'apertura
+             (riga-t, 64 px), ma è un h2 e non si muove: il momento animato
+             resta quello dell'ingresso. -->
+        <h2 class="largo riga-t" id="studio-t">Half a day of filming. I&nbsp;take care of the rest.</h2>
         <p class="lede">
           Video for professional firms and companies, so that the people
           looking for you trust you before they ever pick up the phone.
@@ -257,28 +295,10 @@
     </div>
   </section>
 
-  <section class="sec" id="about" aria-labelledby="about-t">
+  <section class="sec" id="how-i-work" aria-labelledby="how-i-work-t">
     <div class="shell sec-grid">
-      <p class="rail">About me</p>
+      <h2 class="rail" id="how-i-work-t"><b>How I work</b></h2>
       <div class="body">
-        <h2 id="about-t">Who's behind the camera.</h2>
-        <p class="lede">
-          I'm Ivan Maggini, I'm 19 and I live in Lurano, near Bergamo.
-        </p>
-        <p>
-          Right now I work on two things. <a href="/en/biglietto">Biglietto</a> is a product for people who
-          travel: I started it in June, while studying for my final school
-          exams, and I'm building it one piece at a time. Ivan Maggini Studio
-          is the other: videos for professional firms and companies, filmed by
-          me, in person, at your premises. I'd rather tell you myself than have
-          you find out.
-        </p>
-        <!-- quando esiste il sito dei viaggi: aggiungere qui il link -->
-        <p>
-          I've been telling travel stories on
-          <a href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Instagram</a>
-          for years. The full guides I'm writing for a separate site.
-        </p>
         <p>
           I don't have a long career to tell you about, and I don't pretend to.
           What I have is a way of working: I start from a real problem, keep at
@@ -316,7 +336,7 @@
       VAT 04924920160
     </address>
     <nav aria-label="Footer links">
-      <a href="/en/">Studio</a>
+      <a href="/en/#studio">Studio</a>
       <a href="/en/biglietto">Biglietto</a>
       <a href="/">Italiano</a>
       <a href="/en/privacy">Privacy</a>
