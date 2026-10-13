@@ -105,10 +105,11 @@
   to = "/en/"
   status = 301
 
+# Come in italiano, lo Studio è diventato la home inglese.
 [[redirects]]
   from = "/en/studio"
-  to = "/en/studio.html"
-  status = 200
+  to = "/en/"
+  status = 301
 
 [[redirects]]
   from = "/en/privacy"

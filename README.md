@@ -16,9 +16,8 @@ step, nessuna dipendenza, nessun framework, nessun JavaScript. Si apre
 | `/biglietto`     | `biglietto.html`     | Il prodotto, e il secondo progetto      |
 | `/privacy`       | `privacy.html`       | Informativa privacy                     |
 | `/condizioni`    | `condizioni.html`    | Condizioni generali di servizio         |
-| `/en/`           | `en/index.html`      | Home in inglese                         |
+| `/en/`           | `en/index.html`      | La pagina dello Studio, in inglese      |
 | `/en/biglietto`  | `en/biglietto.html`  | Il prodotto, in inglese                 |
-| `/en/studio`     | `en/studio.html`     | Il servizio video, in inglese           |
 | `/en/privacy`    | `en/privacy.html`    | Informativa privacy in inglese          |
 | `/en/terms`      | `en/terms.html`      | Condizioni di servizio in inglese       |
 
@@ -26,7 +25,7 @@ Ogni pagina esiste in tutte e due le lingue: Studio lavora in tutta Italia e
 presto anche all'estero. Le versioni inglesi dei testi legali sono
 traduzioni, e in caso di differenze prevale l'italiano. I vecchi indirizzi
 `/startup` e `/en/startup` reindirizzano alle pagine Biglietto, e `/studio`
-alla home, che ora è la pagina dello Studio.
+e `/en/studio` alle home, che ora sono le pagine dello Studio.
 
 ## Il sistema visivo
 

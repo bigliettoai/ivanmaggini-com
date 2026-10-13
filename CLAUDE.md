@@ -18,7 +18,7 @@ come si lavora sul sito senza rompere niente.
 | `privacy.html` | Informativa privacy IT (include §2.4, comunicazioni commerciali) |
 | `condizioni.html` | Condizioni generali del servizio video |
 | `404.html` | Errore IT, `noindex` |
-| `en/index.html`, `en/biglietto.html`, `en/studio.html`, `en/privacy.html`, `en/terms.html` | Versioni inglesi (`/en/terms` è la controparte di `/condizioni`) |
+| `en/index.html`, `en/biglietto.html`, `en/privacy.html`, `en/terms.html` | Versioni inglesi (`/en/terms` è la controparte di `/condizioni`) |
 | `en/404.html` | Errore EN, servito per ogni `/en/*` sconosciuto |
 | `assets/site.css` | L'unico foglio di stile del sito |
 | `assets/fonts/archivo.woff2` | Archivo a larghezza normale, pesi 400–500, solo caratteri latini; licenza in `OFL-archivo.txt` |

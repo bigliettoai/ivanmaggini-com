@@ -249,6 +249,13 @@ a:hover { text-decoration-thickness: 2px; }
 
 .sec.open { border-top: 0; padding-top: var(--s5); }
 
+/* In home l'ingresso è un passaggio verso lo Studio, non un discorso a sé:
+   fra i due lo stacco scende da s6 a s5 per lato, così il titolo e il
+   pulsante dello Studio salgono verso la prima schermata. Resta comunque
+   più ampio dello spazio dentro una sezione (s3–s4). */
+.sec.ingresso { padding-bottom: var(--s5); }
+.sec.ingresso + .sec { padding-top: var(--s5); }
+
 .sec-grid,
 .body {
   display: grid;

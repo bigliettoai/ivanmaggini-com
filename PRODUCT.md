@@ -96,7 +96,12 @@ founder.
 - La voce è in prima persona, diretta e onesta, senza gergo da agenzia.
   Ammette i limiti ("non fingo il contrario") e ai clienti Studio dà del
   voi.
-- L'apertura della home parte da cosa fa Ivan, non da come si chiama.
+- La home si apre con un ingresso di benvenuto ("Piacere, sono Ivan."), che
+  dice subito i due mestieri e smista chi arriva: chi cerca i video va allo
+  Studio, subito sotto; chi arriva per i viaggi va su Instagram. Scelta del
+  13 ottobre 2026, che sostituisce la regola precedente ("l'apertura parte da
+  cosa fa Ivan, non da come si chiama"). Lo Studio resta la prima sezione dopo
+  l'ingresso: l'ingresso non ha pulsanti.
 
 ## Evidence on Hand
 

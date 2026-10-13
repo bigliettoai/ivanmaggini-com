@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=4cadc9d309">
+<link rel="stylesheet" href="/assets/site.css?v=36b2b113ce">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
@@ -34,7 +34,7 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Ivan Maggini Studio",
-  "description": "Video per studi professionali e aziende in tutta Italia: dentisti, avvocati, notai, commercialisti, architetti, ingegneri e imprese. Mezza giornata di riprese nella sede del cliente; script, montaggio e pubblicazione gestiti da un'unica persona.",
+  "description": "Video per studi professionali e aziende in tutta Italia: avvocati, commercialisti, medici, veterinari, architetti, ingegneri, designer e aziende con un prodotto. Mezza giornata di riprese nella sede del cliente; script, montaggio e pubblicazione gestiti da un'unica persona.",
   "url": "https://ivanmaggini.com/",
   "email": "general@ivanmaggini.com",
   "address": { "@type": "PostalAddress", "addressLocality": "Lurano", "addressRegion": "BG", "addressCountry": "IT" },
@@ -54,10 +54,11 @@
 
 <header class="top">
   <div class="shell top-in">
-    <a href="/" class="mark">Ivan Maggini</a>
-    <!-- Studio viene per primo: è il servizio, ed è questa pagina. -->
+    <a href="/" class="mark" aria-current="page">Ivan Maggini</a>
+    <!-- Studio viene per primo: è il servizio, e porta alla sua sezione
+         subito sotto l'ingresso. -->
     <nav aria-label="Sezioni">
-      <a href="/" aria-current="page">Studio</a>
+      <a href="/#studio">Studio</a>
       <a href="/biglietto">Biglietto</a>
       <span class="lang">
         <a href="/" lang="it" hreflang="it" aria-current="true">IT</a>
@@ -69,15 +70,51 @@
 
 <main id="contenuto">
 
-  <!-- La home è la pagina dello Studio. L'azione è una sola, la consulenza
-       gratuita via email, e ogni pulsante porta allo stesso mailto. -->
-  <section class="sec open">
+  <!-- L'ingresso: chi arriva sa subito chi c'è dietro il sito e sceglie la
+       sua porta. Niente pulsanti qui: l'azione della pagina sta nella
+       sezione Studio, subito sotto. -->
+  <section class="sec open ingresso" id="benvenuti" aria-labelledby="benvenuti-t">
     <div class="shell sec-grid">
-      <p class="rail">Ivan Maggini Studio<b>in tutta Italia</b></p>
+      <p class="rail">Benvenuti</p>
       <div class="body">
         <!-- Il titolo viene scoperto da sinistra: è l'unico momento animato
              della pagina, e sta sulla prima cosa che si legge. -->
-        <h1 class="largo scopri">Mezza giornata di riprese. Al resto penso io.</h1>
+        <h1 class="largo scopri" id="benvenuti-t">Piacere, sono Ivan.</h1>
+        <p class="lede">
+          Ho 19 anni, vivo a Lurano, in provincia di Bergamo, e lavoro a due
+          cose: Ivan Maggini Studio, video per studi professionali e aziende, e
+          <a href="/biglietto">Biglietto</a>, un prodotto per chi viaggia.
+        </p>
+        <!-- Le due porte: colonne pure, come quelle di "Per chi". -->
+        <div class="cols">
+          <div class="col">
+            <p><strong>Cercate chi giri i video del vostro studio o della vostra azienda?</strong></p>
+            <a href="#studio">Vai allo Studio</a>
+          </div>
+          <div class="col">
+            <p><strong>Siete qui per i viaggi?</strong></p>
+            <p>
+              Sto preparando un sito tutto per le guide e i racconti. Non è
+              ancora pronto: intanto i viaggi li racconto su Instagram.
+            </p>
+            <!-- quando esiste il sito dei viaggi: sostituire questo link e il testo -->
+            <a href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Vai su Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lo Studio. L'azione è una sola, la consulenza gratuita via email, e
+       ogni pulsante porta allo stesso mailto. -->
+  <section class="sec" id="studio" aria-labelledby="studio-t">
+    <div class="shell sec-grid">
+      <p class="rail">Ivan Maggini Studio<b>in tutta Italia</b></p>
+      <div class="body">
+        <!-- Il titolo dello Studio ha la stessa dimensione dell'apertura
+             (riga-t, 64 px), ma è un h2 e non si muove: il momento animato
+             resta quello dell'ingresso. -->
+        <h2 class="largo riga-t" id="studio-t">Mezza giornata di riprese. Al resto penso io.</h2>
         <p class="lede">
           Video per studi professionali e aziende, perché chi vi cerca si fidi
           di voi già prima della telefonata.
@@ -252,28 +289,10 @@
     </div>
   </section>
 
-  <section class="sec" id="chi-sono" aria-labelledby="chi-sono-t">
+  <section class="sec" id="come-lavoro" aria-labelledby="come-lavoro-t">
     <div class="shell sec-grid">
-      <p class="rail">Chi sono</p>
+      <h2 class="rail" id="come-lavoro-t"><b>Come lavoro</b></h2>
       <div class="body">
-        <h2 id="chi-sono-t">Chi c'è dietro la camera.</h2>
-        <p class="lede">
-          Sono Ivan Maggini, ho 19 anni e vivo a Lurano, in provincia di
-          Bergamo.
-        </p>
-        <p>
-          Oggi lavoro a due cose. <a href="/biglietto">Biglietto</a> è un prodotto per chi viaggia: l'ho
-          cominciato a giugno, mentre preparavo la maturità, e lo sto
-          costruendo un pezzo alla volta. Ivan Maggini Studio è l'altra: video
-          per studi professionali e aziende, girati da me, di persona, da voi.
-          Preferisco dirvelo io prima che lo scopriate.
-        </p>
-        <!-- quando esiste il sito dei viaggi: aggiungere qui il link -->
-        <p>
-          I viaggi li racconto da anni su
-          <a href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Instagram</a>.
-          Le guide complete le sto scrivendo per un sito a parte.
-        </p>
         <p>
           Non ho una lunga carriera da raccontarvi e non faccio finta di
           averla. Ho un modo di lavorare: parto da un problema vero, insisto
@@ -311,7 +330,7 @@
       P. IVA 04924920160
     </address>
     <nav aria-label="Link del footer">
-      <a href="/">Studio</a>
+      <a href="/#studio">Studio</a>
       <a href="/biglietto">Biglietto</a>
       <a href="/en/">English</a>
       <a href="/privacy">Privacy</a>
