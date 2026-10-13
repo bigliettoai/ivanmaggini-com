@@ -163,3 +163,9 @@ La seconda rete è l'header `Cache-Control: max-age=0, must-revalidate` su
   entrambe le lingue.
 - Quando cambia un'informativa o una condizione, si aggiorna la data nella
   `.rail` ("Ultimo aggiornamento") e il `lastmod` nella sitemap.
+- I link a indirizzi che non esistono ancora portano l'attributo
+  `data-provvisorio`, per esempio un `#ancora` al posto del sito dei viaggi
+  finché non esiste. **Prima del merge su `main`**,
+  `grep -rn --include='*.html' "data-provvisorio" .` non deve dare nessun
+  risultato: ogni link va sostituito con l'indirizzo vero. Il filtro sugli
+  HTML serve perché senza troverebbe sempre questa riga.

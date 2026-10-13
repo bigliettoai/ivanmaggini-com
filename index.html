@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
-<title>Ivan Maggini, founder di Biglietto</title>
-<meta name="description" content="Sto costruendo Biglietto, un prodotto per chi viaggia. Con Ivan Maggini Studio giro video per studi professionali e aziende in tutta Italia.">
+<title>Ivan Maggini Studio, video per studi professionali e aziende</title>
+<meta name="description" content="Video per studi professionali e aziende in tutta Italia. Mezza giornata di riprese da voi; script, montaggio e pubblicazione li curo io.">
 <link rel="canonical" href="https://ivanmaggini.com/">
 <link rel="alternate" hreflang="it" href="https://ivanmaggini.com/">
 <link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/">
@@ -14,8 +14,8 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ivan Maggini">
-<meta property="og:title" content="Ivan Maggini, founder di Biglietto">
-<meta property="og:description" content="Sto costruendo Biglietto, un prodotto per chi viaggia, e giro i video di studi professionali e aziende.">
+<meta property="og:title" content="Ivan Maggini Studio: mezza giornata di riprese, al resto penso io">
+<meta property="og:description" content="Video per studi professionali e aziende in tutta Italia. Script, montaggio e pubblicazione li curo io.">
 <meta property="og:url" content="https://ivanmaggini.com/">
 <meta property="og:locale" content="it_IT">
 <meta property="og:image" content="https://ivanmaggini.com/assets/og/og-home.png">
@@ -32,13 +32,18 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Ivan Maggini",
+  "@type": "ProfessionalService",
+  "name": "Ivan Maggini Studio",
+  "description": "Video per studi professionali e aziende in tutta Italia: dentisti, avvocati, notai, commercialisti, architetti, ingegneri e imprese. Mezza giornata di riprese nella sede del cliente; script, montaggio e pubblicazione gestiti da un'unica persona.",
   "url": "https://ivanmaggini.com/",
-  "jobTitle": "Founder",
   "email": "general@ivanmaggini.com",
   "address": { "@type": "PostalAddress", "addressLocality": "Lurano", "addressRegion": "BG", "addressCountry": "IT" },
-  "sameAs": ["https://biglietto.ai", "https://instagram.com/ivan.maggini"]
+  "areaServed": { "@type": "Country", "name": "Italia" },
+  "founder": {
+    "@type": "Person",
+    "name": "Ivan Maggini",
+    "sameAs": ["https://biglietto.ai", "https://instagram.com/ivan.maggini"]
+  }
 }
 </script>
 </head>
@@ -49,10 +54,11 @@
 
 <header class="top">
   <div class="shell top-in">
-    <a href="/" class="mark" aria-current="page">Ivan Maggini</a>
+    <a href="/" class="mark">Ivan Maggini</a>
+    <!-- Studio viene per primo: è il servizio, ed è questa pagina. -->
     <nav aria-label="Sezioni">
+      <a href="/" aria-current="page">Studio</a>
       <a href="/biglietto">Biglietto</a>
-      <a href="/studio">Studio</a>
       <span class="lang">
         <a href="/" lang="it" hreflang="it" aria-current="true">IT</a>
         <a href="/en/" lang="en" hreflang="en">EN</a>
@@ -63,59 +69,217 @@
 
 <main id="contenuto">
 
-  <!-- L'apertura parte da cosa faccio, non da come mi chiamo: il nome è
-       già nella barra in alto. Le due righe sono le due porte del sito, e
-       sono l'unico momento animato della pagina. -->
+  <!-- La home è la pagina dello Studio. L'azione è una sola, la consulenza
+       gratuita via email, e ogni pulsante porta allo stesso mailto. -->
   <section class="sec open">
-    <div class="shell">
-      <h1 class="vh">Ivan Maggini</h1>
-      <ul class="righe">
-        <li>
-          <a class="riga sec-grid" href="/biglietto" style="--i:0">
-            <span class="rail">Prodotto<b>in costruzione</b></span>
-            <span class="riga-t">Costruisco <u>Biglietto</u>, un prodotto per chi viaggia.</span>
-          </a>
-        </li>
-        <li>
-          <a class="riga sec-grid" href="/studio" style="--i:1">
-            <span class="rail">Servizio<b>in tutta Italia</b></span>
-            <span class="riga-t">Giro i video di <u>studi professionali e aziende</u>.</span>
-          </a>
-        </li>
-      </ul>
-      <div class="sec-grid">
-        <p class="lede scopri" style="--i:2">
-          Ho 19 anni, e racconto le due cose mentre succedono, anche quando
-          vanno male.
+    <div class="shell sec-grid">
+      <p class="rail">Ivan Maggini Studio<b>in tutta Italia</b></p>
+      <div class="body">
+        <!-- Il titolo viene scoperto da sinistra: è l'unico momento animato
+             della pagina, e sta sulla prima cosa che si legge. -->
+        <h1 class="largo scopri">Mezza giornata di riprese. Al resto penso io.</h1>
+        <p class="lede">
+          Video per studi professionali e aziende, perché chi vi cerca si fidi
+          di voi già prima della telefonata.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="mailto:general@ivanmaggini.com?subject=Consulenza%20gratuita">Prenotate la consulenza gratuita</a>
+        </div>
+        <p class="nota">
+          Venti minuti, senza impegno. Mi bastano il nome, la città e due righe
+          su cosa fate. Rispondo entro 24 ore.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="chi-sono">
+  <!-- I nomi delle sezioni sono titoli veri (h2), ma stanno nel margine
+       sull'asse sinistro: il testo comincia subito accanto, senza un
+       secondo titolo grande che lo ripeta. -->
+  <section class="sec" id="il-punto" aria-labelledby="il-punto-t">
     <div class="shell sec-grid">
-      <p class="rail">Chi sono<b>19 anni</b></p>
+      <p class="rail">Il punto</p>
       <div class="body">
-        <h2>Una persona sola, due mestieri.</h2>
-        <p>
-          Faccio due cose. Sto costruendo Biglietto, un prodotto per chi
-          viaggia. E con Ivan Maggini Studio produco video per studi
-          professionali e aziende in tutta Italia: vado io sul posto a girare,
-          poi monto e pubblico.
+        <h2 id="il-punto-t">Oggi si sceglie prima di chiamare.</h2>
+        <p class="lede">
+          Chi cerca un avvocato, un medico, un'impresa edile o un fornitore
+          guarda prima: il sito, i profili, quello che trova di voi. Se trova
+          solo un logo e un elenco di servizi, sceglie chi gli ha fatto vedere
+          una faccia e sentire una voce.
         </p>
         <p>
-          Sotto ci sta una cosa sola. Ho passato gli ultimi anni a raccontare
-          viaggi su Instagram e sono arrivato a 30.000 persone senza spendere
-          niente in pubblicità. Lì ho imparato cosa fa fermare qualcuno a
-          guardare e cosa invece scorre via, ed è da lì che è venuta fuori
-          l'idea di Biglietto.
+          Voi il lavoro lo fate bene. Il punto è che chi non vi conosce non lo
+          può sapere.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="perche-io" aria-labelledby="perche-io-t">
+    <div class="shell sec-grid">
+      <h2 class="rail" id="perche-io-t"><b>Perché io</b></h2>
+      <div class="body">
+        <p class="lede">
+          Per anni ho raccontato viaggi su Instagram e sono arrivato a 30.000
+          persone senza spendere in pubblicità. Ho imparato lì cosa fa fermare
+          qualcuno a guardare e cosa scorre via. Uso lo stesso metodo per i
+          professionisti: video semplici che spiegano e rassicurano.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="il-vostro-tempo" aria-labelledby="il-vostro-tempo-t">
+    <div class="shell sec-grid">
+      <p class="rail">Il vostro tempo<b>Una mezza giornata</b></p>
+      <div class="body">
+        <h2 id="il-vostro-tempo-t">Voi parlate, io faccio il resto.</h2>
+        <p class="lede">
+          Registriamo in una mezza giornata, con gli script già scritti.
         </p>
         <p>
-          Non ho una formazione tecnica e non fingo di averla. Quello che so
-          fare è partire da un problema che ho avuto davvero e insistere finché
-          non diventa qualcosa che funziona, dicendo per strada anche quello
-          che non funziona.
+          Non dovete scegliere i temi, decidere quando pubblicare, imparare a
+          montare né ricordarvi che giovedì tocca il post.
         </p>
+        <p>
+          Non vi vendo il numero di follower: vi do una cosa più concreta, cioè
+          che quando un cliente deve scegliere, vi conosce già.
+        </p>
+        <p>
+          Se lavorate con l'estero, la stessa sessione produce anche i
+          contenuti in inglese, con temi propri e non tradotti.
+        </p>
+        <p>
+          Non dovete preparare niente: nessun testo da imparare, nessun
+          software, nessuna riunione in più.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tre colonne parallele e un solo pulsante in fondo: la scelta del
+       gruppo non cambia l'azione. -->
+  <section class="sec" id="per-chi" aria-labelledby="per-chi-t">
+    <div class="shell sec-grid">
+      <h2 class="rail" id="per-chi-t"><b>Per chi</b></h2>
+      <div class="body">
+        <div class="cols">
+          <div class="col">
+            <h3>Professioni di fiducia</h3>
+            <p class="nota">avvocati, commercialisti, medici, veterinari</p>
+            <p>
+              Chi sceglie un professionista sceglie una persona. Il video fa
+              conoscere la vostra prima del primo appuntamento.
+            </p>
+          </div>
+          <div class="col">
+            <h3>Studi di progetto</h3>
+            <p class="nota">architetti, ingegneri, designer</p>
+            <p>
+              Chi guarda i vostri lavori vede il risultato, non come ragionate.
+              Il video fa vedere il metodo.
+            </p>
+          </div>
+          <div class="col">
+            <h3>Aziende con un prodotto</h3>
+            <p>Un prodotto raccontato da chi lo fa convince più di una scheda.</p>
+          </div>
+        </div>
+        <div class="btn-row">
+          <a class="btn" href="mailto:general@ivanmaggini.com?subject=Consulenza%20gratuita">Prenotate la consulenza gratuita</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- I passi sono davvero una sequenza: il numero arriva dal contatore
+       CSS, non dal testo. -->
+  <section class="sec" id="come-funziona" aria-labelledby="come-funziona-t">
+    <div class="shell sec-grid">
+      <p class="rail">Il percorso<b>Cinque passi</b></p>
+      <div class="body">
+        <h2 id="come-funziona-t">Come funziona</h2>
+        <ol class="cols steps">
+          <li class="col step">
+            <p>
+              Call gratuita di venti minuti: mi raccontate cosa fate e vi dico
+              con onestà se il video fa per voi.
+            </p>
+          </li>
+          <li class="col step"><p>Proposta su misura.</p></li>
+          <li class="col step">
+            <p>Gli script li scrivo io, partendo dalle domande dei vostri clienti.</p>
+          </li>
+          <li class="col step">
+            <p>Mezza giornata di riprese da voi, con la mia attrezzatura.</p>
+          </li>
+          <li class="col step">
+            <p>Montaggio e pubblicazione per il periodo coperto dalla sessione.</p>
+          </li>
+        </ol>
+        <!-- Cosa produce una sessione: da scrivere con fatti veri, poi
+             togliere il commento. Nessun prezzo.
+        <ul class="list two">
+          <li>Quanti video: …</li>
+          <li>Durata di ciascuno: …</li>
+          <li>Dove vengono pubblicati: …</li>
+          <li>Su cosa si basa la proposta: …</li>
+        </ul>
+        -->
+        <p>Lavoro da solo, quindi prendo pochi clienti alla volta.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="in-chiaro" aria-labelledby="in-chiaro-t">
+    <div class="shell sec-grid">
+      <h2 class="rail" id="in-chiaro-t"><b>In chiaro</b></h2>
+      <div class="body">
+        <p class="lede">
+          Faccio solo contenuti che costruiscono fiducia: spiegazioni, casi
+          ricorrenti, risposte alle domande frequenti.
+        </p>
+        <p>
+          Niente trend comici né video acchiappaclick. Per uno studio
+          professionale non sembrare fuori posto vale più di qualche
+          visualizzazione.
+        </p>
+        <p>
+          Se alla consulenza capisco che il video non vi serve, ve lo dico.
+          Preferisco un no subito a un lavoro che non porta niente.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="chi-sono" aria-labelledby="chi-sono-t">
+    <div class="shell sec-grid">
+      <p class="rail">Chi sono</p>
+      <div class="body">
+        <h2 id="chi-sono-t">Chi c'è dietro la camera.</h2>
+        <p class="lede">
+          Sono Ivan Maggini, ho 19 anni e vivo a Lurano, in provincia di
+          Bergamo.
+        </p>
+        <p>
+          Oggi lavoro a due cose. <a href="/biglietto">Biglietto</a> è un prodotto per chi viaggia: l'ho
+          cominciato a giugno, mentre preparavo la maturità, e lo sto
+          costruendo un pezzo alla volta. Ivan Maggini Studio è l'altra: video
+          per studi professionali e aziende, girati da me, di persona, da voi.
+          Preferisco dirvelo io prima che lo scopriate.
+        </p>
+        <!-- quando esiste il sito dei viaggi: aggiungere qui il link -->
+        <p>
+          I viaggi li racconto da anni su
+          <a href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Instagram</a>.
+          Le guide complete le sto scrivendo per un sito a parte.
+        </p>
+        <p>
+          Non ho una lunga carriera da raccontarvi e non faccio finta di
+          averla. Ho un modo di lavorare: parto da un problema vero, insisto
+          finché funziona e dico per strada anche quello che non funziona.
+        </p>
+        <!-- Prossime parti di "Chi sono": 1) il percorso: i viaggi e Instagram; 2) come lavoro con un cliente; 3) Biglietto e perché non toglie tempo allo Studio; 4) una foto -->
       </div>
     </div>
   </section>
@@ -125,13 +289,13 @@
     <div class="shell sec-grid">
       <p class="rail">Contatti<b>Rispondo entro 24 ore</b></p>
       <div class="body">
-        <h2 id="contatti-titolo">Scrivimi.</h2>
+        <h2 id="contatti-titolo">Si comincia con venti minuti.</h2>
         <p>
-          Non c'è nessun modulo da compilare su questo sito, di proposito:
-          preferisco non tenere i dati di nessuno. Una email basta e avanza.
+          Su questo sito non c'è nessun modulo da compilare. Mi scrivete due
+          righe e vi rispondo entro 24 ore.
         </p>
         <p class="stacco">
-          <a class="mailto" href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
+          <a class="mailto" href="mailto:general@ivanmaggini.com?subject=Consulenza%20gratuita">general@ivanmaggini.com</a>
         </p>
       </div>
     </div>
@@ -147,8 +311,8 @@
       P. IVA 04924920160
     </address>
     <nav aria-label="Link del footer">
+      <a href="/">Studio</a>
       <a href="/biglietto">Biglietto</a>
-      <a href="/studio">Studio</a>
       <a href="/en/">English</a>
       <a href="/privacy">Privacy</a>
       <a href="/condizioni">Condizioni</a>

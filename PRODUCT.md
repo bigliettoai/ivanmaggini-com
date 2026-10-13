@@ -37,8 +37,8 @@ prima i clienti di Studio**: è il servizio che oggi deve portare lavoro.
 
 1. **Ivan Maggini Studio**: video per studi professionali e aziende. Ivan va
    sul posto con l'attrezzatura e gli script già scritti. In mezza giornata
-   ogni due mesi si registra il materiale di due o tre mesi, poi lui monta e
-   pubblica. Lo script, le riprese, il montaggio e la pubblicazione li cura
+   si registra il materiale di un periodo che dipende dal cliente, cioè da
+   quanto vuole pubblicare; poi Ivan monta e pubblica. Lo script, le riprese, il montaggio e la pubblicazione li cura
    una persona sola.
 2. **Biglietto** (biglietto.ai), un prodotto in costruzione per chi viaggia:
    un posto solo per tutto il viaggio e, sopra, a pagamento, cosa comprare
@@ -53,7 +53,7 @@ founder.
 ## Positioning
 
 - **Studio vende il tempo che il cliente non spende, non i contenuti.** La
-  promessa è "Mezza giornata ogni due mesi. Al resto penso io". L'obiettivo
+  promessa è "Mezza giornata di riprese. Al resto penso io". L'obiettivo
   dichiarato non è la popolarità: chi ha bisogno di quel professionista
   deve averlo già visto e ascoltato prima della telefonata. Una persona
   sola segue tutto, dallo script alla pubblicazione. Se il cliente lavora
@@ -85,7 +85,7 @@ founder.
   `general@ivanmaggini.com`. Niente analytics, cookie o risorse di terzi,
   a meno di aggiornare l'informativa privacy in entrambe le lingue.
 - Su Studio c'è una sola chiamata all'azione, sempre con le stesse parole:
-  "Prenota la consulenza gratuita".
+  "Prenotate la consulenza gratuita".
 - Ogni pagina ha la sua controparte EN (`/condizioni` ↔ `/en/terms`).
 - Il sito non pubblica prezzi.
 - Studio fa solo contenuti che costruiscono fiducia: spiegazioni, casi

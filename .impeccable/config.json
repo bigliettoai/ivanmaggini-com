@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-13T12:43:38.485Z",
+        "reason": "user confirmed: le sezioni .sec hanno solo un filetto in testa e s6 (80-128px) sopra il testo, il campo .board ha s6 sopra e sotto e il margine della .shell ai lati; il rilevatore statico non risolve var(--s6). Le scansioni renderizzate a 1280 e 390 px non segnalano niente."
+      }
+    ]
+  }
+}

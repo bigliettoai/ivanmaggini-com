@@ -3,3 +3,6 @@
 .claude/settings.local.json
 .claude/skills/impeccable/
 .claude/agents/
+
+# Impostazioni personali del controllo di design: restano su questa macchina.
+.impeccable/config.local.json

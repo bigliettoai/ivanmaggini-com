@@ -42,6 +42,12 @@
   status = 404
   force = true
 
+[[redirects]]
+  from = "/.impeccable/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 # URL puliti. Netlify offre già la funzione "Pretty URLs", ma dichiarare le
 # riscritture qui rende le rotte indipendenti da quell'impostazione: /studio
 # serve studio.html senza redirect visibile all'utente né cambio di URL.
