@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-13T14:43:38+02:00",
+  "generatedAt": "2026-10-13T15:53:39+02:00",
   "title": "Design System: ivanmaggini.com",
   "extensions": {
     "colorMeta": {
@@ -83,7 +83,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "h1 di ogni pagina e righe dell'apertura in home. 40/44 sotto i 760 px."
+        "purpose": "h1 di ogni pagina; in home anche il titolo della sezione Studio (h2.riga-t, fermo). 40/44 sotto i 760 px."
       },
       "headline": {
         "displayName": "Headline",
@@ -120,8 +120,8 @@
       },
       {
         "name": "apertura",
-        "value": "0.7s, ritardo 140ms per riga",
-        "purpose": "Unico momento animato: filetto che si traccia (traccia) e titolo scoperto da sinistra (scopri)."
+        "value": "0.7s",
+        "purpose": "Unico momento animato: il titolo dell'h1 scoperto da sinistra (scopri)."
       },
       {
         "name": "domande",
@@ -204,7 +204,7 @@
   ],
   "narrative": {
     "northStar": "Il foglio di lavoro",
-    "overview": "Il sito è un foglio da tipografo svizzero lasciato sul tavolo: la griglia si\nvede, i due assi verticali reggono tutto, e non c'è nessun ornamento. Il\nrigore è la personalità. Ogni pagina, compresi i testi legali, sta sulla\nstessa griglia a dodici colonne. La gerarchia la fanno la dimensione e lo\nspazio bianco, mai il peso o il colore.\n\nLa densità è bassa: lo spazio fra due sezioni è molto più grande di quello\ndentro una sezione, ed è lui a dire dove finisce un discorso. La carta è un\ngrigio chiaro neutro scelto apposta, né il bianco dello schermo né una\ncrema. Il nero è pieno. L'unico colore, l'ambra, compare solo sul campo\nnero e solo sull'azione.\n\nIl movimento è uno per pagina, all'apertura, e mostra la griglia invece di\naggiungerci qualcosa: un filetto che si traccia, un titolo scoperto da\nsinistra. Sono rifiutati esplicitamente gli effetti da template (\"vibe\ncoded\") e il nome gigante in apertura della home come gesto standard dei\nsiti personali.",
+    "overview": "Il sito è un foglio da tipografo svizzero lasciato sul tavolo: la griglia si\nvede, i due assi verticali reggono tutto, e non c'è nessun ornamento. Il\nrigore è la personalità. Ogni pagina, compresi i testi legali, sta sulla\nstessa griglia a dodici colonne. La gerarchia la fanno la dimensione e lo\nspazio bianco, mai il peso o il colore.\n\nLa densità è bassa: lo spazio fra due sezioni è molto più grande di quello\ndentro una sezione, ed è lui a dire dove finisce un discorso. La carta è un\ngrigio chiaro neutro scelto apposta, né il bianco dello schermo né una\ncrema. Il nero è pieno. L'unico colore, l'ambra, compare solo sul campo\nnero e solo sull'azione.\n\nIl movimento è uno per pagina, all'apertura, e mostra la griglia invece di\naggiungerci qualcosa: il titolo viene scoperto da sinistra, cioè dall'asse\nda cui parte. Sono rifiutati esplicitamente gli effetti da template (\"vibe\ncoded\") e il nome gigante usato come logo in apertura, il gesto standard dei\nsiti personali. La home si apre con un saluto (\"Piacere, sono Ivan.\"), che è\nuna frase alla dimensione display e non il nome in grande.",
     "keyCharacteristics": [
       "Griglia a dodici colonne con due assi: etichette dalla colonna 1, contenuto dalla colonna 4.",
       "Un solo carattere, Archivo, in due pesi (400 e 500).",
@@ -245,7 +245,7 @@
       "**Do** distinguere i titoli con la dimensione, usando solo i pesi 400 e 500 di Archivo.",
       "**Do** usare solo i passi `s1`…`s6` e i colori definiti in `:root`.",
       "**Do** tenere uno e un solo campo nero per pagina, sul contatto, con l'azione in ambra segnale.",
-      "**Do** limitare il movimento a un solo momento all'apertura (`.riga` in home, `.scopri` altrove), in CSS, con la curva unica, e fermarlo del tutto con `prefers-reduced-motion`.",
+      "**Do** limitare il movimento a un solo momento all'apertura (`.scopri` sull'h1 di ogni pagina), in CSS, con la curva unica, e fermarlo del tutto con `prefers-reduced-motion`.",
       "**Do** dare ai contenuti paralleli la forma di colonne con un filetto in testa."
     ],
     "donts": [

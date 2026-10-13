@@ -67,10 +67,12 @@ founder.
   pagina, scrive a `general@ivanmaggini.com` (bastano il nome, la città e
   due righe su cosa fa) e riceve risposta entro 24 ore. Segue una call
   gratuita di venti minuti, poi una proposta su misura.
-- Le riprese avvengono nella sede del cliente, in tutta Italia, e il
-  servizio è regolato da `condizioni.html` / `en/terms.html`.
+- Le riprese avvengono nella sede del cliente, in tutta Italia. Le
+  condizioni del servizio stanno nel contratto con ogni cliente, non sul
+  sito.
 - Tutto esiste in italiano e in inglese. Nei testi legali, in caso di
-  differenze, prevale l'italiano.
+  differenze, prevale l'italiano. La home inglese è più corta e più neutra
+  di quella italiana (vedi i principi).
 
 ## Capabilities and Constraints
 
@@ -83,7 +85,7 @@ founder.
   a meno di aggiornare l'informativa privacy in entrambe le lingue.
 - Su Studio c'è una sola chiamata all'azione, sempre con le stesse parole:
   "Prenotate la consulenza gratuita".
-- Ogni pagina ha la sua controparte EN (`/condizioni` ↔ `/en/terms`).
+- Ogni pagina ha la sua controparte EN (`/privacy` ↔ `/en/privacy`).
 - Il sito non pubblica prezzi.
 - Studio fa solo contenuti che costruiscono fiducia: spiegazioni, casi
   ricorrenti, risposte alle domande frequenti. Niente trend comici né video
@@ -122,8 +124,11 @@ founder.
    limiti, e si aspetta di avere le prove prima di mostrarle.
 4. **Il tempo del cliente è il prodotto.** Ogni pagina di Studio deve far
    capire quanto poco viene chiesto al cliente.
-5. **Bilingue per davvero.** L'inglese non è una cortesia: Studio si sta
-   espandendo all'estero, e ogni pagina ha la sua controparte.
+5. **Due lingue, due toni.** Ogni pagina ha la sua controparte inglese,
+   ma la home inglese non è una traduzione della pitch italiana: mette
+   Biglietto per primo e lo Studio lo presenta in breve, senza venderlo
+   (niente pulsante né consulenza gratuita). Chi vuole saperne di più
+   scrive. Scelta del 13 ottobre 2026.
 
 ## Accessibility & Inclusion
 

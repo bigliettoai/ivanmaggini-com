@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=36b2b113ce">
+<link rel="stylesheet" href="/assets/site.css?v=2f8d0e2053">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
@@ -70,38 +70,73 @@
 
 <main id="contenuto">
 
-  <!-- L'ingresso: chi arriva sa subito chi c'è dietro il sito e sceglie la
-       sua porta. Niente pulsanti qui: l'azione della pagina sta nella
-       sezione Studio, subito sotto. -->
-  <section class="sec open ingresso" id="benvenuti" aria-labelledby="benvenuti-t">
+  <!-- Il benvenuto: un testo da leggere, poi due porte. È l'unico momento
+       animato della pagina, e niente qui è un pulsante: l'azione della
+       pagina sta nella sezione Studio, subito sotto. -->
+  <section class="sec open ingresso benvenuto" id="benvenuti" aria-labelledby="benvenuti-t">
     <div class="shell sec-grid">
       <p class="rail">Benvenuti</p>
+      <!-- La foto va qui, prima del testo: assets/ivan.jpg, ritratto
+           verticale 4:5 (per esempio 960 × 1200 px), piatto, senza cornice.
+           Quando il file esiste:
+           <img class="benvenuto-foto entra-titolo" src="/assets/ivan.jpg"
+                alt="Ivan Maggini" width="960" height="1200" loading="eager">
+           Sul telefono sta sopra il testo, su schermo largo nelle colonne
+           10–12, e compare insieme al titolo. -->
       <div class="body">
-        <!-- Il titolo viene scoperto da sinistra: è l'unico momento animato
-             della pagina, e sta sulla prima cosa che si legge. -->
-        <h1 class="largo scopri" id="benvenuti-t">Piacere, sono Ivan.</h1>
-        <p class="lede">
-          Ho 19 anni, vivo a Lurano, in provincia di Bergamo, e lavoro a due
-          cose: Ivan Maggini Studio, video per studi professionali e aziende, e
-          <a href="/biglietto">Biglietto</a>, un prodotto per chi viaggia.
+        <h1 class="largo entra-titolo" id="benvenuti-t">Piacere, sono Ivan.</h1>
+        <p class="lede entra" style="--n:1">
+          Ho 19 anni e vivo a Lurano, un paese in provincia di Bergamo. Se
+          siete qui, o vi ho scritto io, o avete visto uno dei miei viaggi, o
+          qualcuno vi ha parlato di me.
         </p>
-        <!-- Le due porte: colonne pure, come quelle di "Per chi". -->
-        <div class="cols">
-          <div class="col">
-            <p><strong>Cercate chi giri i video del vostro studio o della vostra azienda?</strong></p>
-            <a href="#studio">Vai allo Studio</a>
-          </div>
-          <div class="col">
-            <p><strong>Siete qui per i viaggi?</strong></p>
-            <p>
-              Sto preparando un sito tutto per le guide e i racconti. Non è
-              ancora pronto: intanto i viaggi li racconto su Instagram.
-            </p>
-            <!-- quando esiste il sito dei viaggi: sostituire questo link e il testo -->
-            <a href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Vai su Instagram</a>
-          </div>
-        </div>
+        <p class="entra" style="--n:2">
+          Da qualche anno racconto i miei viaggi su Instagram, senza spendere
+          in pubblicità. Così ho imparato cosa fa fermare una persona davanti a
+          un video e cosa la fa scorrere via.
+        </p>
+        <p class="entra" style="--n:3">Oggi uso quello che ho imparato in due modi.</p>
+        <p class="entra" style="--n:4">
+          Il primo è Ivan Maggini Studio. Giro video per studi professionali e
+          aziende, di persona, da voi, e al resto penso io.
+        </p>
+        <p class="entra" style="--n:5">
+          Il secondo è <a href="/biglietto">Biglietto</a>, un prodotto per chi
+          viaggia. L'ho cominciato a giugno, mentre preparavo la maturità, e lo
+          costruisco un pezzo alla volta.
+        </p>
+        <p class="entra" style="--n:6">
+          Non ho una lunga carriera da raccontarvi e non faccio finta di
+          averla. Preferisco dirvelo io prima che lo scopriate.
+        </p>
+        <p class="domanda entra" style="--n:7">Da dove volete cominciare?</p>
       </div>
+    </div>
+    <div class="shell">
+      <!-- Tre porte: lo Studio, Biglietto e i viaggi. Non hanno animazione
+           d'entrata, solo l'allargamento al passaggio. Ogni porta è un solo
+           link. -->
+      <nav class="porte" aria-label="Da dove volete cominciare">
+        <a class="porta" href="#studio">
+          <span class="porta-e">Ivan Maggini Studio</span>
+          <span class="porta-t">Video per studi e aziende</span>
+          <span class="porta-s">Mezza giornata di riprese. Al resto penso io.</span>
+          <span class="porta-v">Entra</span>
+        </a>
+        <a class="porta" href="/biglietto">
+          <span class="porta-e">Biglietto</span>
+          <span class="porta-t">Un prodotto per chi viaggia</span>
+          <span class="porta-s">In costruzione, un pezzo alla volta.</span>
+          <span class="porta-v">Vai a Biglietto</span>
+        </a>
+        <!-- quando esiste il sito dei viaggi: sostituire questo link e il testo -->
+        <a class="porta" href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">
+          <span class="porta-e">Viaggi</span>
+          <span class="porta-t">Guide e racconti</span>
+          <span class="porta-s">Il sito è in preparazione. Intanto, su Instagram.</span>
+          <span class="porta-v">Vai su Instagram</span>
+        </a>
+      </nav>
     </div>
   </section>
 
@@ -294,9 +329,8 @@
       <h2 class="rail" id="come-lavoro-t"><b>Come lavoro</b></h2>
       <div class="body">
         <p>
-          Non ho una lunga carriera da raccontarvi e non faccio finta di
-          averla. Ho un modo di lavorare: parto da un problema vero, insisto
-          finché funziona e dico per strada anche quello che non funziona.
+          Ho un modo di lavorare: parto da un problema vero, insisto finché
+          funziona e dico per strada anche quello che non funziona.
         </p>
         <!-- Prossime parti di "Chi sono": 1) il percorso: i viaggi e Instagram; 2) come lavoro con un cliente; 3) Biglietto e perché non toglie tempo allo Studio; 4) una foto -->
       </div>
@@ -334,7 +368,6 @@
       <a href="/biglietto">Biglietto</a>
       <a href="/en/">English</a>
       <a href="/privacy">Privacy</a>
-      <a href="/condizioni">Condizioni</a>
       <a href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
     </nav>
   </div>

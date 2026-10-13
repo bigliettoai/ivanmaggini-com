@@ -12,14 +12,12 @@ step, nessuna dipendenza, nessun framework, nessun JavaScript. Si apre
 
 | Rotta            | File                 | Cosa c'è                                |
 | ---------------- | -------------------- | --------------------------------------- |
-| `/`              | `index.html`         | La pagina di vendita dello Studio       |
+| `/`              | `index.html`         | Ingresso, poi la pagina dello Studio    |
 | `/biglietto`     | `biglietto.html`     | Il prodotto, e il secondo progetto      |
 | `/privacy`       | `privacy.html`       | Informativa privacy                     |
-| `/condizioni`    | `condizioni.html`    | Condizioni generali di servizio         |
-| `/en/`           | `en/index.html`      | La pagina dello Studio, in inglese      |
+| `/en/`           | `en/index.html`      | Ingresso e Studio, in inglese           |
 | `/en/biglietto`  | `en/biglietto.html`  | Il prodotto, in inglese                 |
 | `/en/privacy`    | `en/privacy.html`    | Informativa privacy in inglese          |
-| `/en/terms`      | `en/terms.html`      | Condizioni di servizio in inglese       |
 
 Ogni pagina esiste in tutte e due le lingue: Studio lavora in tutta Italia e
 presto anche all'estero. Le versioni inglesi dei testi legali sono
@@ -53,15 +51,14 @@ costruita con la dimensione e lo spazio bianco, senza decorazioni.
 - **Un campo nero per pagina**, dove si agisce: il contatto.
 - **Niente card.** I contenuti paralleli (i tre pubblici di Studio, i tre
   passi) sono colonne con un filetto in testa, nient'altro.
-- **Le pagine legali hanno lo stesso impianto di quelle di vendita.** Il
+- **L'informativa privacy ha lo stesso impianto delle altre pagine.** Il
   numero di ogni paragrafo sta appeso sull'asse sinistro.
 
 ## Il movimento
 
-Un solo momento per pagina, all'apertura, e tutto in CSS. In home il filetto
-fra le due righe si traccia da sinistra e scopre il testo che ha sotto;
-nelle altre pagine il titolo viene scoperto da sinistra, cioè dall'asse da
-cui parte. Il movimento mostra la griglia invece di aggiungerci qualcosa
+Un solo momento per pagina, all'apertura, e tutto in CSS: il titolo viene
+scoperto da sinistra, cioè dall'asse da cui parte. In home è il saluto
+dell'ingresso. Il movimento mostra la griglia invece di aggiungerci qualcosa
 sopra: niente dissolvenze, niente rimbalzi, una sola curva.
 
 Al passaggio del mouse non si sposta niente: cambia solo lo spessore di una

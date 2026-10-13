@@ -13,12 +13,11 @@ come si lavora sul sito senza rompere niente.
 
 | File | A cosa serve |
 | --- | --- |
-| `index.html` | Home IT: la pagina di vendita di Ivan Maggini Studio (`/studio` vi rimanda con un 301) |
+| `index.html` | Home IT: l'ingresso di benvenuto con le due porte, poi la pagina di vendita di Ivan Maggini Studio (`#studio`; `/studio` vi rimanda con un 301) |
 | `biglietto.html` | Il prodotto Biglietto, più il secondo progetto |
 | `privacy.html` | Informativa privacy IT (include §2.4, comunicazioni commerciali) |
-| `condizioni.html` | Condizioni generali del servizio video |
 | `404.html` | Errore IT, `noindex` |
-| `en/index.html`, `en/biglietto.html`, `en/privacy.html`, `en/terms.html` | Versioni inglesi (`/en/terms` è la controparte di `/condizioni`) |
+| `en/index.html`, `en/biglietto.html`, `en/privacy.html` | Versioni inglesi |
 | `en/404.html` | Errore EN, servito per ogni `/en/*` sconosciuto |
 | `assets/site.css` | L'unico foglio di stile del sito |
 | `assets/fonts/archivo.woff2` | Archivo a larghezza normale, pesi 400–500, solo caratteri latini; licenza in `OFL-archivo.txt` |
@@ -55,10 +54,10 @@ quella più simile, non si parte da zero.
   il numero resta appeso sull'asse sinistro. Al massimo un campo `.board`
   nero per pagina, e solo dove si agisce (il contatto). Infine
   `footer.foot` con indirizzo, P. IVA e link.
-- **Movimento**: un solo momento per pagina, all'apertura, tutto in CSS. In
-  home sono le righe `.riga` (il filetto si traccia e scopre il testo),
-  altrove la classe `.scopri` sul titolo. Niente animazioni legate allo
-  scroll.
+- **Movimento**: un solo momento per pagina, all'apertura, tutto in CSS: la
+  classe `.scopri` sull'h1. In home è il saluto dell'ingresso; il titolo
+  della sezione Studio ha la stessa dimensione (`riga-t`) ma non si muove.
+  Niente animazioni legate allo scroll.
 - Le pagine IT usano `id="contenuto"`, le EN `id="content"`.
 
 Le regole del sistema visivo (griglia a 12 colonne con due assi, un solo
@@ -160,7 +159,7 @@ La seconda rete è l'header `Cache-Control: max-age=0, must-revalidate` su
   Non si aggiungono form, analytics, cookie o risorse da server di terzi
   (caratteri, script, immagini) senza aggiornare l'informativa privacy, in
   entrambe le lingue.
-- Quando cambia un'informativa o una condizione, si aggiorna la data nella
+- Quando cambia l'informativa privacy, si aggiorna la data nella
   `.rail` ("Ultimo aggiornamento") e il `lastmod` nella sitemap.
 - I link a indirizzi che non esistono ancora portano l'attributo
   `data-provvisorio`, per esempio un `#ancora` al posto del sito dei viaggi

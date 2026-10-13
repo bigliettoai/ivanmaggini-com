@@ -106,10 +106,11 @@ crema. Il nero è pieno. L'unico colore, l'ambra, compare solo sul campo
 nero e solo sull'azione.
 
 Il movimento è uno per pagina, all'apertura, e mostra la griglia invece di
-aggiungerci qualcosa: un filetto che si traccia, un titolo scoperto da
-sinistra. Sono rifiutati esplicitamente gli effetti da template ("vibe
-coded") e il nome gigante in apertura della home come gesto standard dei
-siti personali.
+aggiungerci qualcosa: il titolo viene scoperto da sinistra, cioè dall'asse
+da cui parte. Sono rifiutati esplicitamente gli effetti da template ("vibe
+coded") e il nome gigante usato come logo in apertura, il gesto standard dei
+siti personali. La home si apre con un saluto ("Piacere, sono Ivan."), che è
+una frase alla dimensione display e non il nome in grande.
 
 **Key Characteristics:**
 - Griglia a dodici colonne con due assi: etichette dalla colonna 1, contenuto dalla colonna 4.
@@ -146,7 +147,7 @@ Una palette di carta e inchiostro, con un solo segnale.
 
 ### Hierarchy
 Interlinee a multipli di 4. Sotto i 760 px ogni gradino scende di uno.
-- **Display** (500, 64/64, su mobile 40/44, −0,03em): l'h1 di ogni pagina e le righe dell'apertura della home.
+- **Display** (500, 64/64, su mobile 40/44, −0,03em): l'h1 di ogni pagina e, in home, il titolo della sezione Studio (un `h2` con la classe `riga-t`, fermo).
 - **Headline** (500, 36/40, su mobile 28/32, −0,02em): i titoli di sezione (h2) e l'indirizzo email nel campo nero.
 - **Title** (500, 24/32, su mobile 20/28, −0,01em): h3, titoli delle colonne parallele, domande.
 - **Lede** (400, 24/32, su mobile 20/28): il paragrafo d'apertura sotto un titolo, largo al massimo sei colonne.
@@ -164,7 +165,7 @@ La griglia ha dodici colonne con un margine fluido (`clamp(20px, 5.5vw, 64px)`) 
 
 - **Asse A**, inizio della colonna 1: etichette di sezione, numeri dei paragrafi legali, marchio nella barra e nel piede.
 - **Asse B**, inizio della colonna 4: tutto il contenuto. Il testo corrente occupa le colonne 4–9; le colonne 10–12 restano vuote, ed è voluto. Niente è centrato.
-- Ogni sezione è un blocco con un filetto nero in testa e `s6` sopra e sotto (80–128 px). Dentro una sezione le distanze sono `s3` (24 px), più `s2` prima di elenchi, colonne e pulsanti (40 px in tutto). Si usano solo i passi da `s1` a `s6`.
+- Ogni sezione è un blocco con un filetto nero in testa e `s6` sopra e sotto (80–128 px). L'unica eccezione è in home: fra l'ingresso e la sezione Studio lo stacco scende a `s5` (64 px) per lato (`.sec.ingresso`), perché l'ingresso è un passaggio verso lo Studio e il suo pulsante deve stare il più in alto possibile. Dentro una sezione le distanze sono `s3` (24 px), più `s2` prima di elenchi, colonne e pulsanti (40 px in tutto). Si usano solo i passi da `s1` a `s6`.
 - L'etichetta e la prima riga del contenuto stanno sulla stessa linea di base.
 - Sotto i 940 px la griglia collassa in una colonna sola, e l'etichetta va sopra il contenuto.
 - Barra in alto fissa, alta 56 px, sulla stessa griglia: marchio sull'asse A, navigazione dall'asse B, lingue in fondo a destra.
@@ -207,8 +208,8 @@ Esatti e asciutti: niente si sposta. Al passaggio del mouse cambia lo spessore d
 ### Etichetta di sezione (rail)
 - 13/20 sull'asse A, allineata alla linea di base della prima riga del contenuto. La prima riga è in grafite e nomina la sezione; la seconda, in `<b>`, è in nero e peso 500 e dà un dettaglio. Quando l'etichetta è l'unico titolo della sezione è un `h2` con il solo `<b>`, e conserva l'aspetto dell'etichetta.
 
-### Righe dell'apertura (home)
-- I due mestieri in dimensione display, uno per riga, con la parola chiave sottolineata a 2 px (4 px al passaggio). Fra le due righe c'è un filetto che all'apertura si traccia da sinistra e scopre il testo sotto.
+### Ingresso e porte (home)
+- L'ingresso apre la home: etichetta "Benvenuti", `h1` di saluto in dimensione display (l'unico elemento animato), una riga d'apertura che nomina i due mestieri, poi due **porte**. Le porte sono colonne pure (`.cols` / `.col`), con il filetto in testa, la domanda in peso 500, un testo breve e un link in fondo: una porta allo Studio, una ai viaggi. Nell'ingresso non ci sono pulsanti, perché l'azione della pagina sta nella sezione Studio subito sotto.
 
 ### Domande
 - Un filetto nero in testa e uno grigio fra le voci. La domanda è in dimensione title, con una croce a due tratti a destra. L'altezza scorre dove il browser lo supporta; altrove la risposta compare e basta.
@@ -223,7 +224,7 @@ Esatti e asciutti: niente si sposta. Al passaggio del mouse cambia lo spessore d
 - **Do** distinguere i titoli con la dimensione, usando solo i pesi 400 e 500 di Archivo.
 - **Do** usare solo i passi `s1`…`s6` e i colori definiti in `:root`.
 - **Do** tenere uno e un solo campo nero per pagina, sul contatto, con l'azione in ambra segnale.
-- **Do** limitare il movimento a un solo momento all'apertura (`.riga` in home, `.scopri` altrove), in CSS, con la curva unica, e fermarlo del tutto con `prefers-reduced-motion`.
+- **Do** limitare il movimento a un solo momento all'apertura (`.scopri` sull'h1 di ogni pagina), in CSS, con la curva unica, e fermarlo del tutto con `prefers-reduced-motion`.
 - **Do** dare ai contenuti paralleli la forma di colonne con un filetto in testa.
 
 ### Don't:

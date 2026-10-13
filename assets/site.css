@@ -36,6 +36,17 @@
 }
 
 :root {
+  /* Tempi del benvenuto in home, l'unico momento animato della pagina.
+     Per renderlo più lento o più veloce basta cambiare questi valori:
+     pausa prima del titolo, durata del titolo, durata di ogni paragrafo,
+     scarto fra un paragrafo e il successivo. L'ultima è la comparsa della
+     sezione Studio quando ci si arriva dalla sua porta. */
+  --ingresso-pausa: 0.4s;
+  --ingresso-titolo: 1.2s;
+  --ingresso-paragrafo: 0.9s;
+  --ingresso-scarto: 0.35s;
+  --studio-entrata: 1s;
+
   /* La carta è un grigio chiaro neutro: né il bianco dello schermo né una
      crema. Sopra, il nero pieno ha 17,6:1 e il grigio 5,45:1. */
   --carta: #ebebe8;
@@ -253,8 +264,131 @@ a:hover { text-decoration-thickness: 2px; }
    fra i due lo stacco scende da s6 a s5 per lato, così il titolo e il
    pulsante dello Studio salgono verso la prima schermata. Resta comunque
    più ampio dello spazio dentro una sezione (s3–s4). */
-.sec.ingresso { padding-bottom: var(--s5); }
+.sec.ingresso { padding-bottom: 0; }
 .sec.ingresso + .sec { padding-top: var(--s5); }
+
+/* --- benvenuto della home ----------------------------------------------
+   Un testo da leggere, non un'intestazione: righe di circa 56 caratteri,
+   interlinea larga, il lede più grande e la domanda finale staccata. */
+
+.benvenuto .body { row-gap: var(--s3); }
+.benvenuto .body > p { max-width: 56ch; line-height: 28px; }
+.benvenuto .body > .lede { line-height: 32px; }
+.benvenuto .domanda {
+  margin-top: var(--s3);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 760px) {
+  .benvenuto .body > p { line-height: 32px; }
+  .benvenuto .body > .lede { line-height: 36px; }
+  .benvenuto .domanda { font-size: 24px; line-height: 32px; }
+}
+
+/* Il ritratto (assets/ivan.jpg, verticale 4:5) va sopra il testo sul
+   telefono e nelle colonne 10–12 su schermo largo, quelle che altrove
+   restano vuote. Piatto: niente cornice, niente angoli arrotondati.
+   Senza foto le colonne restano vuote come nelle altre sezioni. */
+.benvenuto-foto {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+@media (min-width: 940px) {
+  .benvenuto-foto { grid-column: 10 / 13; grid-row: 1 / span 2; max-width: none; }
+}
+
+/* --- le porte -----------------------------------------------------------
+   Tre porte, ognuna un solo link. Niente card e niente campo nero: fondo
+   carta, un filetto in testa e uno fra l'una e l'altra. Al passaggio la
+   porta scelta si allarga lentamente; è l'unico movimento delle porte. */
+
+.porte {
+  display: flex;
+  flex-direction: column;
+  /* Vicine alla domanda che le introduce: su schermo largo il filetto
+     entra nella prima schermata e dice che sotto c'è altro. */
+  margin-top: var(--s4);
+  border-top: 1px solid var(--nero);
+}
+
+.porta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  min-height: 40svh;
+  padding: var(--s4) 0;
+  text-decoration: none;
+}
+
+.porta + .porta { border-top: 1px solid var(--nero); }
+
+/* Il focus sta dentro la metà, così il filetto non lo copre. */
+.porta:focus-visible { outline-offset: -2px; }
+
+.porta-e {
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: var(--grigio);
+}
+
+.porta-t {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.porta-s { max-width: 30ch; }
+
+.porta-v {
+  margin-top: auto;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-thickness 0.15s var(--curva);
+}
+
+.porta:hover .porta-v,
+.porta:focus-visible .porta-v { text-decoration-thickness: 2px; }
+
+@media (min-width: 1200px) {
+  .porta-t { font-size: 64px; line-height: 64px; }
+}
+
+@media (min-width: 760px) {
+  .porte { flex-direction: row; min-height: 70svh; }
+  .porta {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
+    padding: var(--s5) var(--s4) var(--s4) 0;
+    transition: flex-grow 0.9s var(--curva);
+  }
+  /* Stesso spazio orizzontale per ogni porta (40 px), così a riposo sono
+     larghe uguali: la prima lo ha a destra e parte dall'asse A, le altre
+     a sinistra, dopo il filetto. */
+  .porta + .porta {
+    border-top: 0;
+    border-left: 1px solid var(--nero);
+    padding-left: var(--s4);
+    padding-right: 0;
+  }
+  .porta:focus-visible { flex-grow: 1.5; }
+}
+
+/* Solo dove c'è un mouse: sul telefono il dito non passa sopra. */
+@media (min-width: 760px) and (hover: hover) {
+  .porta:hover { flex-grow: 1.5; }
+}
 
 .sec-grid,
 .body {
@@ -683,6 +817,31 @@ a[x-apple-data-detectors] span {
 
 @keyframes traccia { from { transform: scaleX(0); } }
 
+/* Il benvenuto compare con calma: una pausa, il titolo, poi un paragrafo
+   dopo l'altro, con una dissolvenza e un piccolo spostamento verso l'alto.
+   Da fermo il testo è già al suo posto: se l'animazione non parte, la
+   pagina si legge lo stesso. */
+@keyframes entra {
+  from { opacity: 0; transform: translateY(12px); }
+}
+
+.entra {
+  animation: entra var(--ingresso-paragrafo) var(--curva) backwards;
+  animation-delay: calc(var(--ingresso-pausa) + var(--ingresso-titolo) * 0.6 + (var(--n, 1) - 1) * var(--ingresso-scarto));
+}
+
+.entra-titolo {
+  animation: entra var(--ingresso-titolo) var(--curva) backwards;
+  animation-delay: var(--ingresso-pausa);
+}
+
+/* Entrare nello Studio: lo scorrimento morbido lo fa il browser, a una
+   velocità che il CSS non decide; quando lo Studio è il bersaglio
+   dell'indirizzo (#studio) il suo contenuto compare lentamente. */
+#studio:target > .shell {
+  animation: entra var(--studio-entrata) var(--curva) backwards;
+}
+
 @keyframes scopri {
   from { clip-path: inset(-0.2em 100% -0.3em 0); }
   to { clip-path: inset(-0.2em -0.2em -0.3em 0); }
@@ -702,5 +861,9 @@ a[x-apple-data-detectors] span {
 @media (prefers-reduced-motion: reduce) {
   .righe > li + li .riga::before,
   .riga > *,
-  .scopri { animation: none; }
+  .scopri,
+  .entra,
+  .entra-titolo,
+  #studio:target > .shell { animation: none; }
+  .porta { transition: none; }
 }

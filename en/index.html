@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
-<title>Ivan Maggini Studio, video for professional firms and companies</title>
-<meta name="description" content="Video for professional firms and companies across Italy. Half a day of filming at your premises; scripts, editing and publishing are on me.">
+<title>Ivan Maggini</title>
+<meta name="description" content="I'm Ivan Maggini. I'm building Biglietto, a product for people who travel, and I run a small video studio in Italy.">
 <link rel="canonical" href="https://ivanmaggini.com/en/">
 <link rel="alternate" hreflang="it" href="https://ivanmaggini.com/">
 <link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/">
@@ -14,8 +14,8 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ivan Maggini">
-<meta property="og:title" content="Ivan Maggini Studio: half a day of filming, I take care of the rest">
-<meta property="og:description" content="Video for professional firms and companies across Italy. Scripts, editing and publishing are on me.">
+<meta property="og:title" content="Ivan Maggini">
+<meta property="og:description" content="I'm Ivan Maggini. I'm building Biglietto, a product for people who travel, and I run a small video studio in Italy.">
 <meta property="og:url" content="https://ivanmaggini.com/en/">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="it_IT">
@@ -26,7 +26,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=36b2b113ce">
+<link rel="stylesheet" href="/assets/site.css?v=2f8d0e2053">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
@@ -35,7 +35,7 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "Ivan Maggini Studio",
-  "description": "Video for professional firms and companies across Italy: lawyers, accountants, doctors, vets, architects, engineers, designers and companies with a product. Half a day of filming at the client's premises; scripts, editing and publishing handled by one person.",
+  "description": "A small video studio in Italy run by Ivan Maggini, who is also building Biglietto, a product for people who travel.",
   "url": "https://ivanmaggini.com/en/",
   "email": "general@ivanmaggini.com",
   "address": { "@type": "PostalAddress", "addressLocality": "Lurano", "addressRegion": "BG", "addressCountry": "IT" },
@@ -43,7 +43,7 @@
   "founder": {
     "@type": "Person",
     "name": "Ivan Maggini",
-    "sameAs": ["https://biglietto.ai", "https://instagram.com/ivan.maggini"]
+    "sameAs": ["https://biglietto.ai"]
   }
 }
 </script>
@@ -71,225 +71,100 @@
 
 <main id="content">
 
-  <!-- L'ingresso: chi arriva sa subito chi c'è dietro il sito e sceglie la
-       sua porta. Niente pulsanti qui: l'azione della pagina sta nella
-       sezione Studio, subito sotto. -->
-  <section class="sec open ingresso" id="welcome" aria-labelledby="welcome-t">
+  <!-- Il benvenuto: un testo da leggere, poi tre porte. È l'unico momento
+       animato della pagina, e niente qui è un pulsante: l'azione della
+       pagina sta nella sezione Studio, subito sotto. -->
+  <section class="sec open ingresso benvenuto" id="welcome" aria-labelledby="welcome-t">
     <div class="shell sec-grid">
       <p class="rail">Welcome</p>
+      <!-- La foto va qui, prima del testo: assets/ivan.jpg, ritratto
+           verticale 4:5 (per esempio 960 × 1200 px), piatto, senza cornice.
+           Quando il file esiste:
+           <img class="benvenuto-foto entra-titolo" src="/assets/ivan.jpg"
+                alt="Ivan Maggini" width="960" height="1200" loading="eager">
+           Sul telefono sta sopra il testo, su schermo largo nelle colonne
+           10–12, e compare insieme al titolo. Tenere allineato con la
+           versione italiana. -->
       <div class="body">
-        <!-- Il titolo viene scoperto da sinistra: è l'unico momento animato
-             della pagina, e sta sulla prima cosa che si legge. -->
-        <h1 class="largo scopri" id="welcome-t">Nice to meet you, I'm Ivan.</h1>
-        <p class="lede">
-          I'm 19, I live in Lurano, near Bergamo, and I work on two things:
-          Ivan Maggini Studio, video for professional firms and companies, and
-          <a href="/en/biglietto">Biglietto</a>, a product for people who travel.
+        <h1 class="largo entra-titolo" id="welcome-t">Nice to meet you, I'm Ivan.</h1>
+        <p class="lede entra" style="--n:1">
+          I'm 19 and I live in Lurano, a small town near Bergamo. If you're
+          here, either I wrote to you, or you saw one of my trips, or someone
+          told you about me.
         </p>
-        <!-- Le due porte: colonne pure, come quelle di "Who it's for". -->
-        <div class="cols">
-          <div class="col">
-            <p><strong>Looking for someone to film videos for your firm or company?</strong></p>
-            <a href="#studio">Go to the Studio</a>
-          </div>
-          <div class="col">
-            <p><strong>Here for the travel?</strong></p>
-            <p>
-              I'm putting together a site just for my travel guides and
-              stories. It isn't ready yet: in the meantime I share my travels
-              on Instagram.
-            </p>
-            <!-- quando esiste il sito dei viaggi: sostituire questo link e il testo -->
-            <a href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Go to Instagram</a>
-          </div>
-        </div>
+        <p class="entra" style="--n:2">
+          For a few years now I've been sharing my travels on Instagram,
+          without spending anything on advertising. That's how I learned what
+          makes someone stop in front of a video, and what makes them scroll
+          past.
+        </p>
+        <p class="entra" style="--n:3">Today I use what I learned in two ways.</p>
+        <p class="entra" style="--n:4">
+          The first is <a href="/en/biglietto">Biglietto</a>, a product for
+          people who travel. I started it in June, while studying for my final
+          school exams, and I'm building it one piece at a time.
+        </p>
+        <p class="entra" style="--n:5">
+          The second is Ivan Maggini Studio, a small video studio I run from
+          Italy.
+        </p>
+        <p class="entra" style="--n:6">
+          I don't have a long career to tell you about, and I don't pretend
+          to. I'd rather tell you myself than have you find out.
+        </p>
+        <p class="domanda entra" style="--n:7">Where would you like to start?</p>
       </div>
+    </div>
+    <div class="shell">
+      <!-- Tre porte: Biglietto, i viaggi e lo Studio, per ultimo: in inglese
+           lo Studio si presenta, non si vende. Non hanno animazione
+           d'entrata, solo l'allargamento al passaggio. Ogni porta è un solo
+           link. -->
+      <nav class="porte" aria-label="Where would you like to start">
+        <a class="porta" href="/en/biglietto">
+          <span class="porta-e">Biglietto</span>
+          <span class="porta-t">A product for people who travel</span>
+          <span class="porta-s">Being built, one piece at a time.</span>
+          <span class="porta-v">Go to Biglietto</span>
+        </a>
+        <!-- quando esiste il sito dei viaggi: sostituire questo link e il testo -->
+        <a class="porta" href="mailto:general@ivanmaggini.com?subject=Travel%20guides">
+          <span class="porta-e">Travel</span>
+          <span class="porta-t">Guides and stories</span>
+          <span class="porta-s">A site just for my guides and stories is being prepared. Write me and I'll tell you when it opens.</span>
+          <span class="porta-v">Tell me when it opens</span>
+        </a>
+        <a class="porta" href="#studio">
+          <span class="porta-e">Ivan Maggini Studio</span>
+          <span class="porta-t">Video for firms and companies</span>
+          <span class="porta-s">Half a day of filming. I&nbsp;take care of the rest.</span>
+          <span class="porta-v">Come in</span>
+        </a>
+      </nav>
     </div>
   </section>
 
-  <!-- Lo Studio. L'azione è una sola, la consulenza gratuita via email, e
-       ogni pulsante porta allo stesso mailto. -->
+  <!-- Lo Studio in inglese: una presentazione breve, senza pulsante e senza
+       vendita. Chi vuole saperne di più scrive. -->
   <section class="sec" id="studio" aria-labelledby="studio-t">
     <div class="shell sec-grid">
       <p class="rail">Ivan Maggini Studio<b>across Italy</b></p>
       <div class="body">
-        <!-- Il titolo dello Studio ha la stessa dimensione dell'apertura
-             (riga-t, 64 px), ma è un h2 e non si muove: il momento animato
-             resta quello dell'ingresso. -->
-        <h2 class="largo riga-t" id="studio-t">Half a day of filming. I&nbsp;take care of the rest.</h2>
+        <h2 id="studio-t">Video for firms and companies.</h2>
         <p class="lede">
-          Video for professional firms and companies, so that the people
-          looking for you trust you before they ever pick up the phone.
-        </p>
-        <div class="btn-row">
-          <a class="btn" href="mailto:general@ivanmaggini.com?subject=Free%20consultation">Book a free consultation</a>
-        </div>
-        <p class="nota">
-          Twenty minutes, no commitment. All I need is your name, your city and
-          a couple of lines on what you do. I reply within 24 hours.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- I nomi delle sezioni sono titoli veri (h2), ma stanno nel margine
-       sull'asse sinistro: il testo comincia subito accanto, senza un
-       secondo titolo grande che lo ripeta. -->
-  <section class="sec" id="the-point" aria-labelledby="the-point-t">
-    <div class="shell sec-grid">
-      <p class="rail">The point</p>
-      <div class="body">
-        <h2 id="the-point-t">People choose before they call.</h2>
-        <p class="lede">
-          Anyone looking for a lawyer, a doctor, a builder or a supplier looks
-          first: at the website, the profiles, whatever they can find about
-          you. If all they find is a logo and a list of services, they choose
-          whoever let them see a face and hear a voice.
+          People choose before they call. A short video lets them meet you
+          first, so they trust you before the first conversation.
         </p>
         <p>
-          You do your work well. The point is that people who don't know you
-          have no way of knowing it.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="why-me" aria-labelledby="why-me-t">
-    <div class="shell sec-grid">
-      <h2 class="rail" id="why-me-t"><b>Why me</b></h2>
-      <div class="body">
-        <p class="lede">
-          For years I told travel stories on Instagram and reached 30,000
-          people without spending anything on advertising. That's where I
-          learned what makes someone stop and watch, and what gets scrolled
-          past. I use the same method for professionals: simple videos that
-          explain and reassure.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="your-time" aria-labelledby="your-time-t">
-    <div class="shell sec-grid">
-      <p class="rail">Your time<b>Half a day</b></p>
-      <div class="body">
-        <h2 id="your-time-t">You talk, I do the rest.</h2>
-        <p class="lede">
-          We film in half a day, with the scripts already written.
+          I come to you, film for half a day and take care of the rest:
+          scripts, editing and publishing. If you work with clients abroad, the
+          content can be made in English too, with its own topics rather than
+          translations.
         </p>
         <p>
-          You don't have to choose the topics, decide when to post, learn to
-          edit or remember that Thursday is the day for the next post.
-        </p>
-        <p>
-          I'm not selling you a follower count: I'm giving you something more
-          concrete, which is that when a client has to choose, they already
-          know you.
-        </p>
-        <p>
-          If you also work with clients abroad, the same session produces
-          content in English as well as Italian, each with its own topics
-          rather than translations.
-        </p>
-        <p>
-          You don't need to prepare anything: no lines to learn, no software,
-          no extra meetings.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tre colonne parallele e un solo pulsante in fondo: la scelta del
-       gruppo non cambia l'azione. -->
-  <section class="sec" id="who-its-for" aria-labelledby="who-its-for-t">
-    <div class="shell sec-grid">
-      <h2 class="rail" id="who-its-for-t"><b>Who it's for</b></h2>
-      <div class="body">
-        <div class="cols">
-          <div class="col">
-            <h3>Professions built on trust</h3>
-            <p class="nota">lawyers, accountants, doctors, vets</p>
-            <p>
-              People who choose a professional are choosing a person. Video
-              lets them get to know yours before the first appointment.
-            </p>
-          </div>
-          <div class="col">
-            <h3>Project-based firms</h3>
-            <p class="nota">architects, engineers, designers</p>
-            <p>
-              People who look at your work see the result, not how you think.
-              Video shows the method.
-            </p>
-          </div>
-          <div class="col">
-            <h3>Companies with a product</h3>
-            <p>A product explained by the people who make it convinces more than a spec sheet.</p>
-          </div>
-        </div>
-        <div class="btn-row">
-          <a class="btn" href="mailto:general@ivanmaggini.com?subject=Free%20consultation">Book a free consultation</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- I passi sono davvero una sequenza: il numero arriva dal contatore
-       CSS, non dal testo. -->
-  <section class="sec" id="how-it-works" aria-labelledby="how-it-works-t">
-    <div class="shell sec-grid">
-      <p class="rail">The process<b>Five steps</b></p>
-      <div class="body">
-        <h2 id="how-it-works-t">How it works</h2>
-        <ol class="cols steps">
-          <li class="col step">
-            <p>
-              A free twenty-minute call: you tell me what you do, and I tell
-              you honestly whether video is right for you.
-            </p>
-          </li>
-          <li class="col step"><p>A tailored proposal.</p></li>
-          <li class="col step">
-            <p>I write the scripts, starting from the questions your clients ask.</p>
-          </li>
-          <li class="col step">
-            <p>Half a day of filming at your premises, with my equipment.</p>
-          </li>
-          <li class="col step">
-            <p>Editing and publishing for the period the session covers.</p>
-          </li>
-        </ol>
-        <!-- Cosa produce una sessione: da scrivere con fatti veri, poi
-             togliere il commento. Nessun prezzo. Tenere allineato con la
-             versione italiana.
-        <ul class="list two">
-          <li>How many videos: …</li>
-          <li>Length of each: …</li>
-          <li>Where they're published: …</li>
-          <li>What the proposal is based on: …</li>
-        </ul>
-        -->
-        <p>I work alone, so I only take on a few clients at a time.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="upfront" aria-labelledby="upfront-t">
-    <div class="shell sec-grid">
-      <h2 class="rail" id="upfront-t"><b>Upfront</b></h2>
-      <div class="body">
-        <p class="lede">
-          I only make content that builds trust: explanations, recurring cases,
-          answers to frequently asked questions.
-        </p>
-        <p>
-          No comedy trends or clickbait. For a professional firm, not looking
-          out of place is worth more than a few extra views.
-        </p>
-        <p>
-          If during the consultation I realise video won't help you, I'll tell
-          you. I'd rather say no straight away than take on work that leads
-          nowhere.
+          If you'd like to know more,
+          <a href="mailto:general@ivanmaggini.com?subject=Studio">write me</a>
+          a couple of lines about what you do.
         </p>
       </div>
     </div>
@@ -300,9 +175,8 @@
       <h2 class="rail" id="how-i-work-t"><b>How I work</b></h2>
       <div class="body">
         <p>
-          I don't have a long career to tell you about, and I don't pretend to.
-          What I have is a way of working: I start from a real problem, keep at
-          it until it works, and say along the way what isn't working too.
+          I have a way of working: I start from a real problem, keep at it
+          until it works, and say along the way what isn't working too.
         </p>
         <!-- Prossime parti di "Chi sono": 1) il percorso: i viaggi e Instagram; 2) come lavoro con un cliente; 3) Biglietto e perché non toglie tempo allo Studio; 4) una foto. Tenere allineato con la versione italiana. -->
       </div>
@@ -314,13 +188,14 @@
     <div class="shell sec-grid">
       <p class="rail">Contact<b>I reply within 24 hours</b></p>
       <div class="body">
-        <h2 id="contact-title">It starts with twenty minutes.</h2>
+        <h2 id="contact-title">Write me.</h2>
         <p>
-          There's no form to fill in on this site. Write me a couple of lines
-          and I'll reply within 24 hours.
+          For Biglietto, for the Studio, or just to say hello. There's no form
+          to fill in: write me a couple of lines and I'll reply within 24
+          hours.
         </p>
         <p class="stacco">
-          <a class="mailto" href="mailto:general@ivanmaggini.com?subject=Free%20consultation">general@ivanmaggini.com</a>
+          <a class="mailto" href="mailto:general@ivanmaggini.com?subject=Hello">general@ivanmaggini.com</a>
         </p>
       </div>
     </div>
@@ -340,7 +215,6 @@
       <a href="/en/biglietto">Biglietto</a>
       <a href="/">Italiano</a>
       <a href="/en/privacy">Privacy</a>
-      <a href="/en/terms">Terms</a>
       <a href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
     </nav>
   </div>

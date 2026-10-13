@@ -85,10 +85,12 @@
   to = "/privacy.html"
   status = 200
 
+# Le condizioni del servizio stanno nel contratto con ogni cliente: la
+# pagina non c'è più, e chi ha ancora il vecchio indirizzo arriva alla home.
 [[redirects]]
   from = "/condizioni"
-  to = "/condizioni.html"
-  status = 200
+  to = "/"
+  status = 301
 
 # Il modulo di contatto non esiste più: si scrive una email e basta. La pagina
 # di conferma è stata rimossa, ma la sua rotta resta mappata sulla home perché
@@ -98,8 +100,7 @@
   to = "/"
   status = 301
 
-# Versione inglese. Ogni pagina italiana ha la sua controparte; le
-# condizioni in inglese si chiamano /en/terms.
+# Versione inglese. Ogni pagina italiana ha la sua controparte.
 [[redirects]]
   from = "/en"
   to = "/en/"
@@ -116,10 +117,12 @@
   to = "/en/privacy.html"
   status = 200
 
+# Come /condizioni: la pagina non c'è più, il vecchio indirizzo porta
+# alla home inglese.
 [[redirects]]
   from = "/en/terms"
-  to = "/en/terms.html"
-  status = 200
+  to = "/en/"
+  status = 301
 
 # Qualunque altro percorso sotto /en/ riceve la pagina di errore inglese,
 # non quella italiana.
