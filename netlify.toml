@@ -55,16 +55,26 @@
   to = "/"
   status = 301
 
-# Versione inglese di home e privacy. La sezione Studio è solo in italiano,
-# perché si rivolge agli studi professionali lombardi.
+# Versione inglese. Ogni pagina italiana ha la sua controparte; le
+# condizioni in inglese si chiamano /en/terms.
 [[redirects]]
   from = "/en"
   to = "/en/"
   status = 301
 
 [[redirects]]
+  from = "/en/studio"
+  to = "/en/studio.html"
+  status = 200
+
+[[redirects]]
   from = "/en/privacy"
   to = "/en/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/terms"
+  to = "/en/terms.html"
   status = 200
 
 # Qualunque altro percorso sotto /en/ riceve la pagina di errore inglese,
@@ -90,12 +100,12 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
 
-# Il foglio di stile e lo script vengono richiamati con l'impronta del loro
-# contenuto nell'indirizzo (`?v=...`), quindi una modifica cambia l'URL e la
-# copia vecchia non può più essere servita. La rivalidazione a ogni richiesta
-# è la seconda rete: se un giorno l'impronta non venisse rigenerata, il
-# browser se ne accorgerebbe lo stesso. Sono venti kilobyte, e la risposta
-# è quasi sempre un 304 vuoto.
+# Il foglio di stile viene richiamato con l'impronta del suo contenuto
+# nell'indirizzo (`?v=...`), quindi una modifica cambia l'URL e la copia
+# vecchia non può più essere servita. La rivalidazione a ogni richiesta è la
+# seconda rete: se un giorno l'impronta non venisse rigenerata, il browser se
+# ne accorgerebbe lo stesso. Sono pochi kilobyte, e la risposta è quasi
+# sempre un 304 vuoto. Vale anche per il carattere, che cambia di rado.
 #
 # Le immagini restano in cache un'ora: cambiano di rado e non rompono nulla.
 [[headers]]

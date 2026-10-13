@@ -1,10 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ivan Maggini">
-  <!-- Stessa tavolozza del sito: fondo del tabellone, testo carta, ambra.
-       Il bordo perforato è il motivo che tiene insieme tutte le pagine. -->
-  <rect width="64" height="64" rx="12" fill="#0c0c0c"/>
-  <line x1="11" y1="45" x2="53" y2="45" stroke="#ffab00" stroke-width="2.5"
-        stroke-dasharray="3.5 4.5" stroke-linecap="round"/>
-  <text x="32" y="37" text-anchor="middle"
-        font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
-        font-weight="700" font-size="30" letter-spacing="-1" fill="#ebebe8">IM</text>
+  <!-- Nero pieno e le iniziali in Hanken Grotesk 500, già convertite in
+       tracciati: un'icona non può caricare il carattere del sito. -->
+  <rect width="64" height="64" rx="8" fill="#000000"/>
+  <path fill="#ebebe8" d="M18.095 41.0V20.09H21.154999999999998V41.0ZM25.055 41.0V20.09H29.555L35.765 36.17H35.225L41.435 20.09H45.905V41.0H42.845V23.63L43.114999999999995 23.69L36.965 39.2H33.995L27.845 23.69L28.115 23.63V41.0Z"/>
 </svg>

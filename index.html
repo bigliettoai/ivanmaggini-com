@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ivan Maggini">
 <meta property="og:title" content="Ivan Maggini, founder di Biglietto">
-<meta property="og:description" content="Sto costruendo Biglietto, un prodotto per chi viaggia. Racconto tutto mentre succede, anche le cose che vanno male.">
+<meta property="og:description" content="Sto costruendo Biglietto, un prodotto per chi viaggia, e giro i video di studi professionali e aziende.">
 <meta property="og:url" content="https://ivanmaggini.com/">
 <meta property="og:locale" content="it_IT">
 <meta property="og:image" content="https://ivanmaggini.com/assets/og/og-home.png">
@@ -24,10 +24,8 @@
 <meta property="og:image:alt" content="Ivan Maggini: sto costruendo Biglietto e giro i video di studi professionali e aziende">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400..500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=042be7d8e7">
+<link rel="preload" href="/assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=4cadc9d309">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
@@ -65,17 +63,32 @@
 
 <main id="contenuto">
 
-  <section class="sec open tight">
-    <div class="shell masthead">
-      <h1 class="display-xl reveal">
-        <span><span style="--i:0">Ivan</span></span>
-        <span><span style="--i:1">Maggini</span></span>
-      </h1>
-      <p class="lede">
-        Ho 19 anni. Sto costruendo Biglietto, un prodotto per chi viaggia, e
-        giro i video degli studi professionali e delle aziende, in tutta
-        Italia. Racconto le due cose mentre succedono, anche quando vanno male.
-      </p>
+  <!-- L'apertura parte da cosa faccio, non da come mi chiamo: il nome è
+       già nella barra in alto. Le due righe sono le due porte del sito, e
+       sono l'unico momento animato della pagina. -->
+  <section class="sec open">
+    <div class="shell">
+      <h1 class="vh">Ivan Maggini</h1>
+      <ul class="righe">
+        <li>
+          <a class="riga sec-grid" href="/biglietto" style="--i:0">
+            <span class="rail">Prodotto<b>in costruzione</b></span>
+            <span class="riga-t">Costruisco <u>Biglietto</u>, un prodotto per chi viaggia.</span>
+          </a>
+        </li>
+        <li>
+          <a class="riga sec-grid" href="/studio" style="--i:1">
+            <span class="rail">Servizio<b>in tutta Italia</b></span>
+            <span class="riga-t">Giro i video di <u>studi professionali e aziende</u>.</span>
+          </a>
+        </li>
+      </ul>
+      <div class="sec-grid">
+        <p class="lede scopri" style="--i:2">
+          Ho 19 anni, e racconto le due cose mentre succedono, anche quando
+          vanno male.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -107,39 +120,7 @@
     </div>
   </section>
 
-  <!-- Le due porte del sito. Sono l'unico posto della home in cui una card ha
-       senso: due cose davvero parallele, messe una accanto all'altra. -->
-  <section class="sec" id="cosa-faccio" aria-label="Le due sezioni del sito">
-    <div class="shell sec-grid">
-      <p class="rail">Dove andare</p>
-      <div class="body">
-        <div class="pair">
-          <div class="card">
-            <h2>Biglietto</h2>
-            <span class="who">il prodotto che sto costruendo</span>
-            <p>
-              Un posto solo dove vive tutto il tuo viaggio, e sopra la parte che
-              nessuno ti dice: cosa comprare davvero, in che ordine e dove.
-            </p>
-            <a class="btn ghost" href="/biglietto">Leggi di Biglietto</a>
-          </div>
-          <div class="card">
-            <h2>Ivan Maggini Studio</h2>
-            <span class="who">video per studi professionali e aziende</span>
-            <p>
-              Video brevi per dentisti, avvocati, notai, commercialisti,
-              architetti, ingegneri e imprese, in tutta Italia. Le riprese si
-              fanno nella vostra sede: vado io, e poi monto e pubblico io.
-            </p>
-            <a class="btn ghost" href="/studio">Come funziona</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Il blocco nero della pagina: l'indirizzo entra una lettera per volta,
-       ed è l'unico momento animato qui dentro. -->
+  <!-- Il campo nero della pagina: è dove si agisce. -->
   <section class="board" id="contatti" aria-labelledby="contatti-titolo">
     <div class="shell sec-grid">
       <p class="rail">Contatti<b>Rispondo entro 24 ore</b></p>
@@ -149,8 +130,8 @@
           Non c'è nessun modulo da compilare su questo sito, di proposito:
           preferisco non tenere i dati di nessuno. Una email basta e avanza.
         </p>
-        <p style="margin-top:var(--s4)">
-          <a class="mailto" href="mailto:general@ivanmaggini.com" data-rise>general@ivanmaggini.com</a>
+        <p class="stacco">
+          <a class="mailto" href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
         </p>
       </div>
     </div>
@@ -160,13 +141,11 @@
 
 <footer class="foot">
   <div class="shell foot-in">
-    <div>
-      <span class="mark">Ivan Maggini</span>
-      <address class="small">
-        Lurano (BG), Italia<br>
-        P. IVA 04924920160
-      </address>
-    </div>
+    <span class="mark">Ivan Maggini</span>
+    <address>
+      Lurano (BG), Italia<br>
+      P. IVA 04924920160
+    </address>
     <nav aria-label="Link del footer">
       <a href="/biglietto">Biglietto</a>
       <a href="/studio">Studio</a>
@@ -178,6 +157,5 @@
   </div>
 </footer>
 
-<script src="/assets/site.js?v=e2f15b517a" defer></script>
 </body>
 </html>
