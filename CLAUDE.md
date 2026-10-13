@@ -167,3 +167,18 @@ La seconda rete è l'header `Cache-Control: max-age=0, must-revalidate` su
   `grep -rn --include='*.html' "data-provvisorio" .` non deve dare nessun
   risultato: ogni link va sostituito con l'indirizzo vero. Il filtro sugli
   HTML serve perché senza troverebbe sempre questa riga.
+  Cosa va riempito prima del merge:
+  - **6 link social**, ripetuti nel piede di tutte le pagine: 3 italiani
+    (`#instagram-it`, `#tiktok-it`, `#youtube-it`) sulle pagine IT e 3
+    inglesi (`#instagram-en`, `#tiktok-en`, `#youtube-en`) sulle pagine EN,
+    senza mischiare le lingue; con `target="_blank" rel="noopener"`;
+  - **2 foto di "Chi sono"** (`figure.foto`), in `index.html` e in
+    `en/index.html`: `<img>` con `width` e `height`, `loading="lazy"` e un
+    `alt` che descrive la scena;
+  - **la foto del benvenuto**, `assets/ivan.jpg`, in tutte e due le home.
+    Oggi è solo un commento HTML, senza `data-provvisorio`: il grep non la
+    trova, va controllata a mano.
+
+  Quando arrivano i link veri vanno aggiornati anche il `sameAs` del
+  JSON-LD nelle due home e il link a Instagram in `en/biglietto.html`, che
+  oggi punta al profilo italiano.

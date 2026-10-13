@@ -52,6 +52,9 @@
   --carta: #ebebe8;
   --nero: #000000;
   --grigio: #5e5e5a;
+  /* Solo per i segnaposto delle foto: la carta un tono più scura, così il
+     riquadro si vede senza bordi né ombre. Il grigio sopra fa 4,6:1. */
+  --carta-scura: #d9d9d5;
   /* Sul campo nero il grigio della carta non passerebbe: 6,06:1. */
   --grigio-su-nero: #8a8a86;
   /* Solo sul nero (11:1). Sulla carta farebbe 1,6:1, e il vincolo tiene
@@ -301,6 +304,56 @@ a:hover { text-decoration-thickness: 2px; }
 
 @media (min-width: 940px) {
   .benvenuto-foto { grid-column: 10 / 13; grid-row: 1 / span 2; max-width: none; }
+}
+
+/* --- chi sono ------------------------------------------------------------
+   Pensata per un testo lungo. Il testo resta a sinistra in righe di circa
+   56 caratteri; le foto, messe nell'HTML fra un paragrafo e l'altro,
+   sul telefono si inseriscono nel testo e su schermo largo vanno a destra
+   (colonne 10–12), ognuna all'altezza del paragrafo che la precede. Così
+   il testo non lascia vuoti, qualunque sia la sua lunghezza. */
+
+.chi-sono .body > p { max-width: 56ch; }
+
+.foto { margin: 0; }
+
+/* Segnaposto: un riquadro piatto, un tono più scuro della carta, con
+   l'etichetta in basso a sinistra. Niente bordi, angoli o ombre. */
+.foto-riquadro {
+  display: flex;
+  align-items: flex-end;
+  padding: var(--s2);
+  background: var(--carta-scura);
+  color: var(--grigio);
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+}
+.foto-verticale .foto-riquadro { aspect-ratio: 4 / 5; }
+.foto-orizzontale .foto-riquadro { aspect-ratio: 3 / 2; }
+.foto img { width: 100%; height: auto; }
+
+.chi-sono .foto-verticale { max-width: 75%; }
+
+@media (min-width: 940px) {
+  .chi-sono .body { display: flow-root; }
+  .chi-sono .body > * + * { margin-top: var(--s3); }
+  /* Le foto a destra, sfalsate: la verticale nelle colonne 10–12, la
+     orizzontale un po' più larga e più in basso. */
+  .chi-sono .foto {
+    float: right;
+    clear: right;
+    margin-left: var(--gutter);
+  }
+  .chi-sono .foto-verticale {
+    width: calc((100% - 8 * var(--gutter)) / 9 * 3 + 2 * var(--gutter));
+    max-width: none;
+    margin-top: var(--s5);
+  }
+  .chi-sono .foto-orizzontale {
+    width: calc((100% - 8 * var(--gutter)) / 9 * 4 + 3 * var(--gutter));
+    margin-top: var(--s6);
+  }
 }
 
 /* --- le porte -----------------------------------------------------------
@@ -790,6 +843,21 @@ a:hover { text-decoration-thickness: 2px; }
   .foot-in > .mark { grid-column: 1 / 4; font-size: 13px; line-height: 20px; }
   .foot-in > address { grid-column: 4 / 7; }
   .foot-in > nav { grid-column: 7 / 13; }
+}
+
+/* I social stanno in una riga a sé, solo testo, nello stile del piede: i
+   link sono sottolineati e in nero perché si vedano. */
+.foot .social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1) var(--s2);
+  margin: 0;
+  color: var(--grigio);
+}
+.foot .social a { color: var(--nero); font-weight: 500; }
+
+@media (min-width: 940px) {
+  .foot-in > .social { grid-column: 7 / 13; }
 }
 
 /* --- iOS: riconoscimento automatico dei dati ---------------------------

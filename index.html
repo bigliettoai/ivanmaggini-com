@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=2f8d0e2053">
+<link rel="stylesheet" href="/assets/site.css?v=c9df9c7391">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
@@ -109,7 +109,6 @@
           Non ho una lunga carriera da raccontarvi e non faccio finta di
           averla. Preferisco dirvelo io prima che lo scopriate.
         </p>
-        <p class="domanda entra" style="--n:7">Da dove volete cominciare?</p>
       </div>
     </div>
     <div class="shell">
@@ -324,15 +323,28 @@
     </div>
   </section>
 
-  <section class="sec" id="come-lavoro" aria-labelledby="come-lavoro-t">
+  <!-- Chi sono: pensata per un testo lungo, con le foto fra i paragrafi.
+       Non si anima. -->
+  <section class="sec chi-sono" id="chi-sono" aria-labelledby="chi-sono-t">
     <div class="shell sec-grid">
-      <h2 class="rail" id="come-lavoro-t"><b>Come lavoro</b></h2>
+      <p class="rail">Chi sono</p>
       <div class="body">
+        <h2 id="chi-sono-t">Chi c'è dietro la camera.</h2>
+        <!-- Testo lungo: circa 100 righe (15-20 paragrafi), da scrivere con Ivan. Pensalo a blocchi con titoletti. -->
         <p>
           Ho un modo di lavorare: parto da un problema vero, insisto finché
           funziona e dico per strada anche quello che non funziona.
         </p>
-        <!-- Prossime parti di "Chi sono": 1) il percorso: i viaggi e Instagram; 2) come lavoro con un cliente; 3) Biglietto e perché non toglie tempo allo Studio; 4) una foto -->
+        <!-- Le foto vere saranno <img> con width e height espliciti,
+             loading="lazy" e un alt che descrive la scena, al posto del
+             riquadro; poi va tolto l'attributo dei segnaposto. -->
+        <figure class="foto foto-verticale" data-provvisorio>
+          <div class="foto-riquadro">Foto 1</div>
+        </figure>
+        <figure class="foto foto-orizzontale" data-provvisorio>
+          <div class="foto-riquadro">Foto 2</div>
+        </figure>
+        <!-- Prossime parti di "Chi sono": 1) il percorso: i viaggi e Instagram; 2) come lavoro con un cliente; 3) Biglietto e perché non toglie tempo allo Studio; 4) le foto -->
       </div>
     </div>
   </section>
@@ -370,6 +382,13 @@
       <a href="/privacy">Privacy</a>
       <a href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
     </nav>
+    <!-- sostituire i tre link con i profili veri; aprire in nuova scheda con target="_blank" rel="noopener" -->
+    <p class="social">
+      Seguimi su
+      <a href="#instagram-it" data-provvisorio>Instagram</a>
+      <a href="#tiktok-it" data-provvisorio>TikTok</a>
+      <a href="#youtube-it" data-provvisorio>YouTube</a>
+    </p>
   </div>
 </footer>
 
