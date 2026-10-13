@@ -105,9 +105,10 @@ grigio chiaro neutro scelto apposta, né il bianco dello schermo né una
 crema. Il nero è pieno. L'unico colore, l'ambra, compare solo sul campo
 nero e solo sull'azione.
 
-Il movimento è uno per pagina, all'apertura, e mostra la griglia invece di
-aggiungerci qualcosa: il titolo viene scoperto da sinistra, cioè dall'asse
-da cui parte. Sono rifiutati esplicitamente gli effetti da template ("vibe
+Il movimento sta all'apertura e non è mai legato allo scroll. Nelle pagine
+interne il titolo viene scoperto da sinistra, cioè dall'asse da cui parte.
+In home il benvenuto compare con calma, un paragrafo alla volta, e arrivando
+dalla porta dello Studio la sua sezione compare con una dissolvenza lenta. Sono rifiutati esplicitamente gli effetti da template ("vibe
 coded") e il nome gigante usato come logo in apertura, il gesto standard dei
 siti personali. La home si apre con un saluto ("Piacere, sono Ivan."), che è
 una frase alla dimensione display e non il nome in grande.
@@ -118,7 +119,7 @@ una frase alla dimensione display e non il nome in grande.
 - Carta grigia, nero pieno, ambra solo sul nero.
 - Un solo campo nero per pagina, dove si agisce.
 - Angoli vivi, nessuna ombra, nessuna card.
-- Un solo momento animato, all'apertura, solo in CSS.
+- Movimento solo in CSS: l'apertura di ogni pagina e, in home, il benvenuto e l'arrivo allo Studio. Niente con `prefers-reduced-motion`.
 
 ## Colors
 
@@ -147,7 +148,7 @@ Una palette di carta e inchiostro, con un solo segnale.
 
 ### Hierarchy
 Interlinee a multipli di 4. Sotto i 760 px ogni gradino scende di uno.
-- **Display** (500, 64/64, su mobile 40/44, −0,03em): l'h1 di ogni pagina e, in home, il titolo della sezione Studio (un `h2` con la classe `riga-t`, fermo).
+- **Display** (500, 64/64, su mobile 40/44, −0,03em): l'h1 di ogni pagina, i titoli delle porte (40/44 sotto i 1200 px) e, nella home italiana, il titolo della sezione Studio (un `h2` con la classe `riga-t`, fermo). Nella home inglese il titolo dello Studio è un `h2` normale.
 - **Headline** (500, 36/40, su mobile 28/32, −0,02em): i titoli di sezione (h2) e l'indirizzo email nel campo nero.
 - **Title** (500, 24/32, su mobile 20/28, −0,01em): h3, titoli delle colonne parallele, domande.
 - **Lede** (400, 24/32, su mobile 20/28): il paragrafo d'apertura sotto un titolo, largo al massimo sei colonne.
@@ -165,7 +166,7 @@ La griglia ha dodici colonne con un margine fluido (`clamp(20px, 5.5vw, 64px)`) 
 
 - **Asse A**, inizio della colonna 1: etichette di sezione, numeri dei paragrafi legali, marchio nella barra e nel piede.
 - **Asse B**, inizio della colonna 4: tutto il contenuto. Il testo corrente occupa le colonne 4–9; le colonne 10–12 restano vuote, ed è voluto. Niente è centrato.
-- Ogni sezione è un blocco con un filetto nero in testa e `s6` sopra e sotto (80–128 px). L'unica eccezione è in home: fra l'ingresso e la sezione Studio lo stacco scende a `s5` (64 px) per lato (`.sec.ingresso`), perché l'ingresso è un passaggio verso lo Studio e il suo pulsante deve stare il più in alto possibile. Dentro una sezione le distanze sono `s3` (24 px), più `s2` prima di elenchi, colonne e pulsanti (40 px in tutto). Si usano solo i passi da `s1` a `s6`.
+- Ogni sezione è un blocco con un filetto nero in testa e `s6` sopra e sotto (80–128 px). L'unica eccezione è in home: l'ingresso (`.sec.ingresso`) non ha spazio sotto, perché lo chiudono le porte, e la sezione Studio che lo segue ha `s5` (64 px) sopra invece di `s6`. Dentro una sezione le distanze sono `s3` (24 px), più `s2` prima di elenchi, colonne e pulsanti (40 px in tutto). Si usano solo i passi da `s1` a `s6`.
 - L'etichetta e la prima riga del contenuto stanno sulla stessa linea di base.
 - Sotto i 940 px la griglia collassa in una colonna sola, e l'etichetta va sopra il contenuto.
 - Barra in alto fissa, alta 56 px, sulla stessa griglia: marchio sull'asse A, navigazione dall'asse B, lingue in fondo a destra.
@@ -184,7 +185,7 @@ Angoli vivi ovunque (0 px): pulsanti, campo nero, anello di focus. Le forme sono
 
 ## Components
 
-Esatti e asciutti: niente si sposta. Al passaggio del mouse cambia lo spessore di una riga o si inverte un colore, e nient'altro. Tutte le transizioni usano una curva sola, `cubic-bezier(0.2, 0, 0, 1)`, e durano 0,15 s (0,3 s per le domande).
+Esatti e asciutti. Al passaggio del mouse cambia lo spessore di una riga o si inverte un colore; l'unica eccezione sono le porte della home, che si allargano. Tutte le transizioni usano una curva sola, `cubic-bezier(0.2, 0, 0, 1)`, e durano 0,15 s (0,3 s per le domande, 0,9 s per le porte).
 
 ### Buttons
 - **Shape:** angoli vivi (0 px), bordo da 1 px dello stesso colore del fondo.
@@ -208,8 +209,16 @@ Esatti e asciutti: niente si sposta. Al passaggio del mouse cambia lo spessore d
 ### Etichetta di sezione (rail)
 - 13/20 sull'asse A, allineata alla linea di base della prima riga del contenuto. La prima riga è in grafite e nomina la sezione; la seconda, in `<b>`, è in nero e peso 500 e dà un dettaglio. Quando l'etichetta è l'unico titolo della sezione è un `h2` con il solo `<b>`, e conserva l'aspetto dell'etichetta.
 
-### Ingresso e porte (home)
-- L'ingresso apre la home: etichetta "Benvenuti", `h1` di saluto in dimensione display (l'unico elemento animato), una riga d'apertura che nomina i due mestieri, poi due **porte**. Le porte sono colonne pure (`.cols` / `.col`), con il filetto in testa, la domanda in peso 500, un testo breve e un link in fondo: una porta allo Studio, una ai viaggi. Nell'ingresso non ci sono pulsanti, perché l'azione della pagina sta nella sezione Studio subito sotto.
+### Benvenuto e porte (home)
+- **Benvenuto** (`.sec.open.ingresso.benvenuto`): etichetta "Benvenuti" (EN "Welcome"), `h1` di saluto in dimensione display, poi un testo da leggere, un paragrafo per riga: righe di circa 56 caratteri (`max-width: 56ch`), interlinea 32 px (lede 36) da 760 px in su e 28 px (lede 32) sotto, lede più grande e domanda finale (`.domanda`) staccata e in peso 500.
+- **Spazio per la foto** (`.benvenuto-foto`): ritratto verticale 4:5, piatto, senza cornice; nelle colonne 10–12 su schermo largo e sopra il testo sul telefono. Finché `assets/ivan.jpg` non esiste c'è solo un commento HTML, e le colonne 10–12 restano vuote come nelle altre sezioni.
+- **Le porte** (`nav.porte` > `a.porta`): tre, ognuna un solo link grande. Dentro: etichetta piccola (`.porta-e`, 13/20 in grafite), titolo display (`.porta-t`), una frase (`.porta-s`) e in fondo il verbo sottolineato (`.porta-v`). In italiano l'ordine è Studio, Biglietto, Viaggi; in inglese Biglietto, Travel, Studio. Niente card e niente campo nero: fondo carta, un filetto in testa e uno fra l'una e l'altra. Da 760 px in su stanno affiancate, alte il 70% dello schermo (`70svh`), e al passaggio del mouse (solo dove c'è un mouse) o al focus la porta scelta si allarga da 1 a 1,5 in 0,9 s; sotto stanno impilate, alte almeno `40svh`. Il focus è un contorno interno (`outline-offset: -2px`). Nel benvenuto non ci sono pulsanti: l'azione sta nella sezione Studio.
+
+### Movimento della home
+- **Benvenuto:** il titolo (`.entra-titolo`) e poi i paragrafi (`.entra`, con l'ordine in `--n`) compaiono con una dissolvenza e un piccolo spostamento verso l'alto (12 px), curva unica. Il primo paragrafo parte quando il titolo è al 60%, gli altri a intervalli regolari: con i valori attuali l'ultimo finisce a circa 4,1 s. Le porte non hanno animazione d'entrata.
+- **Arrivo allo Studio:** quando `#studio` è il bersaglio dell'indirizzo (`#studio:target`), il contenuto della sezione compare con la stessa dissolvenza. Lo scorrimento lo fa il browser, a una velocità che il CSS non decide.
+- **Durate** in variabili in cima a `:root`: `--ingresso-pausa` (0,4 s), `--ingresso-titolo` (1,2 s), `--ingresso-paragrafo` (0,9 s), `--ingresso-scarto` (0,35 s), `--studio-entrata` (1 s).
+- **`prefers-reduced-motion`:** niente animazioni e niente allargamento delle porte; tutto compare subito. Da fermo ogni elemento è già al suo posto, quindi la pagina si legge anche se l'animazione non parte.
 
 ### Domande
 - Un filetto nero in testa e uno grigio fra le voci. La domanda è in dimensione title, con una croce a due tratti a destra. L'altezza scorre dove il browser lo supporta; altrove la risposta compare e basta.
@@ -224,14 +233,14 @@ Esatti e asciutti: niente si sposta. Al passaggio del mouse cambia lo spessore d
 - **Do** distinguere i titoli con la dimensione, usando solo i pesi 400 e 500 di Archivo.
 - **Do** usare solo i passi `s1`…`s6` e i colori definiti in `:root`.
 - **Do** tenere uno e un solo campo nero per pagina, sul contatto, con l'azione in ambra segnale.
-- **Do** limitare il movimento a un solo momento all'apertura (`.scopri` sull'h1 di ogni pagina), in CSS, con la curva unica, e fermarlo del tutto con `prefers-reduced-motion`.
+- **Do** limitare il movimento all'apertura (`.scopri` sull'h1 nelle pagine interne, il benvenuto in home) e all'arrivo sullo Studio, in CSS, con la curva unica, e fermarlo del tutto con `prefers-reduced-motion`.
 - **Do** dare ai contenuti paralleli la forma di colonne con un filetto in testa.
 
 ### Don't:
 - **Don't** usare l'ambra sulla carta, né come decorazione.
 - **Don't** usare card, ombre, angoli arrotondati, sfumature o fondi alternati.
 - **Don't** centrare niente.
-- **Don't** aggiungere animazioni legate allo scroll, dissolvenze, rimbalzi o elementi che si spostano al passaggio del mouse.
+- **Don't** aggiungere animazioni legate allo scroll, rimbalzi o elementi che si spostano al passaggio del mouse, fuori dal benvenuto e dalle porte della home.
 - **Don't** usare il maiuscolo o il grassetto per creare gerarchia.
 - **Don't** aprire la home con il nome in grande: si parte da cosa fa Ivan.
 - **Don't** caricare caratteri, script o immagini da server di terzi.

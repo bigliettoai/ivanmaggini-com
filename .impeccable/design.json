@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-13T15:53:39+02:00",
+  "generatedAt": "2026-10-13T21:09:50+02:00",
   "title": "Design System: ivanmaggini.com",
   "extensions": {
     "colorMeta": {
@@ -120,13 +120,23 @@
       },
       {
         "name": "apertura",
-        "value": "0.7s",
-        "purpose": "Unico momento animato: il titolo dell'h1 scoperto da sinistra (scopri)."
+        "value": "--ingresso-pausa 0.4s, --ingresso-titolo 1.2s, --ingresso-paragrafo 0.9s, --ingresso-scarto 0.35s",
+        "purpose": "Benvenuto della home: titolo e paragrafi compaiono uno dopo l'altro (entra); nelle pagine interne il titolo scoperto da sinistra (scopri)."
       },
       {
         "name": "domande",
         "value": "0.3s",
         "purpose": "Rotazione della croce e altezza della risposta."
+      },
+      {
+        "name": "porte",
+        "value": "0.9s",
+        "purpose": "Allargamento della porta scelta da 1 a 1,5 (flex-grow)."
+      },
+      {
+        "name": "studio-entrata",
+        "value": "1s",
+        "purpose": "Comparsa della sezione Studio quando è il bersaglio di #studio."
       }
     ],
     "breakpoints": [
@@ -204,14 +214,14 @@
   ],
   "narrative": {
     "northStar": "Il foglio di lavoro",
-    "overview": "Il sito è un foglio da tipografo svizzero lasciato sul tavolo: la griglia si\nvede, i due assi verticali reggono tutto, e non c'è nessun ornamento. Il\nrigore è la personalità. Ogni pagina, compresi i testi legali, sta sulla\nstessa griglia a dodici colonne. La gerarchia la fanno la dimensione e lo\nspazio bianco, mai il peso o il colore.\n\nLa densità è bassa: lo spazio fra due sezioni è molto più grande di quello\ndentro una sezione, ed è lui a dire dove finisce un discorso. La carta è un\ngrigio chiaro neutro scelto apposta, né il bianco dello schermo né una\ncrema. Il nero è pieno. L'unico colore, l'ambra, compare solo sul campo\nnero e solo sull'azione.\n\nIl movimento è uno per pagina, all'apertura, e mostra la griglia invece di\naggiungerci qualcosa: il titolo viene scoperto da sinistra, cioè dall'asse\nda cui parte. Sono rifiutati esplicitamente gli effetti da template (\"vibe\ncoded\") e il nome gigante usato come logo in apertura, il gesto standard dei\nsiti personali. La home si apre con un saluto (\"Piacere, sono Ivan.\"), che è\nuna frase alla dimensione display e non il nome in grande.",
+    "overview": "Il sito è un foglio da tipografo svizzero lasciato sul tavolo: la griglia si\nvede, i due assi verticali reggono tutto, e non c'è nessun ornamento. Il\nrigore è la personalità. Ogni pagina, compresi i testi legali, sta sulla\nstessa griglia a dodici colonne. La gerarchia la fanno la dimensione e lo\nspazio bianco, mai il peso o il colore.\n\nLa densità è bassa: lo spazio fra due sezioni è molto più grande di quello\ndentro una sezione, ed è lui a dire dove finisce un discorso. La carta è un\ngrigio chiaro neutro scelto apposta, né il bianco dello schermo né una\ncrema. Il nero è pieno. L'unico colore, l'ambra, compare solo sul campo\nnero e solo sull'azione.\n\nIl movimento sta all'apertura e non è mai legato allo scroll. Nelle pagine\ninterne il titolo viene scoperto da sinistra, cioè dall'asse da cui parte.\nIn home il benvenuto compare con calma, un paragrafo alla volta, e arrivando\ndalla porta dello Studio la sua sezione compare con una dissolvenza lenta. Sono rifiutati esplicitamente gli effetti da template (\"vibe\ncoded\") e il nome gigante usato come logo in apertura, il gesto standard dei\nsiti personali. La home si apre con un saluto (\"Piacere, sono Ivan.\"), che è\nuna frase alla dimensione display e non il nome in grande.",
     "keyCharacteristics": [
       "Griglia a dodici colonne con due assi: etichette dalla colonna 1, contenuto dalla colonna 4.",
       "Un solo carattere, Archivo, in due pesi (400 e 500).",
       "Carta grigia, nero pieno, ambra solo sul nero.",
       "Un solo campo nero per pagina, dove si agisce.",
       "Angoli vivi, nessuna ombra, nessuna card.",
-      "Un solo momento animato, all'apertura, solo in CSS."
+      "Movimento solo in CSS: l'apertura di ogni pagina e, in home, il benvenuto e l'arrivo allo Studio. Niente con `prefers-reduced-motion`."
     ],
     "rules": [
       {
@@ -245,14 +255,14 @@
       "**Do** distinguere i titoli con la dimensione, usando solo i pesi 400 e 500 di Archivo.",
       "**Do** usare solo i passi `s1`…`s6` e i colori definiti in `:root`.",
       "**Do** tenere uno e un solo campo nero per pagina, sul contatto, con l'azione in ambra segnale.",
-      "**Do** limitare il movimento a un solo momento all'apertura (`.scopri` sull'h1 di ogni pagina), in CSS, con la curva unica, e fermarlo del tutto con `prefers-reduced-motion`.",
+      "**Do** limitare il movimento all'apertura (`.scopri` sull'h1 nelle pagine interne, il benvenuto in home) e all'arrivo sullo Studio, in CSS, con la curva unica, e fermarlo del tutto con `prefers-reduced-motion`.",
       "**Do** dare ai contenuti paralleli la forma di colonne con un filetto in testa."
     ],
     "donts": [
       "**Don't** usare l'ambra sulla carta, né come decorazione.",
       "**Don't** usare card, ombre, angoli arrotondati, sfumature o fondi alternati.",
       "**Don't** centrare niente.",
-      "**Don't** aggiungere animazioni legate allo scroll, dissolvenze, rimbalzi o elementi che si spostano al passaggio del mouse.",
+      "**Don't** aggiungere animazioni legate allo scroll, rimbalzi o elementi che si spostano al passaggio del mouse, fuori dal benvenuto e dalle porte della home.",
       "**Don't** usare il maiuscolo o il grassetto per creare gerarchia.",
       "**Don't** aprire la home con il nome in grande: si parte da cosa fa Ivan.",
       "**Don't** caricare caratteri, script o immagini da server di terzi."
