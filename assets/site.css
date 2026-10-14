@@ -39,21 +39,20 @@
   /* Tempi del benvenuto in home, l'unico momento animato della pagina.
      Per renderlo più lento o più veloce basta cambiare questi valori:
      pausa prima del titolo, durata del titolo, durata di ogni paragrafo,
-     scarto fra un paragrafo e il successivo. L'ultima è la comparsa della
-     sezione Studio quando ci si arriva dalla sua porta. */
+     scarto fra un paragrafo e il successivo. Valgono per l'apertura della
+     home e delle pagine Studio. */
   --ingresso-pausa: 0.4s;
   --ingresso-titolo: 1.2s;
   --ingresso-paragrafo: 0.9s;
   --ingresso-scarto: 0.35s;
-  --studio-entrata: 1s;
 
   /* La carta è un grigio chiaro neutro: né il bianco dello schermo né una
      crema. Sopra, il nero pieno ha 17,6:1 e il grigio 5,45:1. */
   --carta: #ebebe8;
   --nero: #000000;
   --grigio: #5e5e5a;
-  /* Solo per i segnaposto delle foto: la carta un tono più scura, così il
-     riquadro si vede senza bordi né ombre. Il grigio sopra fa 4,6:1. */
+  /* Solo per il fondo delle foto mentre si caricano: la carta un tono più
+     scura, così il riquadro si vede senza bordi né ombre. */
   --carta-scura: #d9d9d5;
   /* Sul campo nero il grigio della carta non passerebbe: 6,06:1. */
   --grigio-su-nero: #8a8a86;
@@ -271,117 +270,74 @@ a:hover { text-decoration-thickness: 2px; }
 .sec.ingresso + .sec { padding-top: var(--s5); }
 
 /* --- benvenuto della home ----------------------------------------------
-   Un testo da leggere, non un'intestazione: righe di circa 56 caratteri,
-   interlinea larga, il lede più grande e la domanda finale staccata. */
+   Breve: il saluto e una riga. Il lede resta in una misura da leggere. */
 
-.benvenuto .body { row-gap: var(--s3); }
-.benvenuto .body > p { max-width: 56ch; line-height: 28px; }
-.benvenuto .body > .lede { line-height: 32px; }
-.benvenuto .domanda {
-  margin-top: var(--s3);
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
+/* Meno spazio sopra del solito: titolo, lede e le tre porte devono stare
+   nella prima schermata anche su un iPad in orizzontale. */
+.sec.open.benvenuto { padding-top: var(--s4); }
+
+/* Ora il lede è una frase sola: bilanciato, l'ultima parola non resta da
+   sola a capo (succedeva a "Bergamo." su iPad in orizzontale). */
+.benvenuto .body > .lede { max-width: 56ch; line-height: 32px; text-wrap: balance; }
 
 @media (min-width: 760px) {
-  .benvenuto .body > p { line-height: 32px; }
   .benvenuto .body > .lede { line-height: 36px; }
-  .benvenuto .domanda { font-size: 24px; line-height: 32px; }
 }
 
-/* Il ritratto (assets/ivan.jpg, verticale 4:5) va sopra il testo sul
-   telefono e nelle colonne 10–12 su schermo largo, quelle che altrove
-   restano vuote. Piatto: niente cornice, niente angoli arrotondati.
-   Senza foto le colonne restano vuote come nelle altre sezioni. */
-.benvenuto-foto {
-  width: 100%;
-  max-width: 360px;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-}
-
-@media (min-width: 940px) {
-  .benvenuto-foto { grid-column: 10 / 13; grid-row: 1 / span 2; max-width: none; }
-}
+/* Il rimando dalla pagina Studio a "Chi sono": una riga sull'asse del
+   contenuto, prima del campo nero. */
+.rimando { padding-bottom: var(--s5); font-weight: 500; }
 
 /* --- chi sono ------------------------------------------------------------
-   Pensata per un testo lungo. Il testo resta a sinistra in righe di circa
-   56 caratteri; le foto, messe nell'HTML fra un paragrafo e l'altro,
-   sul telefono si inseriscono nel testo e su schermo largo vanno a destra
-   (colonne 10–12), ognuna all'altezza del paragrafo che la precede. Così
-   il testo non lascia vuoti, qualunque sia la sua lunghezza. */
+   Pensata per un testo lungo. Prima l'introduzione, poi le due foto
+   affiancate in un solo blocco, poi tutto il testo in colonna unica, in
+   righe di circa 56 caratteri. Le foto non spezzano mai il testo, qualunque
+   sia la sua lunghezza. */
 
 .chi-sono .body > p { max-width: 56ch; }
 
-.foto { margin: 0; }
+/* Ogni foto riempie il suo riquadro, che ha già le proporzioni giuste
+   prima che l'immagine arrivi: niente salti mentre si carica. */
+.foto { margin: 0; aspect-ratio: 4 / 5; overflow: hidden; background: var(--carta-scura); }
+.foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Sul telefono anche il tramonto diventa un ritratto: il ritaglio tiene
+   Ivan, che nella foto sta a destra del centro. */
+.foto-orizzontale img { object-position: 72% 50%; }
 
-/* Segnaposto: un riquadro piatto, un tono più scuro della carta, con
-   l'etichetta in basso a sinistra. Niente bordi, angoli o ombre. */
-.foto-riquadro {
-  display: flex;
-  align-items: flex-end;
-  padding: var(--s2);
-  background: var(--carta-scura);
-  color: var(--grigio);
-  font-size: 13px;
-  line-height: 20px;
-  letter-spacing: 0.01em;
-}
-.foto-verticale .foto-riquadro { aspect-ratio: 4 / 5; }
-.foto-orizzontale .foto-riquadro { aspect-ratio: 3 / 2; }
-.foto img { width: 100%; height: auto; }
+/* Le due foto sulla stessa riga. Da 640 px le parti 8 e 15 danno alla
+   verticale 4:5 e alla orizzontale 3:2 la stessa altezza. */
+.foto-fila { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); }
+.chi-sono .body > .foto-fila { grid-column: 1 / -1; margin-block: var(--s2); }
 
-.chi-sono .foto-verticale { max-width: 75%; }
-
-@media (min-width: 940px) {
-  .chi-sono .body { display: flow-root; }
-  .chi-sono .body > * + * { margin-top: var(--s3); }
-  /* Le foto a destra, sfalsate: la verticale nelle colonne 10–12, la
-     orizzontale un po' più larga e più in basso. */
-  .chi-sono .foto {
-    float: right;
-    clear: right;
-    margin-left: var(--gutter);
-  }
-  .chi-sono .foto-verticale {
-    width: calc((100% - 8 * var(--gutter)) / 9 * 3 + 2 * var(--gutter));
-    max-width: none;
-    margin-top: var(--s5);
-  }
-  .chi-sono .foto-orizzontale {
-    width: calc((100% - 8 * var(--gutter)) / 9 * 4 + 3 * var(--gutter));
-    margin-top: var(--s6);
-  }
+@media (min-width: 640px) {
+  .foto-fila { grid-template-columns: 8fr 15fr; }
+  .foto-orizzontale { aspect-ratio: 3 / 2; }
+  .foto-orizzontale img { object-position: 50% 50%; }
 }
 
 /* --- le porte -----------------------------------------------------------
-   Tre porte, ognuna un solo link. Niente card e niente campo nero: fondo
-   carta, un filetto in testa e uno fra l'una e l'altra. Al passaggio la
-   porta scelta si allarga lentamente; è l'unico movimento delle porte. */
+   Un indice a righe: tre righe a tutta larghezza, ognuna un solo link,
+   alta quanto il suo contenuto. Un filetto sopra ogni riga; quello sotto
+   l'ultima è il bordo della sezione che segue. Niente card, niente fondo.
+   Al passaggio il titolo scorre di poco verso destra e il verbo si
+   ispessisce: è l'unico movimento delle porte. */
 
 .porte {
-  display: flex;
-  flex-direction: column;
-  /* Vicine alla domanda che le introduce: su schermo largo il filetto
-     entra nella prima schermata e dice che sotto c'è altro. */
-  margin-top: var(--s4);
-  border-top: 1px solid var(--nero);
+  /* Vicine al saluto che le introduce: tutte e tre stanno nella prima
+     schermata insieme al titolo. */
+  margin-top: var(--s3);
 }
 
 .porta {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s2);
-  min-height: 40svh;
-  padding: var(--s4) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 4px;
+  padding-block: var(--s2);
+  border-top: 1px solid var(--nero);
   text-decoration: none;
 }
 
-.porta + .porta { border-top: 1px solid var(--nero); }
-
-/* Il focus sta dentro la metà, così il filetto non lo copre. */
+/* Il focus sta dentro la riga, così il filetto non lo copre. */
 .porta:focus-visible { outline-offset: -2px; }
 
 .porta-e {
@@ -392,55 +348,74 @@ a:hover { text-decoration-thickness: 2px; }
 }
 
 .porta-t {
-  font-size: 40px;
-  line-height: 44px;
+  font-size: 24px;
+  line-height: 32px;
   font-weight: 500;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+  transition: transform 0.3s var(--curva);
 }
 
-.porta-s { max-width: 30ch; }
+.porta-s { color: var(--grigio); }
 
 .porta-v {
-  margin-top: auto;
+  margin-top: 4px;
   font-weight: 500;
+}
+
+/* Si sottolinea il verbo, non la freccia. */
+.porta-vt {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
   transition: text-decoration-thickness 0.15s var(--curva);
 }
 
-.porta:hover .porta-v,
-.porta:focus-visible .porta-v { text-decoration-thickness: 2px; }
+.porta:hover .porta-vt,
+.porta:focus-visible .porta-vt { text-decoration-thickness: 2px; }
+
+.porta:hover .porta-t,
+.porta:focus-visible .porta-t { transform: translateX(6px); }
+
+/* Da 760 px la riga usa la griglia della pagina. Fino a 939 px, come il
+   resto della pagina, l'etichetta sta sopra; il titolo prende le colonne
+   1–8 e il verbo le 9–12, così anche un verbo lungo non tocca il titolo. */
+@media (min-width: 760px) {
+  .porta {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+    padding-block: var(--s3);
+  }
+  .porta-e { grid-column: 1 / -1; grid-row: 1; }
+  .porta-t {
+    grid-column: 1 / 9;
+    grid-row: 2;
+    align-self: baseline;
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .porta-s { grid-column: 1 / 9; grid-row: 3; }
+  .porta-v {
+    grid-column: 9 / 13;
+    grid-row: 2;
+    align-self: baseline;
+    justify-self: end;
+    margin-top: 0;
+    white-space: nowrap;
+  }
+}
+
+/* Da 940 px: etichetta sull'asse A, titolo e descrizione dall'asse B,
+   verbo a destra sulla linea del titolo. */
+@media (min-width: 940px) {
+  .porta-e { grid-column: 1 / 4; grid-row: 1; align-self: baseline; }
+  .porta-t { grid-column: 4 / 10; grid-row: 1; }
+  .porta-s { grid-column: 4 / 10; grid-row: 2; }
+  .porta-v { grid-column: 10 / 13; grid-row: 1; }
+}
 
 @media (min-width: 1200px) {
-  .porta-t { font-size: 64px; line-height: 64px; }
-}
-
-@media (min-width: 760px) {
-  .porte { flex-direction: row; min-height: 70svh; }
-  .porta {
-    flex: 1 1 0;
-    min-width: 0;
-    min-height: 0;
-    padding: var(--s5) var(--s4) var(--s4) 0;
-    transition: flex-grow 0.9s var(--curva);
-  }
-  /* Stesso spazio orizzontale per ogni porta (40 px), così a riposo sono
-     larghe uguali: la prima lo ha a destra e parte dall'asse A, le altre
-     a sinistra, dopo il filetto. */
-  .porta + .porta {
-    border-top: 0;
-    border-left: 1px solid var(--nero);
-    padding-left: var(--s4);
-    padding-right: 0;
-  }
-  .porta:focus-visible { flex-grow: 1.5; }
-}
-
-/* Solo dove c'è un mouse: sul telefono il dito non passa sopra. */
-@media (min-width: 760px) and (hover: hover) {
-  .porta:hover { flex-grow: 1.5; }
+  .porta-t { font-size: 36px; line-height: 40px; }
 }
 
 .sec-grid,
@@ -490,6 +465,14 @@ a:hover { text-decoration-thickness: 2px; }
 }
 
 .rail b { display: block; font-weight: 500; color: var(--nero); }
+
+/* Il marchio dello Studio nell'etichetta di apertura delle pagine Studio.
+   Alto 20 px come la riga dell'etichetta. Il -4px viene dal disegno: la "g"
+   scende di 18,2 unità su 90,5 di altezza, cioè 4 px a 20 px, e così la
+   linea di base della parola cade su quella del titolo accanto (misurato,
+   coincidono al pixel). Altezza e vertical-align vanno cambiati insieme,
+   rifacendo il conto. */
+.rail .logo { display: inline-block; height: 20px; width: auto; max-width: 100%; vertical-align: -4px; }
 
 /* Distacco in più prima di un blocco che non è testo corrente: elenchi,
    colonne, domande, pulsanti. Con la distanza della griglia fa 40 px. */
@@ -903,12 +886,6 @@ a[x-apple-data-detectors] span {
   animation-delay: var(--ingresso-pausa);
 }
 
-/* Entrare nello Studio: lo scorrimento morbido lo fa il browser, a una
-   velocità che il CSS non decide; quando lo Studio è il bersaglio
-   dell'indirizzo (#studio) il suo contenuto compare lentamente. */
-#studio:target > .shell {
-  animation: entra var(--studio-entrata) var(--curva) backwards;
-}
 
 @keyframes scopri {
   from { clip-path: inset(-0.2em 100% -0.3em 0); }
@@ -926,12 +903,52 @@ a[x-apple-data-detectors] span {
   animation-delay: calc(var(--i, 0) * 140ms + 80ms);
 }
 
+/* Sotto la prima schermata i blocchi compaiono mentre entrano nella
+   finestra, uno alla volta: stessa dissolvenza e stesso scatto di 12 px
+   dell'apertura (`entra`). È una timeline di scorrimento in CSS, senza
+   JavaScript: dove il browser non la conosce, o con prefers-reduced-motion,
+   o in stampa, i blocchi sono già al loro posto e il testo c'è sempre.
+   Si accende con la classe `rivela` sul `main` della pagina; l'apertura
+   (`.sec.open`) ha la sua entrata a tempo e qui non rientra. La
+   dissolvenza segue lo scorrimento: finisce quando il blocco ha percorso
+   `--rivela-a` della sua corsa dentro la finestra, quindi a chi scorre
+   piano compare piano. */
+:root {
+  --rivela-da: entry 0%;
+  --rivela-a: cover 28%;
+  /* Il campo nero sta in fondo alla pagina, sopra il piede: a fine corsa non
+     può salire oltre, quindi la sua dissolvenza finisce prima, perché non
+     resti a metà nemmeno su uno schermo molto alto. */
+  --rivela-a-fondo: cover 12%;
+}
+
+@supports (animation-timeline: view()) {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    .rivela .sec:not(.open) .rail,
+    .rivela .sec:not(.open) .body > :not(.cols),
+    .rivela .sec:not(.open) .cols > *,
+    .rivela .rimando > *,
+    .rivela .board .rail,
+    .rivela .board .body > * {
+      animation: entra linear both;
+      animation-timeline: view();
+      animation-range: var(--rivela-da) var(--rivela-a);
+    }
+
+    .rivela .board .rail,
+    .rivela .board .body > * {
+      animation-range: var(--rivela-da) var(--rivela-a-fondo);
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .righe > li + li .riga::before,
   .riga > *,
   .scopri,
   .entra,
-  .entra-titolo,
-  #studio:target > .shell { animation: none; }
-  .porta { transition: none; }
+  .entra-titolo { animation: none; }
+  .porta-t { transition: none; }
+  .porta:hover .porta-t,
+  .porta:focus-visible .porta-t { transform: none; }
 }
