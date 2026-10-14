@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T21:54:41+02:00",
+  "title": "Design System: ivanmaggini.com",
+  "extensions": {
+    "colorMeta": {
+      "ambra": {
+        "role": "primary",
+        "displayName": "Ambra segnale",
+        "canonical": "#ffab00",
+        "tonalRamp": [
+          "#4c3300",
+          "#855900",
+          "#bd7f00",
+          "#f5a400",
+          "#ffba2e",
+          "#ffcd66",
+          "#ffe1a3",
+          "#fff7e5"
+        ]
+      },
+      "carta": {
+        "role": "neutral",
+        "displayName": "Carta da disegno",
+        "canonical": "#ebebe8",
+        "tonalRamp": [
+          "#292924",
+          "#47473e",
+          "#656558",
+          "#838372",
+          "#9e9e8f",
+          "#b8b8ad",
+          "#d4d4ce",
+          "#f3f3f1"
+        ]
+      },
+      "nero": {
+        "role": "neutral",
+        "displayName": "Inchiostro",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "#262626",
+          "#424242",
+          "#5e5e5e",
+          "#7a7a7a",
+          "#969696",
+          "#b2b2b2",
+          "#d1d1d1",
+          "#f2f2f2"
+        ]
+      },
+      "grigio": {
+        "role": "neutral",
+        "displayName": "Grafite",
+        "canonical": "#5e5e5a",
+        "tonalRamp": [
+          "#272725",
+          "#444441",
+          "#60605c",
+          "#7d7d78",
+          "#999994",
+          "#b4b4b1",
+          "#d2d2d0",
+          "#f3f3f2"
+        ]
+      },
+      "grigio-su-nero": {
+        "role": "neutral",
+        "displayName": "Grafite su nero",
+        "canonical": "#8a8a86",
+        "tonalRamp": [
+          "#272726",
+          "#434341",
+          "#60605d",
+          "#7c7c78",
+          "#989895",
+          "#b4b4b1",
+          "#d2d2d0",
+          "#f2f2f2"
+        ]
+      },
+      "carta-scura": {
+        "role": "neutral",
+        "displayName": "Carta scura",
+        "canonical": "#d9d9d5",
+        "tonalRamp": [
+          "#282824",
+          "#46463f",
+          "#63635a",
+          "#818174",
+          "#9c9c91",
+          "#b6b6af",
+          "#d3d3cf",
+          "#f3f3f2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "h1 di ogni pagina e titoli delle porte. 40/44 sotto i 760 px (porte sotto i 1200 px)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Titoli di sezione e indirizzo email nel campo nero. 28/32 sotto i 760 px."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "h3, titoli delle colonne parallele, domande. 20/28 sotto i 760 px."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Paragrafo d'apertura sotto un titolo, colonne 4–9. 20/28 sotto i 760 px."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Testo corrente, massimo 38em. 16/24 sotto i 760 px."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Etichette sull'asse A, note, piede. Tondo minuscolo."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "curva",
+        "value": "cubic-bezier(0.2, 0, 0, 1)",
+        "purpose": "L'unica curva del sito: parte decisa, si ferma piano, senza rimbalzi."
+      },
+      {
+        "name": "hover",
+        "value": "0.15s",
+        "purpose": "Spessore della sottolineatura, inversione dei pulsanti."
+      },
+      {
+        "name": "apertura",
+        "value": "--ingresso-pausa 0.4s, --ingresso-titolo 1.2s, --ingresso-paragrafo 0.9s, --ingresso-scarto 0.35s",
+        "purpose": "Apertura della home e delle pagine Studio: titolo e poi gli elementi che lo seguono compaiono uno dopo l'altro (entra); nelle altre pagine il titolo scoperto da sinistra (scopri)."
+      },
+      {
+        "name": "domande",
+        "value": "0.3s",
+        "purpose": "Rotazione della croce e altezza della risposta."
+      },
+      {
+        "name": "porte",
+        "value": "0.9s",
+        "purpose": "Allargamento della porta scelta da 1 a 1,5 (flex-grow)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "testo",
+        "value": "560px"
+      },
+      {
+        "name": "tipografia",
+        "value": "760px"
+      },
+      {
+        "name": "griglia",
+        "value": "940px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Pulsante",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Azione principale su carta. Al passaggio si inverte.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Prenota la consulenza gratuita</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;font-family:var(--f,'Archivo',Helvetica,Arial,sans-serif);font-size:16px;line-height:20px;font-weight:500;padding:14px 20px;border:1px solid #000;border-radius:0;background:#000;color:#ebebe8;text-decoration:none;transition:background-color .15s cubic-bezier(.2,0,0,1),color .15s cubic-bezier(.2,0,0,1)}.ds-btn:hover{background:transparent;color:#000}.ds-btn:focus-visible{outline:2px solid #000;outline-offset:3px}"
+    },
+    {
+      "name": "Pulsante ghost",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Azione secondaria su carta. Al passaggio si riempie.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Torna alla home</a>",
+      "css": ".ds-btn-ghost{display:inline-flex;font-family:var(--f,'Archivo',Helvetica,Arial,sans-serif);font-size:16px;line-height:20px;font-weight:500;padding:14px 20px;border:1px solid #000;border-radius:0;background:transparent;color:#000;text-decoration:none;transition:background-color .15s cubic-bezier(.2,0,0,1),color .15s cubic-bezier(.2,0,0,1)}.ds-btn-ghost:hover{background:#000;color:#ebebe8}.ds-btn-ghost:focus-visible{outline:2px solid #000;outline-offset:3px}"
+    },
+    {
+      "name": "Link",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "Sottolineatura da 1 px che diventa da 2 px. Nient'altro cambia.",
+      "html": "<p class=\"ds-p\">Scrivete a <a class=\"ds-a\" href=\"#\">questo indirizzo</a>.</p>",
+      "css": ".ds-p{font-family:var(--f,'Archivo',Helvetica,Arial,sans-serif);font-size:18px;line-height:28px;color:#000}.ds-a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em;transition:text-decoration-thickness .15s cubic-bezier(.2,0,0,1)}.ds-a:hover{text-decoration-thickness:2px}.ds-a:focus-visible{outline:2px solid #000;outline-offset:3px}"
+    },
+    {
+      "name": "Barra in alto",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Marchio sull'asse A, voci dall'asse B, lingue a destra.",
+      "html": "<header class=\"ds-top\"><a class=\"ds-mark\" href=\"#\">Ivan Maggini</a><nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Studio</a><a href=\"#\">Biglietto</a><span class=\"ds-lang\"><a href=\"#\" aria-current=\"true\">IT</a><a href=\"#\">EN</a></span></nav></header>",
+      "css": ".ds-top{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:0 20px;background:#ebebe8;border-bottom:1px solid #000;font-family:var(--f,'Archivo',Helvetica,Arial,sans-serif);}.ds-mark{font-size:16px;font-weight:500;color:#000;text-decoration:none}.ds-nav{display:flex;align-items:center;gap:24px;font-size:15px;font-weight:500}.ds-nav a{color:#000;text-decoration:none}.ds-nav a:hover,.ds-nav a[aria-current=page]{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}.ds-lang{display:inline-flex;gap:8px}.ds-lang a{color:#5e5e5a}.ds-lang a[aria-current]{color:#000;text-decoration:none}"
+    },
+    {
+      "name": "Campo nero",
+      "kind": "custom",
+      "refersTo": "board",
+      "description": "L'unico blocco nero della pagina, sul contatto. L'email in ambra è l'azione.",
+      "html": "<section class=\"ds-board\"><p class=\"ds-rail\"><b>Contatti</b>Rispondo entro 24 ore</p><h2 class=\"ds-h2\">Scrivimi.</h2><a class=\"ds-mailto\" href=\"#\">general@ivanmaggini.com</a></section>",
+      "css": ".ds-board{background:#000;color:#ebebe8;padding:80px 24px;display:grid;gap:24px;font-family:var(--f,'Archivo',Helvetica,Arial,sans-serif);}.ds-rail{margin:0;font-size:13px;line-height:20px;letter-spacing:.01em;color:#8a8a86}.ds-rail b{display:block;font-weight:500;color:#ebebe8}.ds-h2{margin:0;font-size:36px;line-height:40px;font-weight:500;letter-spacing:-.02em}.ds-mailto{font-size:36px;line-height:40px;font-weight:500;letter-spacing:-.02em;color:#ffab00;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.14em;transition:text-decoration-thickness .15s cubic-bezier(.2,0,0,1)}.ds-mailto:hover{text-decoration-thickness:4px}.ds-mailto:focus-visible{outline:2px solid #ffab00;outline-offset:3px}"
+    },
+    {
+      "name": "Colonne parallele",
+      "kind": "card",
+      "refersTo": "col",
+      "description": "Niente card: un filetto in testa a ogni colonna.",
+      "html": "<div class=\"ds-cols\"><div class=\"ds-col\"><h3>Professioni che si scelgono per fiducia</h3><p>Video regolari che rispondono alle domande vere.</p></div><div class=\"ds-col\"><h3>Studi che vivono di progetti</h3><p>Come nasce un lavoro, con la voce di chi l'ha progettato.</p></div></div>",
+      "css": ".ds-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;font-family:var(--f,'Archivo',Helvetica,Arial,sans-serif);color:#000}.ds-col{display:flex;flex-direction:column;gap:16px;border-top:1px solid #000;padding-top:16px}.ds-col h3{margin:0;font-size:24px;line-height:32px;font-weight:500;letter-spacing:-.01em}.ds-col p{margin:0;font-size:16px;line-height:24px}"
+    },
+    {
+      "name": "Etichetta di sezione",
+      "kind": "custom",
+      "refersTo": "rail",
+      "description": "Sull'asse A, allineata alla linea di base del titolo accanto.",
+      "html": "<div class=\"ds-sec\"><p class=\"ds-rail2\"><b>Il vostro tempo</b>Una mezza giornata</p><h2>Quello che vi chiedo è mezza giornata.</h2></div>",
+      "css": ".ds-sec{display:grid;grid-template-columns:1fr 3fr;gap:24px;align-items:baseline;border-top:1px solid #000;padding-top:40px;font-family:var(--f,'Archivo',Helvetica,Arial,sans-serif);color:#000}.ds-rail2{margin:0;font-size:13px;line-height:20px;letter-spacing:.01em;color:#5e5e5a}.ds-rail2 b{display:block;font-weight:500;color:#000}.ds-sec h2{margin:0;font-size:36px;line-height:40px;font-weight:500;letter-spacing:-.02em}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Il foglio di lavoro",
+    "overview": "Il sito è un foglio da tipografo svizzero lasciato sul tavolo: la griglia si\nvede, i due assi verticali reggono tutto, e non c'è nessun ornamento. Il\nrigore è la personalità. Ogni pagina, compresi i testi legali, sta sulla\nstessa griglia a dodici colonne. La gerarchia la fanno la dimensione e lo\nspazio bianco, mai il peso o il colore.\n\nLa densità è bassa: lo spazio fra due sezioni è molto più grande di quello\ndentro una sezione, ed è lui a dire dove finisce un discorso. La carta è un\ngrigio chiaro neutro scelto apposta, né il bianco dello schermo né una\ncrema. Il nero è pieno. L'unico colore, l'ambra, compare solo sul campo\nnero e solo sull'azione.\n\nIl movimento sta all'apertura e non è mai legato allo scroll. Nelle pagine\ninterne il titolo viene scoperto da sinistra, cioè dall'asse da cui parte.\nIn home e nelle pagine Studio l'apertura compare con calma: il titolo, poi\nil resto un elemento alla volta. Sono rifiutati esplicitamente gli effetti da template (\"vibe\ncoded\") e il nome gigante usato come logo in apertura, il gesto standard dei\nsiti personali. La home si apre con un saluto (\"Piacere, sono Ivan.\"), che è\nuna frase alla dimensione display e non il nome in grande.",
+    "keyCharacteristics": [
+      "Griglia a dodici colonne con due assi: etichette dalla colonna 1, contenuto dalla colonna 4.",
+      "Un solo carattere, Archivo, in due pesi (400 e 500).",
+      "Carta grigia, nero pieno, ambra solo sul nero.",
+      "Un solo campo nero per pagina, dove si agisce.",
+      "Angoli vivi, nessuna ombra, nessuna card.",
+      "Movimento solo in CSS e solo all'apertura di ogni pagina. Niente con `prefers-reduced-motion`."
+    ],
+    "rules": [
+      {
+        "name": "La regola del segnale",
+        "body": "L'ambra compare solo sul campo nero e solo sull'azione della pagina. Se c'è ambra sulla carta, è un errore.",
+        "section": "colors"
+      },
+      {
+        "name": "La regola del colore come informazione",
+        "body": "Niente fondi alternati, niente grigi decorativi, niente tinte di sezione. Il colore dice dove si agisce, e basta.",
+        "section": "colors"
+      },
+      {
+        "name": "La regola della dimensione",
+        "body": "Due pesi soli. Un titolo si distingue con la dimensione, mai con il grassetto, il colore o il maiuscolo.",
+        "section": "typography"
+      },
+      {
+        "name": "La regola dei due assi",
+        "body": "Ogni elemento parte dall'asse A o dall'asse B. Un terzo punto di partenza è un errore.",
+        "section": "layout"
+      },
+      {
+        "name": "La regola del foglio",
+        "body": "Se un elemento sembra sollevato dalla carta, è sbagliato.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** far partire ogni elemento dall'asse A (colonna 1) o dall'asse B (colonna 4), e lasciare vuote le colonne 10–12 accanto al testo corrente.",
+      "**Do** distinguere i titoli con la dimensione, usando solo i pesi 400 e 500 di Archivo.",
+      "**Do** usare solo i passi `s1`…`s6` e i colori definiti in `:root`.",
+      "**Do** tenere uno e un solo campo nero per pagina, sul contatto, con l'azione in ambra segnale.",
+      "**Do** limitare il movimento all'apertura (`.entra-titolo`/`.entra` in home e nelle pagine Studio, `.scopri` sull'h1 nelle altre), in CSS, con la curva unica, e fermarlo del tutto con `prefers-reduced-motion`.",
+      "**Do** dare ai contenuti paralleli la forma di colonne con un filetto in testa."
+    ],
+    "donts": [
+      "**Don't** usare l'ambra sulla carta, né come decorazione.",
+      "**Don't** usare card, ombre, angoli arrotondati, sfumature o fondi alternati.",
+      "**Don't** centrare niente.",
+      "**Don't** aggiungere animazioni legate allo scroll, rimbalzi o elementi che si spostano al passaggio del mouse, fuori dal benvenuto e dalle porte della home.",
+      "**Don't** usare il maiuscolo o il grassetto per creare gerarchia.",
+      "**Don't** aprire la home con il nome in grande: si parte da cosa fa Ivan.",
+      "**Don't** caricare caratteri, script o immagini da server di terzi."
+    ]
+  }
+}

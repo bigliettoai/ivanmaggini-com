@@ -7,9 +7,50 @@
   publish = "."
   command = ""
 
+# La radice del repository viene pubblicata tutta, quindi anche i file di
+# lavoro sarebbero leggibili da chiunque. Rispondono con la pagina di errore e
+# lo stato 404. force = true serve perché questi file esistono davvero, e
+# senza forzatura Netlify servirebbe il file invece della regola. Stanno in
+# testa, perché vale la prima regola che corrisponde.
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/CLAUDE.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/PRODUCT.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/DESIGN.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.claude/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.impeccable/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 # URL puliti. Netlify offre già la funzione "Pretty URLs", ma dichiarare le
-# riscritture qui rende le rotte indipendenti da quell'impostazione: /studio
-# serve studio.html senza redirect visibile all'utente né cambio di URL.
+# riscritture qui rende le rotte indipendenti da quell'impostazione: /biglietto
+# serve biglietto.html senza redirect visibile all'utente né cambio di URL.
 [[redirects]]
   from = "/biglietto"
   to = "/biglietto.html"
@@ -32,6 +73,7 @@
   to = "/en/biglietto"
   status = 301
 
+# Lo Studio ha la sua pagina; è l'indirizzo da usare nelle mail ai clienti.
 [[redirects]]
   from = "/studio"
   to = "/studio.html"
@@ -42,10 +84,12 @@
   to = "/privacy.html"
   status = 200
 
+# Le condizioni del servizio stanno nel contratto con ogni cliente: la
+# pagina non c'è più, e chi ha ancora il vecchio indirizzo arriva alla home.
 [[redirects]]
   from = "/condizioni"
-  to = "/condizioni.html"
-  status = 200
+  to = "/"
+  status = 301
 
 # Il modulo di contatto non esiste più: si scrive una email e basta. La pagina
 # di conferma è stata rimossa, ma la sua rotta resta mappata sulla home perché
@@ -55,17 +99,30 @@
   to = "/"
   status = 301
 
-# Versione inglese di home e privacy. La sezione Studio è solo in italiano,
-# perché si rivolge agli studi professionali lombardi.
+# Versione inglese. Ogni pagina italiana ha la sua controparte.
 [[redirects]]
   from = "/en"
   to = "/en/"
   status = 301
 
+# La pagina Studio inglese. Come tutte le regole /en/, sta prima del
+# catch-all /en/* in fondo.
+[[redirects]]
+  from = "/en/studio"
+  to = "/en/studio.html"
+  status = 200
+
 [[redirects]]
   from = "/en/privacy"
   to = "/en/privacy.html"
   status = 200
+
+# Come /condizioni: la pagina non c'è più, il vecchio indirizzo porta
+# alla home inglese.
+[[redirects]]
+  from = "/en/terms"
+  to = "/en/"
+  status = 301
 
 # Qualunque altro percorso sotto /en/ riceve la pagina di errore inglese,
 # non quella italiana.
@@ -90,12 +147,12 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
 
-# Il foglio di stile e lo script vengono richiamati con l'impronta del loro
-# contenuto nell'indirizzo (`?v=...`), quindi una modifica cambia l'URL e la
-# copia vecchia non può più essere servita. La rivalidazione a ogni richiesta
-# è la seconda rete: se un giorno l'impronta non venisse rigenerata, il
-# browser se ne accorgerebbe lo stesso. Sono venti kilobyte, e la risposta
-# è quasi sempre un 304 vuoto.
+# Il foglio di stile viene richiamato con l'impronta del suo contenuto
+# nell'indirizzo (`?v=...`), quindi una modifica cambia l'URL e la copia
+# vecchia non può più essere servita. La rivalidazione a ogni richiesta è la
+# seconda rete: se un giorno l'impronta non venisse rigenerata, il browser se
+# ne accorgerebbe lo stesso. Sono pochi kilobyte, e la risposta è quasi
+# sempre un 304 vuoto. Vale anche per il carattere, che cambia di rado.
 #
 # Le immagini restano in cache un'ora: cambiano di rado e non rompono nulla.
 [[headers]]

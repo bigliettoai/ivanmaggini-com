@@ -1,59 +1,87 @@
 /* ------------------------------------------------------------------
    ivanmaggini.com
 
-   Il sito di una persona che fa due mestieri lontani: costruisce
-   Biglietto, un prodotto per chi viaggia, e produce video per studi
-   professionali. Il filo che tiene insieme le due cose è che entrambe
-   hanno uno stato, e lui lo racconta man mano: il prototipo è offline
-   e torna in autunno, lo studio prende clienti adesso.
-
-   Da lì viene l'impianto visivo: un tabellone. Carta chiara e fredda
-   per il testo, un unico blocco nero dove gli stati vengono dichiarati,
-   ambra solo lì dentro. Il bordo superiore del blocco è perforato come
-   il margine di un biglietto staccato: è l'unico ornamento del sito ed
-   è anche l'unica cosa che si muove da sola.
+   Il sito di una persona che fa due mestieri: costruisce Biglietto, un
+   prodotto per chi viaggia, e gira i video di studi professionali e
+   aziende. L'impianto è svizzero: una griglia a dodici colonne, un solo
+   carattere, e una gerarchia fatta di dimensione e di spazio bianco.
 
    Regole che il foglio si dà:
-   - niente etichette monospace tutte maiuscole sopra ai titoli: le
-     etichette stanno nel margine sinistro, in tondo minuscolo;
-   - niente griglie di card tutte uguali: le card esistono solo dove il
-     contenuto è davvero parallelo (due pubblici, tre listini);
-   - il nero è nero, non un nero tinto;
-   - nessuna freccia appesa al testo dei link;
-   - un solo momento animato, non una dissolvenza per ogni sezione.
+   - due assi verticali e nient'altro: le etichette partono dalla colonna
+     1, il contenuto dalla colonna 4. Niente è centrato;
+   - due pesi (400 e 500) e sei dimensioni. Se un titolo non si distingue,
+     lo deve distinguere la dimensione, non il peso o il colore;
+   - lo spazio fra due sezioni (128 px) è sempre molto più grande di quello
+     dentro una sezione (24–40 px): è lui a dire dove finisce un discorso;
+   - il colore è un'informazione. Il campo nero segna l'unico posto della
+     pagina in cui si agisce, e l'ambra è l'azione stessa. Niente card,
+     niente fondi alternati, niente grigi decorativi;
+   - le pagine legali hanno lo stesso impianto di quelle di vendita;
+   - un solo momento animato per pagina, all'apertura, e nessun
+     movimento legato allo scroll. Al passaggio del mouse non si sposta
+     niente: cambia solo lo spessore di una sottolineatura.
    ------------------------------------------------------------------ */
 
+/* Archivo, fissato alla larghezza normale e ridotto ai pesi 400–500 e ai
+   caratteri latini, ospitato qui: nessuna richiesta parte verso server di
+   terzi per mostrare il testo. La larghezza espansa del vecchio sito non
+   c'è più: la gerarchia la fa la dimensione, non la forma delle lettere.
+   Licenza in /assets/fonts/OFL-archivo.txt. */
+@font-face {
+  font-family: 'Archivo';
+  src: url('/assets/fonts/archivo.woff2') format('woff2');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  /* Carta da biglietto: grigio chiaro neutro, non crema. */
-  --paper: #ebebe8;
-  --paper-2: #e0e0dc;
-  --ink: #000000;
-  --ink-soft: rgba(0, 0, 0, 0.72);
-  --ink-mute: rgba(0, 0, 0, 0.58);
-  --rule: rgba(0, 0, 0, 0.18);
-  --rule-strong: rgba(0, 0, 0, 0.4);
+  /* Tempi del benvenuto in home, l'unico momento animato della pagina.
+     Per renderlo più lento o più veloce basta cambiare questi valori:
+     pausa prima del titolo, durata del titolo, durata di ogni paragrafo,
+     scarto fra un paragrafo e il successivo. Valgono per l'apertura della
+     home e delle pagine Studio. */
+  --ingresso-pausa: 0.4s;
+  --ingresso-titolo: 1.2s;
+  --ingresso-paragrafo: 0.9s;
+  --ingresso-scarto: 0.35s;
 
-  /* Il tabellone. L'ambra vive solo qui: su carta non passerebbe mai
-     il contrasto, e il vincolo tiene il colore al suo posto. */
-  --board: #0c0c0c;
-  --board-fg: #ebebe8;
-  --board-mute: rgba(235, 235, 232, 0.62);
-  --board-rule: rgba(235, 235, 232, 0.2);
-  --signal: #ffab00;
+  /* La carta è un grigio chiaro neutro: né il bianco dello schermo né una
+     crema. Sopra, il nero pieno ha 17,6:1 e il grigio 5,45:1. */
+  --carta: #ebebe8;
+  --nero: #000000;
+  --grigio: #5e5e5a;
+  /* Solo per il fondo delle foto mentre si caricano: la carta un tono più
+     scura, così il riquadro si vede senza bordi né ombre. */
+  --carta-scura: #d9d9d5;
+  /* Sul campo nero il grigio della carta non passerebbe: 6,06:1. */
+  --grigio-su-nero: #8a8a86;
+  /* Solo sul nero (11:1). Sulla carta farebbe 1,6:1, e il vincolo tiene
+     il colore al suo posto. */
+  --ambra: #ffab00;
 
-  --display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --text: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --f: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-  /* Passi di spaziatura: il sito usa solo questi. */
-  --s1: 6px;
-  --s2: 12px;
-  --s3: 22px;
-  --s4: 36px;
-  --s5: 60px;
-  --s6: clamp(56px, 9vw, 120px);
+  /* Passi di spaziatura su base 8: il sito usa solo questi. */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 40px;
+  --s5: 64px;
+  --s6: clamp(80px, 10vw, 128px);
 
-  --rail: 168px;
-  --measure: 54ch;
+  --gutter: 16px;
+  --margine: clamp(20px, 5.5vw, 64px);
+
+  /* Una curva sola per tutto quello che si muove: parte decisa e si
+     ferma piano, senza rimbalzi. */
+  --curva: cubic-bezier(0.2, 0, 0, 1);
+
+  interpolate-size: allow-keywords;
+}
+
+@media (min-width: 940px) {
+  :root { --gutter: 24px; }
 }
 
 /* --- base ------------------------------------------------------------ */
@@ -76,571 +104,744 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--text);
-  font-size: 1.0625rem;
-  line-height: 1.62;
-  font-optical-sizing: auto;
+  background: var(--carta);
+  color: var(--nero);
+  font-family: var(--f);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-kerning: normal;
+  /* Cifre tabellari ovunque: date, partita IVA e numeri dei paragrafi si
+     incolonnano. */
+  font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
-@media (min-width: 768px) {
-  body { font-size: 1.125rem; }
+@media (min-width: 760px) {
+  body { font-size: 18px; line-height: 28px; }
 }
 
 img, svg { max-width: 100%; height: auto; display: block; }
 
-::selection { background: var(--ink); color: var(--paper); }
+::selection { background: var(--nero); color: var(--carta); }
 
 :focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--nero);
   outline-offset: 3px;
 }
 
-.board :focus-visible { outline-color: var(--signal); }
+.board :focus-visible { outline-color: var(--ambra); }
 
 /* Il salto di ancora non deve finire sotto la barra in alto. */
-[id] { scroll-margin-top: 96px; }
+[id] { scroll-margin-top: 80px; }
 
 .skip {
   position: absolute;
   left: -9999px;
   top: 0;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--nero);
+  color: var(--carta);
   padding: 10px 16px;
   z-index: 20;
 }
 .skip:focus { left: 8px; top: 8px; }
 
-/* --- tipografia ------------------------------------------------------- */
+/* Presente per i lettori vocali e per i motori, invisibile a schermo. */
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 
-/* Il display è un grottesco variabile usato in larghezza espansa: è il
-   modo in cui è scritta la segnaletica, ed è anche il contrasto più
-   forte possibile con il serif del testo corrente. */
-h1, h2, h3, .display-xl {
-  font-family: var(--display);
-  font-weight: 650;
-  font-stretch: 112%;
-  line-height: 1.04;
-  letter-spacing: -0.022em;
+/* --- tipografia --------------------------------------------------------
+   Sei dimensioni, interlinee a multipli di 4:
+   nota 13/20 · testo 18/28 · sottotitolo 24/32 · titolo 36/40 ·
+   apertura 64/64. Su schermo stretto ogni gradino scende di uno.
+   La scala si allarga salendo: in basso i gradini sono vicini perché
+   servono a leggere, in alto lontani perché servono ad annunciare. */
+
+h1, h2, h3 {
   margin: 0;
+  font-weight: 500;
   text-wrap: balance;
 }
 
-.masthead { display: grid; gap: var(--s4); }
+h1 { font-size: 40px; line-height: 44px; letter-spacing: -0.03em; }
+h2 { font-size: 28px; line-height: 32px; letter-spacing: -0.02em; }
+h3 { font-size: 20px; line-height: 28px; letter-spacing: -0.01em; }
 
-@media (min-width: 940px) {
-  .masthead {
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-    column-gap: var(--s5);
-    align-items: end;
-  }
-  .masthead .lede { margin-bottom: 0.5em; }
+@media (min-width: 760px) {
+  h1 { font-size: 64px; line-height: 64px; }
+  h2 { font-size: 36px; line-height: 40px; }
+  h3 { font-size: 24px; line-height: 32px; }
 }
 
-.display-xl {
-  font-size: clamp(3.2rem, 10.8vw, 8.5rem);
-  font-weight: 700;
-  font-stretch: 118%;
-  line-height: 0.92;
-  letter-spacing: -0.035em;
-}
-
-h1 { font-size: clamp(2.1rem, 6.6vw, 4rem); font-weight: 680; font-stretch: 115%; }
-h2 { font-size: clamp(1.65rem, 4.2vw, 2.6rem); }
-h3 {
-  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
-  font-weight: 620;
-  font-stretch: 104%;
-  line-height: 1.24;
-  letter-spacing: -0.008em;
-}
-
-p { margin: 0; color: var(--ink-soft); max-width: var(--measure); }
-p + p { margin-top: var(--s3); }
+p { margin: 0; }
 
 .lede {
-  font-size: clamp(1.2rem, 2.9vw, 1.55rem);
-  line-height: 1.46;
-  color: var(--ink);
-  max-width: 30ch;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
 }
 
-@media (min-width: 700px) { .lede { max-width: 44ch; } }
-
-.small { font-size: 0.9375rem; line-height: 1.55; }
-.mute { color: var(--ink-mute); }
-
-em { font-style: italic; }
-strong { font-weight: 600; color: var(--ink); }
-
-/* --- impaginazione ---------------------------------------------------- */
-
-.shell {
-  max-width: 1240px;
-  margin-inline: auto;
-  padding-inline: clamp(20px, 5.5vw, 64px);
+@media (min-width: 760px) {
+  .lede { font-size: 24px; line-height: 32px; }
 }
 
-.sec {
-  padding-block: var(--s6);
-  border-top: 1px solid var(--rule);
+.nota {
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: var(--grigio);
 }
 
-.sec.tight { padding-block: clamp(40px, 6vw, 72px); }
-.sec.open { border-top: 0; }
+.mute { color: var(--grigio); }
 
-/* L'etichetta di sezione sta nel margine sinistro, in tondo minuscolo:
-   così il titolo resta la prima cosa che si legge invece di essere
-   preceduto ogni volta da una riga di maiuscolette spaziate. */
-.sec-grid { display: grid; gap: var(--s3); }
+strong { font-weight: 500; }
 
-@media (min-width: 940px) {
-  .sec-grid {
-    grid-template-columns: var(--rail) minmax(0, 1fr);
-    column-gap: var(--s5);
-    row-gap: 0;
-  }
-  .sec-grid > .rail { grid-row: span 2; }
-}
+/* --- link e pulsanti ---------------------------------------------------- */
 
-.rail {
-  font-family: var(--display);
-  font-size: 0.8125rem;
-  font-weight: 550;
-  font-stretch: 82%;
-  letter-spacing: 0.02em;
-  line-height: 1.4;
-  color: var(--ink-mute);
-  align-self: start;
-}
-
-@media (min-width: 940px) {
-  .rail { position: sticky; top: 92px; }
-}
-
-.rail b { display: block; font-weight: 650; color: var(--ink); font-stretch: 88%; }
-
-.body > * + * { margin-top: var(--s3); }
-.body > h2 + p, .body > h1 + p { margin-top: var(--s3); }
-
-/* --- link e pulsanti --------------------------------------------------- */
-
-a { color: inherit; }
-
-.body a,
-p a,
-.legal a {
+/* Al passaggio del mouse la sottolineatura si ispessisce. È l'unica cosa
+   che cambia: niente frecce, niente spostamenti. */
+a {
+  color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.16em;
-  text-decoration-color: var(--rule-strong);
-  transition: text-decoration-color 0.18s ease, text-decoration-thickness 0.18s ease;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-thickness 0.15s var(--curva);
 }
 
-.body a:hover,
-p a:hover,
-.legal a:hover {
-  text-decoration-color: var(--ink);
-  text-decoration-thickness: 2px;
-}
-
-.body a.btn, p a.btn, .legal a.btn,
-.body a.mailto, p a.mailto, .legal a.mailto { text-decoration: none; }
+a:hover { text-decoration-thickness: 2px; }
 
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--display);
-  font-size: 0.95rem;
-  font-weight: 620;
-  font-stretch: 100%;
-  line-height: 1;
-  padding: 15px 22px;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
+  font-family: var(--f);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  padding: 14px 20px;
+  border: 1px solid var(--nero);
+  background: var(--nero);
+  color: var(--carta);
   text-decoration: none;
-  border-radius: 2px;
   cursor: pointer;
-  transition: background 0.16s ease, color 0.16s ease, transform 0.1s ease;
+  transition: background-color 0.15s var(--curva), color 0.15s var(--curva);
 }
 
-.btn:hover { background: transparent; color: var(--ink); }
-.btn:active { transform: translateY(1px); }
+.btn:hover { background: transparent; color: var(--nero); }
 
-.btn.ghost { background: transparent; color: var(--ink); }
-.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+.btn.ghost { background: transparent; color: var(--nero); }
+.btn.ghost:hover { background: var(--nero); color: var(--carta); }
 
 .btn-row {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s2);
-  margin-top: var(--s4);
 }
 
-/* L'indirizzo email è l'unica azione del sito: merita di essere leggibile
-   come un dato, non nascosto dentro una frase. */
-.mailto {
-  font-family: var(--display);
-  font-stretch: 96%;
-  font-weight: 600;
-  font-size: clamp(1.05rem, 3.4vw, 1.5rem);
-  letter-spacing: -0.01em;
+/* --- griglia ------------------------------------------------------------
+   Dodici colonne. Asse A all'inizio della colonna 1 (etichette, numeri
+   dei paragrafi), asse B all'inizio della colonna 4 (tutto il contenuto).
+   Il testo corrente occupa le colonne 4–9, circa sessanta caratteri: le
+   colonne 10–12 restano vuote, ed è voluto. */
+
+.shell {
+  max-width: calc(1240px + 2 * var(--margine));
+  margin-inline: auto;
+  padding-inline: var(--margine);
+}
+
+.sec {
+  padding-block: var(--s6);
+  border-top: 1px solid var(--nero);
+}
+
+.sec.open { border-top: 0; padding-top: var(--s5); }
+
+/* In home l'ingresso è un passaggio verso lo Studio, non un discorso a sé:
+   fra i due lo stacco scende da s6 a s5 per lato, così il titolo e il
+   pulsante dello Studio salgono verso la prima schermata. Resta comunque
+   più ampio dello spazio dentro una sezione (s3–s4). */
+.sec.ingresso { padding-bottom: 0; }
+.sec.ingresso + .sec { padding-top: var(--s5); }
+
+/* --- benvenuto della home ----------------------------------------------
+   Breve: il saluto e una riga. Il lede resta in una misura da leggere. */
+
+/* Meno spazio sopra del solito: titolo, lede e le tre porte devono stare
+   nella prima schermata anche su un iPad in orizzontale. */
+.sec.open.benvenuto { padding-top: var(--s4); }
+
+/* Ora il lede è una frase sola: bilanciato, l'ultima parola non resta da
+   sola a capo (succedeva a "Bergamo." su iPad in orizzontale). */
+.benvenuto .body > .lede { max-width: 56ch; line-height: 32px; text-wrap: balance; }
+
+@media (min-width: 760px) {
+  .benvenuto .body > .lede { line-height: 36px; }
+}
+
+/* Il rimando dalla pagina Studio a "Chi sono": una riga sull'asse del
+   contenuto, prima del campo nero. */
+.rimando { padding-bottom: var(--s5); font-weight: 500; }
+
+/* --- chi sono ------------------------------------------------------------
+   Pensata per un testo lungo. Prima l'introduzione, poi le due foto
+   affiancate in un solo blocco, poi tutto il testo in colonna unica, in
+   righe di circa 56 caratteri. Le foto non spezzano mai il testo, qualunque
+   sia la sua lunghezza. */
+
+.chi-sono .body > p { max-width: 56ch; }
+
+/* Ogni foto riempie il suo riquadro, che ha già le proporzioni giuste
+   prima che l'immagine arrivi: niente salti mentre si carica. */
+.foto { margin: 0; aspect-ratio: 4 / 5; overflow: hidden; background: var(--carta-scura); }
+.foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Sul telefono anche il tramonto diventa un ritratto: il ritaglio tiene
+   Ivan, che nella foto sta a destra del centro. */
+.foto-orizzontale img { object-position: 72% 50%; }
+
+/* Le due foto sulla stessa riga. Da 640 px le parti 8 e 15 danno alla
+   verticale 4:5 e alla orizzontale 3:2 la stessa altezza. */
+.foto-fila { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); }
+.chi-sono .body > .foto-fila { grid-column: 1 / -1; margin-block: var(--s2); }
+
+@media (min-width: 640px) {
+  .foto-fila { grid-template-columns: 8fr 15fr; }
+  .foto-orizzontale { aspect-ratio: 3 / 2; }
+  .foto-orizzontale img { object-position: 50% 50%; }
+}
+
+/* --- le porte -----------------------------------------------------------
+   Un indice a righe: tre righe a tutta larghezza, ognuna un solo link,
+   alta quanto il suo contenuto. Un filetto sopra ogni riga; quello sotto
+   l'ultima è il bordo della sezione che segue. Niente card, niente fondo.
+   Al passaggio il titolo scorre di poco verso destra e il verbo si
+   ispessisce: è l'unico movimento delle porte. */
+
+.porte {
+  /* Vicine al saluto che le introduce: tutte e tre stanno nella prima
+     schermata insieme al titolo. */
+  margin-top: var(--s3);
+}
+
+.porta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 4px;
+  padding-block: var(--s2);
+  border-top: 1px solid var(--nero);
   text-decoration: none;
-  border-bottom: 2px solid var(--rule-strong);
-  padding-bottom: 3px;
-  display: inline-block;
-  transition: border-color 0.18s ease;
-  word-break: break-word;
 }
-.mailto:hover { border-color: var(--ink); }
 
-/* --- barra in alto ----------------------------------------------------- */
+/* Il focus sta dentro la riga, così il filetto non lo copre. */
+.porta:focus-visible { outline-offset: -2px; }
+
+.porta-e {
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: var(--grigio);
+}
+
+.porta-t {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  transition: transform 0.3s var(--curva);
+}
+
+.porta-s { color: var(--grigio); }
+
+.porta-v {
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Si sottolinea il verbo, non la freccia. */
+.porta-vt {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-thickness 0.15s var(--curva);
+}
+
+.porta:hover .porta-vt,
+.porta:focus-visible .porta-vt { text-decoration-thickness: 2px; }
+
+.porta:hover .porta-t,
+.porta:focus-visible .porta-t { transform: translateX(6px); }
+
+/* Da 760 px la riga usa la griglia della pagina. Fino a 939 px, come il
+   resto della pagina, l'etichetta sta sopra; il titolo prende le colonne
+   1–8 e il verbo le 9–12, così anche un verbo lungo non tocca il titolo. */
+@media (min-width: 760px) {
+  .porta {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+    padding-block: var(--s3);
+  }
+  .porta-e { grid-column: 1 / -1; grid-row: 1; }
+  .porta-t {
+    grid-column: 1 / 9;
+    grid-row: 2;
+    align-self: baseline;
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .porta-s { grid-column: 1 / 9; grid-row: 3; }
+  .porta-v {
+    grid-column: 9 / 13;
+    grid-row: 2;
+    align-self: baseline;
+    justify-self: end;
+    margin-top: 0;
+    white-space: nowrap;
+  }
+}
+
+/* Da 940 px: etichetta sull'asse A, titolo e descrizione dall'asse B,
+   verbo a destra sulla linea del titolo. */
+@media (min-width: 940px) {
+  .porta-e { grid-column: 1 / 4; grid-row: 1; align-self: baseline; }
+  .porta-t { grid-column: 4 / 10; grid-row: 1; }
+  .porta-s { grid-column: 4 / 10; grid-row: 2; }
+  .porta-v { grid-column: 10 / 13; grid-row: 1; }
+}
+
+@media (min-width: 1200px) {
+  .porta-t { font-size: 36px; line-height: 40px; }
+}
+
+.sec-grid,
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--s3);
+  align-content: start;
+}
+
+/* Sotto la griglia completa il testo non deve correre per tutta la
+   larghezza dello schermo. */
+.body > p,
+.legal > p,
+.sec-grid > .lede { max-width: 38em; }
+
+@media (min-width: 940px) {
+  .sec-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+  .sec-grid > * { grid-column: 4 / 13; }
+  .sec-grid > .lede { grid-column: 4 / 10; }
+
+  /* L'etichetta e la prima riga del contenuto stanno sulla stessa linea
+     di base, qualunque sia la dimensione del titolo accanto. */
+  .sec-grid > .rail { grid-column: 1 / 4; grid-row: 1; align-self: baseline; }
+  .sec-grid > .rail + * { grid-row: 1; align-self: baseline; }
+
+  /* Il corpo ha nove colonne: le stesse della pagina, dalla 4 alla 12. */
+  .body {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+  .body > * { grid-column: 1 / 7; }
+  .body > .largo { grid-column: 1 / -1; }
+}
+
+/* L'etichetta di sezione sta sull'asse A, in tondo minuscolo: il titolo
+   resta la prima cosa che si legge. */
+.rail {
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: var(--grigio);
+}
+
+.rail b { display: block; font-weight: 500; color: var(--nero); }
+
+/* Il marchio dello Studio nell'etichetta di apertura delle pagine Studio.
+   Alto 20 px come la riga dell'etichetta. Il -4px viene dal disegno: la "g"
+   scende di 18,2 unità su 90,5 di altezza, cioè 4 px a 20 px, e così la
+   linea di base della parola cade su quella del titolo accanto (misurato,
+   coincidono al pixel). Altezza e vertical-align vanno cambiati insieme,
+   rifacendo il conto. */
+.rail .logo { display: inline-block; height: 20px; width: auto; max-width: 100%; vertical-align: -4px; }
+
+/* Distacco in più prima di un blocco che non è testo corrente: elenchi,
+   colonne, domande, pulsanti. Con la distanza della griglia fa 40 px. */
+.body > .btn-row,
+.body > .list,
+.body > .steps,
+.body > .cols,
+.body > .faq,
+.body > .stacco { margin-top: var(--s2); }
+
+/* --- barra in alto ------------------------------------------------------ */
 
 .top {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--paper);
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  -webkit-backdrop-filter: saturate(1.4) blur(10px);
-  backdrop-filter: saturate(1.4) blur(10px);
-  border-bottom: 1px solid var(--rule);
+  background: var(--carta);
+  border-bottom: 1px solid var(--nero);
 }
 
 .top-in {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--s3);
-  min-height: 60px;
+  gap: var(--s2);
+  min-height: 56px;
 }
 
 .mark {
-  font-family: var(--display);
-  font-weight: 700;
-  font-stretch: 108%;
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .top nav {
   display: flex;
   align-items: center;
-  gap: var(--s3);
-  font-family: var(--display);
-  font-size: 0.875rem;
-  font-weight: 550;
-  font-stretch: 92%;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
 }
 
-.top nav a { text-decoration: none; color: var(--ink-mute); }
-.top nav a:hover, .top nav a[aria-current] { color: var(--ink); }
-
-.top nav .btn { padding: 9px 15px; font-size: 0.85rem; color: var(--paper); }
-.top nav .btn:hover { color: var(--ink); }
-
-.lang {
-  display: inline-flex;
-  gap: 2px;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  overflow: hidden;
+.top nav a { text-decoration: none; }
+.top nav a:hover,
+.top nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
 }
-.lang a { padding: 5px 8px; font-size: 0.78rem; letter-spacing: 0.04em; }
-.top nav .lang a[aria-current] { background: var(--ink); color: var(--paper); }
+.top nav a[aria-current="page"]:hover { text-decoration-thickness: 2px; }
 
-@media (max-width: 560px) {
-  .top nav .hide-s { display: none; }
+.lang { display: inline-flex; gap: 8px; }
+.top nav .lang a { color: var(--grigio); }
+.top nav .lang a[aria-current] { color: var(--nero); text-decoration: none; }
+
+@media (min-width: 560px) {
+  .top nav { gap: var(--s3); font-size: 15px; }
 }
 
-/* --- il tabellone: l'unico blocco nero del sito ------------------------ */
+@media (min-width: 940px) {
+  .top-in {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+  .top-in > .mark { grid-column: 1 / 4; }
+  .top-in > nav { grid-column: 4 / 13; }
+  .lang { margin-left: auto; }
+}
 
-.board {
-  background: var(--board);
-  color: var(--board-fg);
-  padding-block: clamp(48px, 7vw, 84px) clamp(40px, 6vw, 72px);
+/* --- apertura della home ------------------------------------------------
+   I due mestieri, come due righe parallele. Ogni riga è un link alla sua
+   pagina. */
+
+.righe { list-style: none; margin: 0; padding: 0; }
+
+.riga {
   position: relative;
-  margin-top: var(--s5);
+  padding-block: var(--s3) var(--s4);
+  text-decoration: none;
 }
 
-/* Bordo superiore perforato: il margine di un biglietto staccato.
-   Sono semicerchi del colore della carta ritagliati dentro il nero. */
-.board::before {
+.righe > li:first-child .riga { padding-top: 0; }
+
+/* Il filetto è disegnato qui invece che con un bordo perché è lui a
+   muoversi all'apertura. */
+.righe > li + li .riga::before {
   content: '';
   position: absolute;
   inset: 0 0 auto 0;
-  height: 13px;
-  background-image: radial-gradient(circle at 12px 0, var(--paper) 6px, transparent 6.5px);
-  background-size: 24px 13px;
-  background-repeat: repeat-x;
+  height: 1px;
+  background: var(--nero);
+  transform-origin: left;
 }
 
-.board h2, .board h3 { color: var(--board-fg); }
-.board p { color: var(--board-mute); }
-.board .rail { color: var(--board-mute); }
-.board .rail b { color: var(--board-fg); }
-
-.board-title {
-  font-family: var(--display);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  font-stretch: 82%;
-  letter-spacing: 0.06em;
-  color: var(--board-mute);
-  margin: 0 0 var(--s4);
+.riga-t {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
 }
-
-.rows { list-style: none; margin: 0; padding: 0; }
-
-.row {
-  display: grid;
-  gap: 4px var(--s3);
-  padding: var(--s3) 0;
-  border-top: 1px solid var(--board-rule);
-  align-items: baseline;
-}
-
-.row:last-child { border-bottom: 1px solid var(--board-rule); }
 
 @media (min-width: 760px) {
-  .row { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr) minmax(0, 7fr); }
-  .row-state { text-align: right; }
+  .riga-t { font-size: 64px; line-height: 64px; }
 }
 
-.row-name {
-  font-family: var(--display);
-  font-weight: 680;
-  font-stretch: 112%;
-  font-size: clamp(1.35rem, 3.6vw, 1.9rem);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+.riga-t u {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.1em;
+  transition: text-decoration-thickness 0.15s var(--curva);
 }
 
-.row-kind {
-  font-family: var(--display);
-  font-weight: 500;
-  font-stretch: 80%;
-  font-size: 0.8125rem;
-  letter-spacing: 0.04em;
-  color: var(--board-mute);
+.riga:hover .riga-t u { text-decoration-thickness: 4px; }
+
+/* --- contenuti paralleli ------------------------------------------------
+   Colonne pure, senza card: un filetto in testa a ognuna e basta. Si
+   usano solo dove le cose sono davvero parallele (i tre pubblici, i tre
+   passi). */
+
+.cols { display: grid; gap: var(--s4); }
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  border-top: 1px solid var(--nero);
+  padding-top: var(--s2);
 }
 
-/* Lo stato è l'informazione per cui il tabellone esiste, ed è l'unica
-   cosa in ambra di tutto il sito. */
-.row-state {
-  font-family: var(--display);
-  font-weight: 600;
-  font-stretch: 92%;
-  font-size: clamp(0.95rem, 2.4vw, 1.0625rem);
-  letter-spacing: 0.005em;
-  color: var(--signal);
-  font-variant-numeric: tabular-nums;
+.col h2, .col h3 {
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
 }
 
-.board a { color: var(--signal); text-decoration-color: rgba(255, 171, 0, 0.45); }
-.board a:hover { text-decoration-color: var(--signal); }
+.col p { font-size: 16px; line-height: 24px; }
+.col p.nota { font-size: 13px; line-height: 20px; }
+.col > a:last-child { margin-top: auto; font-weight: 500; align-self: flex-start; }
 
-.board .btn {
-  background: var(--board-fg);
-  border-color: var(--board-fg);
-  color: var(--board);
+@media (min-width: 760px) {
+  .col h2, .col h3 { font-size: 24px; line-height: 32px; }
 }
-.board .btn:hover { background: transparent; color: var(--board-fg); }
+
+@media (min-width: 940px) {
+  .body > .cols { grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--gutter); }
+}
 
 /* --- elenchi ----------------------------------------------------------- */
 
-.list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
-
-.list li {
-  position: relative;
-  padding-left: 26px;
-  color: var(--ink-soft);
-  max-width: var(--measure);
+.list,
+.legal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s1);
 }
 
-/* Un trattino corto invece del pallino: è il segno che si usa quando si
-   spunta una riga a mano su un foglio. */
-.list li::before {
-  content: '';
+/* Un trattino appeso, come in un elenco battuto a macchina. */
+.list li,
+.legal li {
+  position: relative;
+  padding-left: 1.25em;
+}
+
+.list li::before,
+.legal li::before {
+  content: '–';
   position: absolute;
   left: 0;
-  top: 0.72em;
-  width: 14px;
-  height: 2px;
-  background: var(--ink);
+  color: var(--grigio);
 }
 
-@media (min-width: 780px) {
-  .list.two { grid-template-columns: 1fr 1fr; column-gap: var(--s5); }
+@media (min-width: 700px) {
+  .list.two { grid-template-columns: 1fr 1fr; column-gap: var(--gutter); row-gap: var(--s2); }
+}
+
+/* Due colonne da quattro: la coppia occupa le colonne 4–11. */
+@media (min-width: 940px) {
+  .body > .list.two { grid-column: 1 / 9; }
 }
 
 /* --- passi numerati ---------------------------------------------------- */
 
-.steps { counter-reset: step; list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s4); }
+.steps {
+  counter-reset: step;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-@media (min-width: 880px) { .steps { grid-template-columns: repeat(3, 1fr); column-gap: var(--s4); } }
+.step { counter-increment: step; }
 
-.step { counter-increment: step; border-top: 2px solid var(--ink); padding-top: var(--s2); }
-
+/* Il numero arriva dal contatore: i passi sono davvero una sequenza. */
 .step::before {
   content: counter(step);
-  display: block;
-  font-family: var(--display);
-  font-weight: 700;
-  font-stretch: 78%;
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
-  margin-bottom: var(--s2);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
 }
-
-.step h3 { margin-bottom: var(--s1); }
-.step p { font-size: 0.9875rem; max-width: 46ch; }
-
-/* --- card: solo dove il contenuto è davvero parallelo ------------------- */
-
-.pair { display: grid; gap: var(--s3); }
-
-@media (min-width: 820px) { .pair { grid-template-columns: 1fr 1fr; column-gap: var(--s4); } }
-
-/* Con tre card in fila serve più larghezza: sotto i 1040px restano
-   incolonnate, perché tre colonne da meno di trecento pixel spezzano il
-   testo in righe troppo corte. */
-@media (min-width: 820px) and (max-width: 1039px) { .pair.three { grid-template-columns: 1fr; } }
-@media (min-width: 1040px) {
-  .pair.three { grid-template-columns: repeat(3, 1fr); column-gap: var(--s3); }
-  /* In colonna stretta il titolo alla misura piena andrebbe a cinque righe e
-     mangerebbe la card: qui scende di un gradino. */
-  .pair.three .card h2 { font-size: clamp(1.12rem, 1.55vw, 1.34rem); }
-}
-
-.card {
-  border: 1px solid var(--rule);
-  background: var(--paper-2);
-  border-radius: 2px;
-  padding: var(--s4) var(--s3);
-  display: flex;
-  flex-direction: column;
-}
-
-.card > .btn { margin-top: auto; align-self: flex-start; }
-.card h2, .card h3 { margin-bottom: var(--s1); }
-.card p { font-size: 1rem; }
-
-.who {
-  display: block;
-  font-family: var(--display);
-  font-size: 0.8125rem;
-  font-weight: 550;
-  font-stretch: 82%;
-  letter-spacing: 0.02em;
-  color: var(--ink-mute);
-  margin-bottom: var(--s3);
-}
-
-/* Riga di credenziale: filetto pieno a sinistra e carattere del display,
-   senza virgolette e senza corsivo. */
-.pull {
-  border-left: 3px solid var(--ink);
-  padding-left: var(--s3);
-  max-width: 54ch;
-}
-
-.pull p {
-  font-family: var(--display);
-  font-weight: 550;
-  font-stretch: 98%;
-  font-size: clamp(1.05rem, 2.5vw, 1.28rem);
-  line-height: 1.42;
-  letter-spacing: -0.012em;
-  color: var(--ink);
-  max-width: none;
-}
-
-.board .pull { border-left-color: var(--signal); }
-.board .pull p { color: var(--board-fg); }
 
 /* --- domande ------------------------------------------------------------ */
 
-.faq { border-top: 1px solid var(--rule); }
-.faq details { border-bottom: 1px solid var(--rule); }
+.faq { border-top: 1px solid var(--nero); }
+.faq details { border-bottom: 1px solid var(--grigio); }
 
 .faq summary {
   list-style: none;
   cursor: pointer;
   padding: var(--s3) 40px var(--s3) 0;
   position: relative;
-  font-family: var(--display);
-  font-weight: 620;
-  font-stretch: 104%;
-  font-size: clamp(1.02rem, 2.4vw, 1.15rem);
-  letter-spacing: -0.008em;
-  line-height: 1.3;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 760px) {
+  .faq summary { font-size: 24px; line-height: 32px; }
 }
 
 .faq summary::-webkit-details-marker { display: none; }
 
 /* Una croce che ruota di 45 gradi diventa un meno: due tratti, niente
-   glifo tipografico che cambia. */
+   glifo che cambia. */
 .faq summary::after,
 .faq summary::before {
   content: '';
   position: absolute;
   right: 4px;
   top: 50%;
-  width: 15px;
+  width: 16px;
   height: 2px;
-  background: var(--ink);
-  transition: transform 0.25s ease;
+  background: var(--nero);
+  transition: transform 0.3s var(--curva);
 }
 .faq summary::before { transform: translateY(-50%); }
 .faq summary::after { transform: translateY(-50%) rotate(90deg); }
 .faq details[open] summary::after { transform: translateY(-50%) rotate(180deg); }
 
-.faq details > div {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.28s ease;
+/* L'altezza scorre dove il browser lo sa fare; altrove la risposta
+   compare e basta. */
+.faq details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size 0.3s var(--curva), content-visibility 0.3s allow-discrete;
 }
-.faq details[open] > div { grid-template-rows: 1fr; }
-.faq details > div > div { overflow: hidden; }
-.faq details p { padding-bottom: var(--s3); max-width: 66ch; }
+.faq details[open]::details-content { block-size: auto; }
 
-/* --- pagine legali ------------------------------------------------------ */
+.faq details p { padding-bottom: var(--s3); max-width: 38em; }
 
-.legal { max-width: 56ch; }
-.legal h2 { font-size: clamp(1.2rem, 2.8vw, 1.45rem); margin-top: var(--s5); }
-.legal h3 { margin-top: var(--s4); }
-.legal p, .legal li { font-size: 1rem; max-width: none; }
-.legal ul { margin: var(--s3) 0 0; padding-left: var(--s3); display: grid; gap: var(--s2); }
-.legal li { color: var(--ink-soft); }
-.legal > * + * { margin-top: var(--s3); }
+/* --- il campo nero: uno per pagina, dove si agisce ---------------------- */
+
+.board {
+  background: var(--nero);
+  color: var(--carta);
+  padding-block: var(--s6);
+}
+
+.board .rail { color: var(--grigio-su-nero); }
+.board .rail b { color: var(--carta); }
+.board .mute { color: var(--grigio-su-nero); }
+
+/* L'indirizzo email è l'azione della pagina: è l'unica cosa in ambra. */
+.mailto {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ambra);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.14em;
+  overflow-wrap: anywhere;
+}
+
+.mailto:hover { text-decoration-thickness: 4px; }
+
+@media (min-width: 760px) {
+  .mailto { font-size: 36px; line-height: 40px; }
+}
+
+.board .btn { background: var(--ambra); border-color: var(--ambra); color: var(--nero); }
+.board .btn:hover { background: transparent; color: var(--ambra); }
+
+/* --- pagine legali ------------------------------------------------------
+   Stessa griglia delle pagine di vendita. Il numero di ogni paragrafo sta
+   appeso sull'asse A, il titolo sull'asse B. */
+
+.legal > * { grid-column: auto; }
+
+.legal h2 {
+  margin-top: var(--s4);
+  padding-top: var(--s2);
+  border-top: 1px solid var(--nero);
+}
+
+.legal h3 { margin-top: var(--s2); }
+
+.legal h2,
+.legal h3 {
+  display: flex;
+  gap: 12px;
+}
+
+.legal .n { flex: none; }
+
+.legal > .nota,
+.legal > .btn-row { margin-top: var(--s2); }
+
+@media (min-width: 940px) {
+  .legal > * { grid-column: 4 / 10; }
+  .legal > h2,
+  .legal > h3 {
+    grid-column: 1 / 10;
+    display: grid;
+    grid-template-columns: subgrid;
+    /* Lo spazio fra numero e titolo su mobile non deve passare alla
+       sottogriglia, che altrimenti si sfalserebbe rispetto al testo. */
+    column-gap: var(--gutter);
+  }
+  .legal .n { grid-column: 1 / 4; }
+  .legal .t { grid-column: 4 / 10; }
+}
 
 /* --- piede -------------------------------------------------------------- */
 
 .foot {
-  border-top: 1px solid var(--rule);
-  padding-block: var(--s5) var(--s5);
-  font-size: 0.9375rem;
+  border-top: 1px solid var(--nero);
+  padding-block: var(--s5);
+  font-size: 13px;
+  line-height: 20px;
 }
 
-.foot-in { display: grid; gap: var(--s4); }
+.foot-in { display: grid; gap: var(--s3); }
 
-@media (min-width: 760px) {
-  .foot-in { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+.foot address { font-style: normal; color: var(--grigio); }
+
+.foot nav { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); }
+.foot nav a { text-decoration: none; }
+.foot nav a:hover { text-decoration: underline; }
+
+@media (min-width: 940px) {
+  .foot-in {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gutter);
+  }
+  .foot-in > .mark { grid-column: 1 / 4; font-size: 13px; line-height: 20px; }
+  .foot-in > address { grid-column: 4 / 7; }
+  .foot-in > nav { grid-column: 7 / 13; }
 }
 
-.foot nav { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s3); font-family: var(--display); font-size: 0.875rem; font-stretch: 94%; font-weight: 550; }
-.foot nav a { text-decoration: none; color: var(--ink-mute); }
-.foot nav a:hover { color: var(--ink); }
-.foot .mark { font-size: 1.25rem; }
-.foot address { font-style: normal; color: var(--ink-mute); margin-top: var(--s2); }
+/* I social stanno in una riga a sé, solo testo, nello stile del piede: i
+   link sono sottolineati e in nero perché si vedano. */
+.foot .social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1) var(--s2);
+  margin: 0;
+  color: var(--grigio);
+}
+.foot .social a { color: var(--nero); font-weight: 500; }
+
+@media (min-width: 940px) {
+  .foot-in > .social { grid-column: 7 / 13; }
+}
 
 /* --- iOS: riconoscimento automatico dei dati ---------------------------
    Safari trasforma sequenze come la partita IVA in link telefonici. Il
@@ -656,58 +857,98 @@ a[x-apple-data-detectors] span {
 }
 
 /* --- movimento ----------------------------------------------------------
-   Due sole cose si muovono da sole: le righe del titolo in apertura, e
-   gli stati del tabellone che si fermano come le palette di un tabellone
-   di partenze. Tutto il resto si muove solo se lo tocchi. */
+   Un solo momento per pagina, all'apertura. Il testo viene scoperto da
+   sinistra, cioè dall'asse da cui parte; in home il filetto si traccia
+   prima e scopre la riga che gli sta sotto. Il movimento mostra la
+   griglia invece di aggiungerci qualcosa sopra. Niente dissolvenze.
 
-/* La maschera deve lasciare fuori le discendenti: senza questo margine la
-   doppia g di "Maggini" viene tagliata a metà. */
-.reveal > span {
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0.14em;
-  margin-bottom: -0.14em;
+   La maschera si allarga un po' oltre il riquadro per non tagliare le
+   discendenti, e sparisce a fine animazione (`backwards`): da fermo il
+   testo non ha nessun ritaglio. */
+
+@keyframes traccia { from { transform: scaleX(0); } }
+
+/* Il benvenuto compare con calma: una pausa, il titolo, poi un paragrafo
+   dopo l'altro, con una dissolvenza e un piccolo spostamento verso l'alto.
+   Da fermo il testo è già al suo posto: se l'animazione non parte, la
+   pagina si legge lo stesso. */
+@keyframes entra {
+  from { opacity: 0; transform: translateY(12px); }
 }
 
-.reveal > span > span {
-  display: block;
-  transform: translateY(102%);
-  animation: sali 0.72s cubic-bezier(0.16, 0.84, 0.3, 1) forwards;
-  animation-delay: calc(var(--i, 0) * 90ms + 60ms);
+.entra {
+  animation: entra var(--ingresso-paragrafo) var(--curva) backwards;
+  animation-delay: calc(var(--ingresso-pausa) + var(--ingresso-titolo) * 0.6 + (var(--n, 1) - 1) * var(--ingresso-scarto));
 }
 
-@keyframes sali { to { transform: translateY(0); } }
+.entra-titolo {
+  animation: entra var(--ingresso-titolo) var(--curva) backwards;
+  animation-delay: var(--ingresso-pausa);
+}
+
+
+@keyframes scopri {
+  from { clip-path: inset(-0.2em 100% -0.3em 0); }
+  to { clip-path: inset(-0.2em -0.2em -0.3em 0); }
+}
+
+.righe > li + li .riga::before {
+  animation: traccia 0.7s var(--curva) backwards;
+  animation-delay: calc(var(--i, 0) * 140ms);
+}
+
+.riga > *,
+.scopri {
+  animation: scopri 0.7s var(--curva) backwards;
+  animation-delay: calc(var(--i, 0) * 140ms + 80ms);
+}
+
+/* Sotto la prima schermata i blocchi compaiono mentre entrano nella
+   finestra, uno alla volta: stessa dissolvenza e stesso scatto di 12 px
+   dell'apertura (`entra`). È una timeline di scorrimento in CSS, senza
+   JavaScript: dove il browser non la conosce, o con prefers-reduced-motion,
+   o in stampa, i blocchi sono già al loro posto e il testo c'è sempre.
+   Si accende con la classe `rivela` sul `main` della pagina; l'apertura
+   (`.sec.open`) ha la sua entrata a tempo e qui non rientra. La
+   dissolvenza segue lo scorrimento: finisce quando il blocco ha percorso
+   `--rivela-a` della sua corsa dentro la finestra, quindi a chi scorre
+   piano compare piano. */
+:root {
+  --rivela-da: entry 0%;
+  --rivela-a: cover 28%;
+  /* Il campo nero sta in fondo alla pagina, sopra il piede: a fine corsa non
+     può salire oltre, quindi la sua dissolvenza finisce prima, perché non
+     resti a metà nemmeno su uno schermo molto alto. */
+  --rivela-a-fondo: cover 12%;
+}
+
+@supports (animation-timeline: view()) {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    .rivela .sec:not(.open) .rail,
+    .rivela .sec:not(.open) .body > :not(.cols),
+    .rivela .sec:not(.open) .cols > *,
+    .rivela .rimando > *,
+    .rivela .board .rail,
+    .rivela .board .body > * {
+      animation: entra linear both;
+      animation-timeline: view();
+      animation-range: var(--rivela-da) var(--rivela-a);
+    }
+
+    .rivela .board .rail,
+    .rivela .board .body > * {
+      animation-range: var(--rivela-da) var(--rivela-a-fondo);
+    }
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal > span > span { transform: none; animation: none; }
+  .righe > li + li .riga::before,
+  .riga > *,
+  .scopri,
+  .entra,
+  .entra-titolo { animation: none; }
+  .porta-t { transition: none; }
+  .porta:hover .porta-t,
+  .porta:focus-visible .porta-t { transform: none; }
 }
-
-/* Ingresso lettera per lettera. La maschera lascia fuori le discendenti,
-   altrimenti la g di "maggini" verrebbe tagliata. Prima che l'elemento entri
-   in vista le lettere stanno ferme in basso, nascoste; poi salgono. */
-.rise {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  padding-bottom: 0.16em;
-  margin-bottom: -0.16em;
-}
-
-.rise > i {
-  display: inline-block;
-  font-style: inherit;
-  transform: translateY(0);
-}
-
-.in-attesa .rise > i { transform: translateY(110%); }
-
-.parte .rise > i {
-  transform: translateY(110%);
-  animation: sali 0.58s cubic-bezier(0.16, 0.84, 0.3, 1) forwards;
-  animation-delay: calc(var(--c, 0) * 24ms);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .in-attesa .rise > i, .parte .rise > i { transform: none; animation: none; }
-}
-

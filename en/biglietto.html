@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ivan Maggini">
 <meta property="og:title" content="Biglietto, one place for your whole trip">
-<meta property="og:description" content="One place where your whole trip lives, and on top of it the part nobody tells you: what to actually buy, in which order, and where.">
+<meta property="og:description" content="One place where your whole trip lives, and on top of it the part nobody tells you about: what to actually buy, in which order, and where.">
 <meta property="og:url" content="https://ivanmaggini.com/en/biglietto">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="it_IT">
@@ -25,10 +25,8 @@
 <meta property="og:image:alt" content="Biglietto: one place where your whole trip lives">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400..500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=042be7d8e7">
+<link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=391d0e0500">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 </head>
@@ -42,6 +40,7 @@
     <a href="/en/" class="mark">Ivan Maggini</a>
     <nav aria-label="Sections">
       <a href="/en/biglietto" aria-current="page">Biglietto</a>
+      <a href="/en/studio">Studio</a>
       <span class="lang">
         <a href="/biglietto" lang="it" hreflang="it">IT</a>
         <a href="/en/biglietto" lang="en" hreflang="en" aria-current="true">EN</a>
@@ -50,29 +49,30 @@
   </div>
 </header>
 
-<main id="content">
+<main id="content" class="rivela">
 
-  <section class="sec open tight">
-    <div class="shell">
-      <h1 class="display-xl reveal">
-        <span><span style="--i:0">Biglietto</span></span>
-      </h1>
-      <p class="lede" style="margin-top:var(--s4);max-width:52ch">
-        I'm building Biglietto: one place where your whole trip lives, and on
-        top of it, the paid part nobody tells you, what to actually buy, in
-        which order, and where.
-      </p>
-      <div class="btn-row">
-        <a class="btn" href="https://biglietto.ai" target="_blank" rel="noopener">Go to biglietto.ai</a>
+  <section class="sec open">
+    <div class="shell sec-grid">
+      <p class="rail">Product<b>being built</b></p>
+      <div class="body">
+        <h1 class="scopri">Biglietto</h1>
+        <p class="lede">
+          I'm building Biglietto: one place where your whole trip lives, and on
+          top of it the paid part that tells you what to actually buy, in which
+          order, and where.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="https://biglietto.ai" target="_blank" rel="noopener">Go to biglietto.ai</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec tight" id="the-problem">
+  <section class="sec" id="the-problem">
     <div class="shell sec-grid">
       <p class="rail">Where it comes from</p>
       <div class="body">
-        <p>
+        <p class="lede">
           Travel is great. Buying it sucks. Your bookings end up scattered
           across six apps, and the right ticket is almost never the one shown
           to you first, because whoever is selling it has no reason to mention
@@ -97,7 +97,7 @@
         </p>
         <div class="btn-row">
           <a class="btn" href="https://biglietto.ai" target="_blank" rel="noopener">biglietto.ai</a>
-          <a class="btn ghost" href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn ghost" href="https://instagram.com/ivanmaggini.global" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
     </div>
@@ -113,7 +113,7 @@
           now it stays under wraps: I'd rather talk about it when there's
           something real to show, not before.
         </p>
-        <p class="small mute">
+        <p class="mute">
           If you're building in the same space, or you simply have useful
           advice, write to me. I always reply.
         </p>
@@ -121,6 +121,7 @@
     </div>
   </section>
 
+  <!-- Il campo nero della pagina: è dove si agisce. -->
   <section class="board" id="contact" aria-labelledby="contact-title">
     <div class="shell sec-grid">
       <p class="rail">Contact<b>I reply within 24 hours</b></p>
@@ -130,8 +131,8 @@
           There is no form to fill in on this site, on purpose: I'd rather not
           hold anybody's data. An email is plenty.
         </p>
-        <p style="margin-top:var(--s4)">
-          <a class="mailto" href="mailto:general@ivanmaggini.com" data-rise>general@ivanmaggini.com</a>
+        <p class="stacco">
+          <a class="mailto" href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
         </p>
       </div>
     </div>
@@ -141,23 +142,26 @@
 
 <footer class="foot">
   <div class="shell foot-in">
-    <div>
-      <span class="mark">Ivan Maggini</span>
-      <address class="small">
-        Lurano (BG), Italy<br>
-        VAT 04924920160
-      </address>
-    </div>
+    <span class="mark">Ivan Maggini</span>
+    <address>
+      Lurano (BG), Italy<br>
+      VAT 04924920160
+    </address>
     <nav aria-label="Footer links">
       <a href="/en/">Home</a>
-      <a href="/en/biglietto">Biglietto</a>
+      <a href="/en/studio">Studio</a>
       <a href="/biglietto">Italiano</a>
       <a href="/en/privacy">Privacy</a>
       <a href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
     </nav>
+    <!-- Profili inglesi, distinti da quelli italiani di proposito. YouTube per ora non c'è: da riaggiungere quando esiste il canale. -->
+    <p class="social">
+      Follow me on
+      <a href="https://instagram.com/ivanmaggini.global" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@ivanmaggini.gl" target="_blank" rel="noopener">TikTok</a>
+    </p>
   </div>
 </footer>
 
-<script src="/assets/site.js?v=e2f15b517a" defer></script>
 </body>
 </html>

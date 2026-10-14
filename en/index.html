@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
-<title>Ivan Maggini, founder of Biglietto</title>
-<meta name="description" content="I'm 19 and I'm building Biglietto: one place where your whole trip lives. I document it every day, including the parts that go badly.">
+<title>Ivan Maggini</title>
+<meta name="description" content="I'm Ivan Maggini. I'm building Biglietto, a product for people who travel, and I run a small video studio in Italy.">
 <link rel="canonical" href="https://ivanmaggini.com/en/">
 <link rel="alternate" hreflang="it" href="https://ivanmaggini.com/">
 <link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/">
@@ -14,21 +14,19 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ivan Maggini">
-<meta property="og:title" content="Ivan Maggini, founder of Biglietto">
-<meta property="og:description" content="I'm building Biglietto, one place where your whole trip lives. I document all of it every day, including the parts that go badly.">
+<meta property="og:title" content="Ivan Maggini">
+<meta property="og:description" content="I'm Ivan Maggini. I'm building Biglietto, a product for people who travel, and I run a small video studio in Italy.">
 <meta property="og:url" content="https://ivanmaggini.com/en/">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="it_IT">
 <meta property="og:image" content="https://ivanmaggini.com/assets/og/og-home-en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Ivan Maggini: building Biglietto, documenting all of it">
+<meta property="og:image:alt" content="Ivan Maggini: nice to meet you, I'm Ivan">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400..500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=042be7d8e7">
+<link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=391d0e0500">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
@@ -37,11 +35,11 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Ivan Maggini",
-  "url": "https://ivanmaggini.com/",
-  "jobTitle": "Founder",
+  "url": "https://ivanmaggini.com/en/",
+  "description": "I'm Ivan Maggini. I'm building Biglietto, a product for people who travel, and I run a small video studio in Italy.",
   "email": "general@ivanmaggini.com",
   "address": { "@type": "PostalAddress", "addressLocality": "Lurano", "addressRegion": "BG", "addressCountry": "IT" },
-  "sameAs": ["https://biglietto.ai", "https://instagram.com/ivan.maggini"]
+  "sameAs": ["https://biglietto.ai", "https://instagram.com/ivanmaggini.global", "https://www.tiktok.com/@ivanmaggini.gl"]
 }
 </script>
 </head>
@@ -53,7 +51,9 @@
 <header class="top">
   <div class="shell top-in">
     <a href="/en/" class="mark" aria-current="page">Ivan Maggini</a>
+    <!-- Studio viene per primo e porta alla sua pagina. -->
     <nav aria-label="Sections">
+      <a href="/en/studio">Studio</a>
       <a href="/en/biglietto">Biglietto</a>
       <span class="lang">
         <a href="/" lang="it" hreflang="it">IT</a>
@@ -63,73 +63,143 @@
   </div>
 </header>
 
-<main id="content">
+<main id="content" class="rivela">
 
-  <section class="sec open tight">
-    <div class="shell masthead">
-      <h1 class="display-xl reveal">
-        <span><span style="--i:0">Ivan</span></span>
-        <span><span style="--i:1">Maggini</span></span>
-      </h1>
-      <p class="lede">
-        I'm 19. I'm building Biglietto, a product for people who travel, and I
-        write about it while it happens, including the parts that go badly.
-      </p>
-    </div>
-  </section>
-
-  <section class="sec" id="about">
+  <!-- Il benvenuto: breve, poi tre porte. È l'unico momento animato della
+       pagina. Tenere allineato con la versione italiana. -->
+  <section class="sec open ingresso benvenuto" id="welcome" aria-labelledby="welcome-t">
     <div class="shell sec-grid">
-      <p class="rail">About<b>19, based in Italy</b></p>
+      <p class="rail entra-titolo">Welcome</p>
       <div class="body">
-        <h2>Who is writing this.</h2>
-        <p>
-          I build things and I write about them while I build them. Right now
-          that means Biglietto, a product for people who travel.
-        </p>
-        <p>
-          Before that I spent a few years telling travel stories on Instagram
-          and got to 30,000 people without spending anything on ads. That's
-          where the idea came from, and it's where I learned what makes someone
-          stop and watch.
-        </p>
-        <p>
-          I don't have a technical background and I don't pretend to. What I can
-          do is start from a problem I've actually had and keep at it until it
-          turns into something that works, saying out loud along the way what
-          doesn't.
+        <h1 class="largo entra-titolo" id="welcome-t">Nice to meet you, I'm Ivan.</h1>
+        <p class="lede entra" style="--n:1">
+          I've shared my travels on Instagram for a few years and learned what
+          makes people stop and watch a video. Today I use that in two ways: I
+          build a product for people who travel, and I make video for firms and
+          companies.
         </p>
       </div>
     </div>
+    <div class="shell">
+      <!-- Tre porte, come un indice a righe: Biglietto, i viaggi e lo Studio,
+           per ultimo (in inglese lo Studio si presenta, non si vende). Ogni
+           riga è un solo link e compare dopo il saluto, una dopo l'altra: fa parte
+           dell'unico momento animato. -->
+      <nav class="porte" aria-label="The three sections of the site">
+        <a class="porta entra" style="--n:2" href="/en/biglietto">
+          <span class="porta-e">Biglietto</span>
+          <span class="porta-t">A product for people who travel</span>
+          <span class="porta-s">Being built, one piece at a time.</span>
+          <span class="porta-v"><span class="porta-vt">Go to Biglietto</span> <span aria-hidden="true">→</span></span>
+        </a>
+        <!-- quando esiste il sito dei viaggi: sostituire questo link e il testo -->
+        <a class="porta entra" style="--n:2.6" href="mailto:general@ivanmaggini.com?subject=Travel%20guides">
+          <span class="porta-e">Travel</span>
+          <span class="porta-t">Guides and stories</span>
+          <span class="porta-s">A site just for my guides and stories is being prepared. Write to me and I'll tell you when it opens.</span>
+          <span class="porta-v"><span class="porta-vt">Tell me when it opens</span> <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="porta entra" style="--n:3.2" href="/en/studio">
+          <span class="porta-e">Ivan Maggini Studio</span>
+          <span class="porta-t">Video for firms and companies</span>
+          <span class="porta-s">Half a day of filming. I&nbsp;take care of the rest.</span>
+          <span class="porta-v"><span class="porta-vt">Come in</span> <span aria-hidden="true">→</span></span>
+        </a>
+      </nav>
+    </div>
   </section>
 
-  <section class="sec" id="what-i-build">
+  <!-- Chi sono: pensata per un testo lungo. L'introduzione, poi le due
+       foto affiancate in un solo blocco, poi tutto il testo in colonna
+       unica: il testo non va mai spezzato da altre foto. Non si anima.
+       Tenere allineato con la versione italiana. -->
+  <section class="sec chi-sono" id="about" aria-labelledby="about-t">
     <div class="shell sec-grid">
-      <p class="rail">Where to go</p>
+      <p class="rail">About</p>
       <div class="body">
-        <h2>Biglietto</h2>
-        <p>
-          One place where your whole trip lives, and on top of it the part
-          nobody tells you: what to actually buy, in which order, and where.
+        <h2 id="about-t">Who's behind the camera.</h2>
+        <p class="lede">
+          If you're here, it's because I wrote to you, because you saw one of
+          my travel videos, or because someone told you about me.
         </p>
-        <div class="btn-row">
-          <a class="btn" href="/en/biglietto">Read about Biglietto</a>
+        <!-- I sizes seguono site.css: sotto i 640 px due metà uguali;
+             da 640 px 8 parti la verticale e 15 la orizzontale, sulle
+             nove colonne del corpo. -->
+        <div class="foto-fila">
+          <figure class="foto foto-verticale">
+            <img
+              src="/assets/foto/ivan-notte-800.jpg"
+              srcset="/assets/foto/ivan-notte-800.jpg 800w, /assets/foto/ivan-notte-1200.jpg 1200w"
+              sizes="(min-width: 940px) min(24vw - 14px, 313px), (min-width: 640px) calc(31vw - 6px), calc(44.5vw - 8px)"
+              width="1200" height="1500" loading="lazy" decoding="async"
+              alt="Ivan Maggini at night, in a navy jacket and an orange checked shirt, with blurred city lights behind him.">
+          </figure>
+          <figure class="foto foto-orizzontale">
+            <img
+              src="/assets/foto/ivan-tramonto-900.jpg"
+              srcset="/assets/foto/ivan-tramonto-900.jpg 900w, /assets/foto/ivan-tramonto-1500.jpg 1500w"
+              sizes="(min-width: 940px) min(45vw - 26px, 587px), (min-width: 640px) calc(58vw - 10px), calc(44.5vw - 8px)"
+              width="1500" height="1000" loading="lazy" decoding="async"
+              alt="Ivan Maggini smiling by a railing, with an orange sunset over the hills behind him.">
+          </figure>
         </div>
+        <!-- Testo lungo: circa 100 righe (15-20 paragrafi), da scrivere con Ivan, tutto qui sotto e senza altre foto in mezzo. Pensalo a blocchi con titoletti. -->
+        <p>I'm 19 and I live in Lurano, a small town near Bergamo.</p>
+        <p>
+          <a href="/en/biglietto">Biglietto</a> is the first: a product for
+          people who travel. I started it in June, while studying for my final
+          school exams, and I'm building it one piece at a time.
+        </p>
+        <p>
+          <a href="/en/studio">Ivan Maggini Studio</a> is the second: a small
+          video studio I run from Italy.
+        </p>
+        <p>
+          I started at 14, traveling around Italy on my own. At 15 I
+          moved on to more unusual itineraries, with one aim: to tell
+          the story of public transport in Italy and its problems,
+          some of them serious. Little by little I built an audience
+          in Italy on Instagram and TikTok. I'm not as active as I
+          used to be, but at my peak I was invited onto several radio
+          shows and a podcast.
+        </p>
+        <p>
+          In 2025, just after turning 18, I spent my summer break traveling
+          from Italy to Indonesia without flying. Those three months changed a
+          lot about how I travel, and nearly as much about how I live.
+        </p>
+        <p>
+          This year, with school behind me, I started traveling almost
+          full time. I study law at university, I keep all these
+          projects going, and I'm finally living the life I wanted to
+          live.
+        </p>
+        <p>
+          I don't have a long career to tell you about, and I don't pretend
+          to. I'd rather tell you myself than have you find out.
+        </p>
+        <p>
+          I have a way of working: I start from a real problem, keep at it
+          until it works, and tell you along the way what isn't working, too.
+        </p>
+        <!-- Prossime parti di "Chi sono": 1) il percorso: i viaggi e Instagram; 2) come lavoro con un cliente; 3) Biglietto e perché non toglie tempo allo Studio. Tenere allineato con la versione italiana. -->
       </div>
     </div>
   </section>
 
+  <!-- Il campo nero della pagina: è dove si agisce. -->
   <section class="board" id="contact" aria-labelledby="contact-title">
     <div class="shell sec-grid">
       <p class="rail">Contact<b>I reply within 24 hours</b></p>
       <div class="body">
         <h2 id="contact-title">Write to me.</h2>
         <p>
-          There is no form to fill in on this site, on purpose: I'd rather not
-          hold anybody's data. An email is plenty.
+          For Biglietto, for the Studio, or just to say hello. There's no form
+          to fill in: send me a couple of lines and I'll reply within 24
+          hours.
         </p>
-        <p style="margin-top:var(--s4)">
-          <a class="mailto" href="mailto:general@ivanmaggini.com" data-rise>general@ivanmaggini.com</a>
+        <p class="stacco">
+          <a class="mailto" href="mailto:general@ivanmaggini.com?subject=Hello">general@ivanmaggini.com</a>
         </p>
       </div>
     </div>
@@ -139,22 +209,26 @@
 
 <footer class="foot">
   <div class="shell foot-in">
-    <div>
-      <span class="mark">Ivan Maggini</span>
-      <address class="small">
-        Lurano (BG), Italy<br>
-        VAT 04924920160
-      </address>
-    </div>
+    <span class="mark">Ivan Maggini</span>
+    <address>
+      Lurano (BG), Italy<br>
+      VAT 04924920160
+    </address>
     <nav aria-label="Footer links">
+      <a href="/en/studio">Studio</a>
       <a href="/en/biglietto">Biglietto</a>
       <a href="/">Italiano</a>
       <a href="/en/privacy">Privacy</a>
       <a href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
     </nav>
+    <!-- Profili inglesi, distinti da quelli italiani di proposito. YouTube per ora non c'è: da riaggiungere quando esiste il canale. -->
+    <p class="social">
+      Follow me on
+      <a href="https://instagram.com/ivanmaggini.global" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@ivanmaggini.gl" target="_blank" rel="noopener">TikTok</a>
+    </p>
   </div>
 </footer>
 
-<script src="/assets/site.js?v=e2f15b517a" defer></script>
 </body>
 </html>

@@ -1,0 +1,8 @@
+# File locali di Claude Code: impostazioni personali, la skill e gli agenti
+# installati sulla macchina. Non fanno parte del sito.
+.claude/settings.local.json
+.claude/skills/impeccable/
+.claude/agents/
+
+# Impostazioni personali del controllo di design: restano su questa macchina.
+.impeccable/config.local.json

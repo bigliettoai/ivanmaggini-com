@@ -7,10 +7,8 @@
 <title>Pagina non trovata | Ivan Maggini</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#ebebe8">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400..500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=042be7d8e7">
+<link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=391d0e0500">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 </head>
@@ -34,11 +32,11 @@
 </header>
 
 <main id="contenuto">
-  <section class="sec open" style="min-height:58vh;display:flex;align-items:center">
-    <div class="shell sec-grid" style="width:100%">
+  <section class="sec open">
+    <div class="shell sec-grid">
       <p class="rail">404<b>Pagina non trovata</b></p>
       <div class="body">
-        <h1>Questa pagina non esiste.</h1>
+        <h1 class="scopri">Questa pagina non esiste.</h1>
         <p class="lede">
           Il link potrebbe essere vecchio o sbagliato. Da qui si torna indietro.
         </p>
@@ -53,18 +51,25 @@
 
 <footer class="foot">
   <div class="shell foot-in">
-    <div>
-      <span class="mark">Ivan Maggini</span>
-      <address class="small">
-        Lurano (BG), Italia<br>
-        P. IVA 04924920160
-      </address>
-    </div>
+    <span class="mark">Ivan Maggini</span>
+    <address>
+      Lurano (BG), Italia<br>
+      P. IVA 04924920160
+    </address>
     <nav aria-label="Link del footer">
       <a href="/">Home</a>
-      <a href="/biglietto">Biglietto</a><a href="/studio">Studio</a><a href="/privacy">Privacy</a><a href="/condizioni">Condizioni</a>
+      <a href="/biglietto">Biglietto</a>
+      <a href="/studio">Studio</a>
+      <a href="/en/">English</a>
+      <a href="/privacy">Privacy</a>
       <a href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
     </nav>
+    <!-- Profili italiani, distinti da quelli inglesi di proposito. YouTube per ora non c'è: da riaggiungere quando esiste il canale. -->
+    <p class="social">
+      Seguimi su
+      <a href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@ivan.maggini" target="_blank" rel="noopener">TikTok</a>
+    </p>
   </div>
 </footer>
 

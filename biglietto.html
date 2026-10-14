@@ -24,10 +24,8 @@
 <meta property="og:image:alt" content="Biglietto: un posto solo dove vive tutto il tuo viaggio">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400..500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=042be7d8e7">
+<link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=391d0e0500">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 </head>
@@ -50,31 +48,32 @@
   </div>
 </header>
 
-<main id="contenuto">
+<main id="contenuto" class="rivela">
 
-  <section class="sec open tight">
-    <div class="shell">
-      <h1 class="display-xl reveal">
-        <span><span style="--i:0">Biglietto</span></span>
-      </h1>
-      <p class="lede" style="margin-top:var(--s4);max-width:52ch">
-        Sto costruendo Biglietto: un posto solo dove vive tutto il tuo viaggio,
-        e sopra, a pagamento, la parte che nessuno ti dice, cioè cosa comprare
-        davvero, in che ordine e dove.
-      </p>
-      <!-- Il prodotto è la prima cosa che si cerca arrivando qui: il link deve
-           stare nella prima schermata, non tre sezioni più in basso. -->
-      <div class="btn-row">
-        <a class="btn" href="https://biglietto.ai" target="_blank" rel="noopener">Vai su biglietto.ai</a>
+  <section class="sec open">
+    <div class="shell sec-grid">
+      <p class="rail">Prodotto<b>in costruzione</b></p>
+      <div class="body">
+        <h1 class="scopri">Biglietto</h1>
+        <p class="lede">
+          Sto costruendo Biglietto: un posto solo dove vive tutto il tuo viaggio,
+          e sopra, a pagamento, la parte che nessuno ti dice, cioè cosa comprare
+          davvero, in che ordine e dove.
+        </p>
+        <!-- Il prodotto è la prima cosa che si cerca arrivando qui: il link deve
+             stare nella prima schermata, non tre sezioni più in basso. -->
+        <div class="btn-row">
+          <a class="btn" href="https://biglietto.ai" target="_blank" rel="noopener">Vai su biglietto.ai</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec tight" id="il-problema">
+  <section class="sec" id="il-problema">
     <div class="shell sec-grid">
       <p class="rail">Da dove nasce</p>
       <div class="body">
-        <p>
+        <p class="lede">
           Viaggiare è bellissimo. Comprare un viaggio no. Le prenotazioni
           finiscono sparse tra sei app, e il biglietto giusto quasi mai è
           quello che ti mostrano per primo, perché chi te lo vende non ha
@@ -115,16 +114,15 @@
           fase iniziale. Per ora resta riservata: preferisco parlarne quando ci
           sarà qualcosa di concreto da mostrare, non prima.
         </p>
-        <p class="small mute">
-          Se costruisci nello stesso spazio, o hai semplicemente un consiglio
+        <p class="mute">
+          Se costruisci nello stesso settore, o hai semplicemente un consiglio
           utile, scrivimi: rispondo sempre.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Il blocco nero della pagina: l'indirizzo entra una lettera per volta,
-       ed è l'unico momento animato qui dentro. -->
+  <!-- Il campo nero della pagina: è dove si agisce. -->
   <section class="board" id="contatti" aria-labelledby="contatti-titolo">
     <div class="shell sec-grid">
       <p class="rail">Contatti<b>Rispondo entro 24 ore</b></p>
@@ -132,10 +130,10 @@
         <h2 id="contatti-titolo">Scrivimi.</h2>
         <p>
           Su questo sito non c'è nessun modulo da compilare, di proposito:
-          preferisco non tenere i dati di nessuno. Una email basta e avanza.
+          preferisco non tenere i dati di nessuno. Un'email basta e avanza.
         </p>
-        <p style="margin-top:var(--s4)">
-          <a class="mailto" href="mailto:general@ivanmaggini.com" data-rise>general@ivanmaggini.com</a>
+        <p class="stacco">
+          <a class="mailto" href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
         </p>
       </div>
     </div>
@@ -145,25 +143,26 @@
 
 <footer class="foot">
   <div class="shell foot-in">
-    <div>
-      <span class="mark">Ivan Maggini</span>
-      <address class="small">
-        Lurano (BG), Italia<br>
-        P. IVA 04924920160
-      </address>
-    </div>
+    <span class="mark">Ivan Maggini</span>
+    <address>
+      Lurano (BG), Italia<br>
+      P. IVA 04924920160
+    </address>
     <nav aria-label="Link del footer">
       <a href="/">Home</a>
-      <a href="/biglietto">Biglietto</a>
       <a href="/studio">Studio</a>
       <a href="/en/biglietto">English</a>
       <a href="/privacy">Privacy</a>
-      <a href="/condizioni">Condizioni</a>
       <a href="mailto:general@ivanmaggini.com">general@ivanmaggini.com</a>
     </nav>
+    <!-- Profili italiani, distinti da quelli inglesi di proposito. YouTube per ora non c'è: da riaggiungere quando esiste il canale. -->
+    <p class="social">
+      Seguimi su
+      <a href="https://instagram.com/ivan.maggini" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@ivan.maggini" target="_blank" rel="noopener">TikTok</a>
+    </p>
   </div>
 </footer>
 
-<script src="/assets/site.js?v=e2f15b517a" defer></script>
 </body>
 </html>
