@@ -13,14 +13,17 @@ come si lavora sul sito senza rompere niente.
 
 | File | A cosa serve |
 | --- | --- |
-| `index.html` | Home IT: l'ingresso di benvenuto con le due porte, poi la pagina di vendita di Ivan Maggini Studio (`#studio`; `/studio` vi rimanda con un 301) |
+| `index.html` | Home IT, la pagina personale: benvenuto breve, tre porte, poi "Chi sono" (`#chi-sono`): introduzione, le due foto affiancate in un solo blocco, poi il testo lungo in colonna unica |
+| `studio.html` | La pagina di vendita di Ivan Maggini Studio (`/studio`): è l'indirizzo da usare nelle mail ai clienti |
 | `biglietto.html` | Il prodotto Biglietto, più il secondo progetto |
 | `privacy.html` | Informativa privacy IT (include §2.4, comunicazioni commerciali) |
 | `404.html` | Errore IT, `noindex` |
-| `en/index.html`, `en/biglietto.html`, `en/privacy.html` | Versioni inglesi |
+| `en/index.html`, `en/biglietto.html`, `en/studio.html`, `en/privacy.html` | Versioni inglesi (`en/studio.html` presenta lo Studio in breve, senza vendita) |
 | `en/404.html` | Errore EN, servito per ogni `/en/*` sconosciuto |
 | `assets/site.css` | L'unico foglio di stile del sito |
 | `assets/fonts/archivo.woff2` | Archivo a larghezza normale, pesi 400–500, solo caratteri latini; licenza in `OFL-archivo.txt` |
+| `assets/foto/ivan-*.jpg` | Le due foto di "Chi sono", ognuna in due larghezze per lo `srcset`, senza metadati EXIF |
+| `assets/logo/ivan-maggini-studio-*` | Il marchio dello Studio: la parola in nero e in bianco (`.svg`) e il simbolo "IM." con il punto ambra (`.svg`, `.png`). Sul sito si usa solo la parola nera, nell'apertura delle pagine Studio. I file non vanno ottimizzati né riscritti: il blocco `<metadata>` resta dov'è |
 | `assets/og/og-*.png` | Immagini Open Graph 1200×630, una per pagina (`-en` per l'inglese) |
 | `assets/favicon.svg`, `assets/apple-touch-icon.png` | Icone |
 | `netlify.toml` | URL puliti, redirect delle vecchie rotte, 404 EN, header, cache |
@@ -54,10 +57,18 @@ quella più simile, non si parte da zero.
   il numero resta appeso sull'asse sinistro. Al massimo un campo `.board`
   nero per pagina, e solo dove si agisce (il contatto). Infine
   `footer.foot` con indirizzo, P. IVA e link.
-- **Movimento**: un solo momento per pagina, all'apertura, tutto in CSS: la
-  classe `.scopri` sull'h1. In home è il saluto dell'ingresso; il titolo
-  della sezione Studio ha la stessa dimensione (`riga-t`) ma non si muove.
-  Niente animazioni legate allo scroll.
+- **Movimento**: un solo momento per pagina, all'apertura, tutto in CSS. In
+  home e nelle pagine Studio è l'entrata lenta (`.entra-titolo` sull'h1 e
+  sull'etichetta accanto, `.entra` sul resto, comprese le tre porte della
+  home, con `--n` frazionario perché stiano più vicine fra loro; durate nelle
+  variabili `--ingresso-*`); nelle altre
+  pagine la classe `.scopri` sull'h1. In più, sotto la prima schermata, le pagine con
+  la classe `rivela` sul `main` (home, Studio e Biglietto, in IT e EN) fanno
+  comparire i blocchi mentre entrano nella finestra, con una timeline di
+  scorrimento in CSS (`@supports`, solo schermo, mai con
+  `prefers-reduced-motion`); le pagine legali e la 404 no. Nessun JavaScript.
+  Una pagina nuova di vendita o di racconto aggiunge la classe `rivela` al suo
+  `main`.
 - Le pagine IT usano `id="contenuto"`, le EN `id="content"`.
 
 Le regole del sistema visivo (griglia a 12 colonne con due assi, un solo
@@ -167,18 +178,11 @@ La seconda rete è l'header `Cache-Control: max-age=0, must-revalidate` su
   `grep -rn --include='*.html' "data-provvisorio" .` non deve dare nessun
   risultato: ogni link va sostituito con l'indirizzo vero. Il filtro sugli
   HTML serve perché senza troverebbe sempre questa riga.
-  Cosa va riempito prima del merge:
-  - **6 link social**, ripetuti nel piede di tutte le pagine: 3 italiani
-    (`#instagram-it`, `#tiktok-it`, `#youtube-it`) sulle pagine IT e 3
-    inglesi (`#instagram-en`, `#tiktok-en`, `#youtube-en`) sulle pagine EN,
-    senza mischiare le lingue; con `target="_blank" rel="noopener"`;
-  - **2 foto di "Chi sono"** (`figure.foto`), in `index.html` e in
-    `en/index.html`: `<img>` con `width` e `height`, `loading="lazy"` e un
-    `alt` che descrive la scena;
-  - **la foto del benvenuto**, `assets/ivan.jpg`, in tutte e due le home.
-    Oggi è solo un commento HTML, senza `data-provvisorio`: il grep non la
-    trova, va controllata a mano.
-
-  Quando arrivano i link veri vanno aggiornati anche il `sameAs` del
-  JSON-LD nelle due home e il link a Instagram in `en/biglietto.html`, che
-  oggi punta al profilo italiano.
+  Cosa va riempito prima del merge: più niente. I link social sono tutti
+  veri: Instagram italiano `ivan.maggini`, TikTok italiano `@ivan.maggini`,
+  Instagram inglese `ivanmaggini.global`, TikTok inglese `@ivanmaggini.gl`.
+  I profili italiani stanno solo sulle pagine IT e gli inglesi solo sulle
+  pagine EN, senza mischiare le lingue, con `target="_blank"
+  rel="noopener"`. YouTube per ora è tolto dal piede: si riaggiunge, con un
+  link per lingua, quando esiste il canale, e con lui il `sameAs` del
+  JSON-LD.

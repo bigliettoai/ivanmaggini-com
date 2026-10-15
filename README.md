@@ -12,18 +12,20 @@ step, nessuna dipendenza, nessun framework, nessun JavaScript. Si apre
 
 | Rotta            | File                 | Cosa c'è                                |
 | ---------------- | -------------------- | --------------------------------------- |
-| `/`              | `index.html`         | Ingresso, poi la pagina dello Studio    |
+| `/`              | `index.html`         | Pagina personale: benvenuto, chi sono   |
 | `/biglietto`     | `biglietto.html`     | Il prodotto, e il secondo progetto      |
+| `/studio`        | `studio.html`        | La pagina di vendita dello Studio       |
 | `/privacy`       | `privacy.html`       | Informativa privacy                     |
-| `/en/`           | `en/index.html`      | Ingresso e Studio, in inglese           |
+| `/en/`           | `en/index.html`      | Pagina personale, in inglese            |
 | `/en/biglietto`  | `en/biglietto.html`  | Il prodotto, in inglese                 |
+| `/en/studio`     | `en/studio.html`     | Lo Studio in breve, in inglese          |
 | `/en/privacy`    | `en/privacy.html`    | Informativa privacy in inglese          |
 
 Ogni pagina esiste in tutte e due le lingue: Studio lavora in tutta Italia e
 presto anche all'estero. Le versioni inglesi dei testi legali sono
 traduzioni, e in caso di differenze prevale l'italiano. I vecchi indirizzi
-`/startup` e `/en/startup` reindirizzano alle pagine Biglietto, e `/studio`
-e `/en/studio` alle home, che ora sono le pagine dello Studio.
+`/startup` e `/en/startup` reindirizzano alle pagine Biglietto. Le mail ai
+clienti dello Studio puntano a `https://ivanmaggini.com/studio`.
 
 ## Il sistema visivo
 
@@ -57,12 +59,13 @@ costruita con la dimensione e lo spazio bianco, senza decorazioni.
 ## Il movimento
 
 Un solo momento per pagina, all'apertura, e tutto in CSS: il titolo viene
-scoperto da sinistra, cioè dall'asse da cui parte. In home è il saluto
-dell'ingresso. Il movimento mostra la griglia invece di aggiungerci qualcosa
-sopra: niente dissolvenze, niente rimbalzi, una sola curva.
+scoperto da sinistra, cioè dall'asse da cui parte. In home e nelle pagine
+Studio l'apertura è più lenta: il saluto, poi il testo e le tre porte (in
+home) compaiono uno dopo l'altro con una dissolvenza e un piccolo spostamento
+verso l'alto. Niente rimbalzi, una sola curva.
 
 Al passaggio del mouse non si sposta niente: cambia solo lo spessore di una
-sottolineatura. Niente è legato allo scroll. Con
+sottolineatura. Sotto la prima schermata i blocchi compaiono mentre entrano nella finestra (home, Studio, Biglietto), sempre in CSS. Con
 `prefers-reduced-motion: reduce` non si muove nulla, e da fermo ogni pagina
 è completa.
 

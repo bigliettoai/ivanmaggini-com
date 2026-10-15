@@ -7,7 +7,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/"/>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>1.0</priority>
   </url>
 
@@ -16,7 +16,16 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/biglietto"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/biglietto"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/biglietto"/>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://ivanmaggini.com/studio</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/studio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/studio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/studio"/>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.9</priority>
   </url>
 
@@ -25,7 +34,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/"/>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.8</priority>
   </url>
 
@@ -34,8 +43,17 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/biglietto"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/biglietto"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/biglietto"/>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ivanmaggini.com/en/studio</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/studio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/studio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/studio"/>
+    <lastmod>2026-10-15</lastmod>
+    <priority>0.8</priority>
   </url>
 
   <url>
@@ -43,7 +61,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/privacy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/privacy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/privacy"/>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.2</priority>
   </url>
 
@@ -52,7 +70,7 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://ivanmaggini.com/privacy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ivanmaggini.com/en/privacy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ivanmaggini.com/privacy"/>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <priority>0.2</priority>
   </url>
 

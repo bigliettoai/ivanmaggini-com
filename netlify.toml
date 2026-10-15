@@ -73,12 +73,11 @@
   to = "/en/biglietto"
   status = 301
 
-# Lo Studio è diventato la home: chi ha ancora il vecchio indirizzo arriva
-# lì, e per i motori la pagina resta una sola.
+# Lo Studio ha la sua pagina; è l'indirizzo da usare nelle mail ai clienti.
 [[redirects]]
   from = "/studio"
-  to = "/"
-  status = 301
+  to = "/studio.html"
+  status = 200
 
 [[redirects]]
   from = "/privacy"
@@ -106,11 +105,12 @@
   to = "/en/"
   status = 301
 
-# Come in italiano, lo Studio è diventato la home inglese.
+# La pagina Studio inglese. Come tutte le regole /en/, sta prima del
+# catch-all /en/* in fondo.
 [[redirects]]
   from = "/en/studio"
-  to = "/en/"
-  status = 301
+  to = "/en/studio.html"
+  status = 200
 
 [[redirects]]
   from = "/en/privacy"

@@ -84,7 +84,7 @@ founder.
   `general@ivanmaggini.com`. Niente analytics, cookie o risorse di terzi,
   a meno di aggiornare l'informativa privacy in entrambe le lingue.
 - Su Studio c'è una sola chiamata all'azione, sempre con le stesse parole:
-  "Prenotate la consulenza gratuita".
+  "Prenota la consulenza gratuita".
 - Ogni pagina ha la sua controparte EN (`/privacy` ↔ `/en/privacy`).
 - Il sito non pubblica prezzi.
 - Studio fa solo contenuti che costruiscono fiducia: spiegazioni, casi
@@ -98,12 +98,12 @@ founder.
 - La voce è in prima persona, diretta e onesta, senza gergo da agenzia.
   Ammette i limiti ("non fingo il contrario") e ai clienti Studio dà del
   voi.
-- La home si apre con un ingresso di benvenuto ("Piacere, sono Ivan."), che
-  dice subito i due mestieri e smista chi arriva: chi cerca i video va allo
-  Studio, subito sotto; chi arriva per i viaggi va su Instagram. Scelta del
-  13 ottobre 2026, che sostituisce la regola precedente ("l'apertura parte da
-  cosa fa Ivan, non da come si chiama"). Lo Studio resta la prima sezione dopo
-  l'ingresso: l'ingresso non ha pulsanti.
+- La home è la pagina personale: un benvenuto breve ("Piacere, sono Ivan."),
+  tre porte (Studio, Biglietto, viaggi) e subito "Chi c'è dietro la camera",
+  con il testo completo. Lo Studio ha una pagina sua, `/studio` (in inglese
+  `/en/studio`), raggiungibile dalla porta e dal menu: è lì che si vende, e
+  le mail ai clienti puntano a `https://ivanmaggini.com/studio`. Scelta del
+  13 ottobre 2026, che sostituisce l'ingresso con lo Studio subito sotto.
 
 ## Evidence on Hand
 
@@ -116,8 +116,10 @@ founder.
 
 ## Product Principles
 
-1. **Lo Studio prima.** Se una scelta aiuta Biglietto a spese della chiarezza
-   del servizio Studio, vince Studio.
+1. **Lo Studio prima, nella sua pagina.** Sulla pagina `/studio`, se una
+   scelta aiuta Biglietto a spese della chiarezza del servizio, vince lo
+   Studio. La home invece è la pagina personale e presenta tutto quello che
+   Ivan fa.
 2. **Un'azione, un canale.** Si contatta solo per email, senza moduli né
    passaggi intermedi, e la risposta arriva entro 24 ore.
 3. **Niente prove finte.** Si dice solo ciò che è vero oggi, compresi i
@@ -125,10 +127,10 @@ founder.
 4. **Il tempo del cliente è il prodotto.** Ogni pagina di Studio deve far
    capire quanto poco viene chiesto al cliente.
 5. **Due lingue, due toni.** Ogni pagina ha la sua controparte inglese,
-   ma la home inglese non è una traduzione della pitch italiana: mette
-   Biglietto per primo e lo Studio lo presenta in breve, senza venderlo
-   (niente pulsante né consulenza gratuita). Chi vuole saperne di più
-   scrive. Scelta del 13 ottobre 2026.
+   ma l'inglese non è una traduzione della pitch italiana: la home inglese
+   mette Biglietto per primo, e `/en/studio` presenta lo Studio in breve,
+   senza venderlo (niente pulsante né consulenza gratuita). Chi vuole
+   saperne di più scrive. Scelta del 13 ottobre 2026.
 
 ## Accessibility & Inclusion
 
