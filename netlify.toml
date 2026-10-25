@@ -37,6 +37,12 @@
   force = true
 
 [[redirects]]
+  from = "/PUBBLICAZIONE.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/.claude/*"
   to = "/404.html"
   status = 404

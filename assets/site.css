@@ -622,6 +622,10 @@ a:hover { text-decoration-thickness: 2px; }
 
 @media (min-width: 940px) {
   .body > .cols { grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--gutter); }
+  /* Quattro elementi su tre colonne lascerebbero l'ultimo da solo: si
+     dispongono due per due, come gli elenchi a due colonne, sulle colonne
+     4–11 della pagina. */
+  .body > .cols.two { grid-column: 1 / 9; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* --- elenchi ----------------------------------------------------------- */
