@@ -120,7 +120,7 @@ una frase alla dimensione display e non il nome in grande.
 - Carta grigia, nero pieno, ambra solo sul nero.
 - Un solo campo nero per pagina, dove si agisce.
 - Angoli vivi, nessuna ombra, nessuna card.
-- Movimento solo in CSS: l'apertura di ogni pagina e, nelle pagine con la classe `rivela` sul `main` (home, Studio, Biglietto), la comparsa dei blocchi mentre entrano nella finestra. Niente con `prefers-reduced-motion`.
+- Movimento solo in CSS: l'apertura di ogni pagina e, nelle pagine con la classe `rivela` sul `main` (home, Studio, Biglietto, avvocati), la comparsa dei blocchi mentre entrano nella finestra. Niente con `prefers-reduced-motion`.
 
 ## Colors
 
@@ -200,7 +200,7 @@ Esatti e asciutti. Al passaggio del mouse cambia lo spessore di una riga o si in
 - Sottolineatura da 1 px a 0,18em dal testo, che al passaggio diventa da 2 px. Nient'altro cambia: niente frecce né colori.
 
 ### Cards / Containers
-- Le card non ci sono. I contenuti paralleli (i tre pubblici, i passi) sono **colonne pure**: un filetto nero in testa, 16 px di distanza, titolo, testo, link in fondo. Tre colonne affiancate da 940 px, una sopra l'altra sotto.
+- Le card non ci sono. I contenuti paralleli (i tre pubblici, i passi) sono **colonne pure**: un filetto nero in testa, 16 px di distanza, titolo, testo, link in fondo. Tre colonne affiancate da 940 px, una sopra l'altra sotto. Quattro elementi paralleli (i passi della pagina per avvocati) stanno invece due per due, sulle colonne 4–11 come gli elenchi a due colonne (`.cols.two`): su tre colonne l'ultimo resterebbe da solo.
 
 ### Navigation
 - Una barra fissa su carta con un filetto sotto. Il marchio "Ivan Maggini" è in peso 500. Le voci sono in 14–15 px, peso 500, senza sottolineatura: la pagina corrente e il passaggio la mostrano. Le lingue sono in grafite, quella corrente in nero e senza sottolineatura.

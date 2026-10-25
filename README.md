@@ -15,6 +15,7 @@ step, nessuna dipendenza, nessun framework, nessun JavaScript. Si apre
 | `/`              | `index.html`         | Pagina personale: benvenuto, chi sono   |
 | `/biglietto`     | `biglietto.html`     | Il prodotto, e il secondo progetto      |
 | `/studio`        | `studio.html`        | La pagina di vendita dello Studio       |
+| `/avvocati`      | `avvocati.html`      | Lo Studio per avvocati e studi legali, solo IT (in preparazione) |
 | `/privacy`       | `privacy.html`       | Informativa privacy                     |
 | `/en/`           | `en/index.html`      | Pagina personale, in inglese            |
 | `/en/biglietto`  | `en/biglietto.html`  | Il prodotto, in inglese                 |
@@ -23,7 +24,16 @@ step, nessuna dipendenza, nessun framework, nessun JavaScript. Si apre
 
 Ogni pagina esiste in tutte e due le lingue: Studio lavora in tutta Italia e
 presto anche all'estero. Le versioni inglesi dei testi legali sono
-traduzioni, e in caso di differenze prevale l'italiano. I vecchi indirizzi
+traduzioni, e in caso di differenze prevale l'italiano.
+
+L'unica eccezione è `/avvocati`, che esiste solo in italiano, per scelta: si
+rivolge agli avvocati italiani e alle regole della loro professione, e in
+inglese non servirebbe a nessuno. Ha solo le righe `hreflang` `it` e
+`x-default`, e il suo link EN porta a `/en/studio`. Per ora è in
+preparazione: non è indicizzata, non è nel menu, nel piede o nella sitemap,
+e cosa cambiare il giorno in cui si pubblica è scritto in `PUBBLICAZIONE.md`.
+
+I vecchi indirizzi
 `/startup` e `/en/startup` reindirizzano alle pagine Biglietto. Le mail ai
 clienti dello Studio puntano a `https://ivanmaggini.com/studio`.
 
@@ -65,7 +75,7 @@ home) compaiono uno dopo l'altro con una dissolvenza e un piccolo spostamento
 verso l'alto. Niente rimbalzi, una sola curva.
 
 Al passaggio del mouse non si sposta niente: cambia solo lo spessore di una
-sottolineatura. Sotto la prima schermata i blocchi compaiono mentre entrano nella finestra (home, Studio, Biglietto), sempre in CSS. Con
+sottolineatura. Sotto la prima schermata i blocchi compaiono mentre entrano nella finestra (home, Studio, Biglietto, avvocati), sempre in CSS. Con
 `prefers-reduced-motion: reduce` non si muove nulla, e da fermo ogni pagina
 è completa.
 

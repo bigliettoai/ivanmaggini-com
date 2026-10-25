@@ -15,6 +15,8 @@ come si lavora sul sito senza rompere niente.
 | --- | --- |
 | `index.html` | Home IT, la pagina personale: benvenuto breve, tre porte, poi "Chi sono" (`#chi-sono`): introduzione, le due foto affiancate in un solo blocco, poi il testo lungo in colonna unica |
 | `studio.html` | La pagina di vendita di Ivan Maggini Studio (`/studio`): è l'indirizzo da usare nelle mail ai clienti |
+| `avvocati.html` | La pagina dello Studio per avvocati e studi legali (`/avvocati`), solo in italiano: il metodo in quattro passi, la deontologia, le condizioni. **In preparazione**: `noindex`, nessun link da menu o piede, fuori dalla sitemap |
+| `PUBBLICAZIONE.md` | Cosa cambiare il giorno in cui `/avvocati` si pubblica. File di lavoro: online risponde 404 |
 | `biglietto.html` | Il prodotto Biglietto, più il secondo progetto |
 | `privacy.html` | Informativa privacy IT (include §2.4, comunicazioni commerciali) |
 | `404.html` | Errore IT, `noindex` |
@@ -33,6 +35,15 @@ come si lavora sul sito senza rompere niente.
 Ogni pagina esiste in italiano e in inglese: il servizio Studio lavora in
 tutta Italia e presto anche all'estero. Le versioni inglesi dei testi legali
 sono traduzioni, e dicono che in caso di differenze prevale l'italiano.
+
+**Un'eccezione, consapevole: `avvocati.html` esiste solo in italiano.** Parla
+ad avvocati italiani e alle regole della professione forense italiana, e una
+traduzione non servirebbe a nessuno. Per questo porta solo le righe
+`hreflang` `it` e `x-default` (nessuna `en`). Il link EN del selettore lingua
+e il link "English" del piede portano a `/en/studio`, la pagina inglese più
+vicina. Nessuna pagina inglese la collega, e nella sitemap la sua voce avrà
+solo `it` e `x-default`. Una nuova pagina solo italiana richiede la stessa
+scelta esplicita, annotata qui e nel README.
 
 ## Struttura di ogni pagina
 
@@ -63,7 +74,8 @@ quella più simile, non si parte da zero.
   home, con `--n` frazionario perché stiano più vicine fra loro; durate nelle
   variabili `--ingresso-*`); nelle altre
   pagine la classe `.scopri` sull'h1. In più, sotto la prima schermata, le pagine con
-  la classe `rivela` sul `main` (home, Studio e Biglietto, in IT e EN) fanno
+  la classe `rivela` sul `main` (home, Studio e Biglietto, in IT e EN, e la
+  pagina per avvocati) fanno
   comparire i blocchi mentre entrano nella finestra, con una timeline di
   scorrimento in CSS (`@supports`, solo schermo, mai con
   `prefers-reduced-motion`); le pagine legali e la 404 no. Nessun JavaScript.
@@ -172,6 +184,22 @@ La seconda rete è l'header `Cache-Control: max-age=0, must-revalidate` su
   entrambe le lingue.
 - Quando cambia l'informativa privacy, si aggiorna la data nella
   `.rail` ("Ultimo aggiornamento") e il `lastmod` nella sitemap.
+- Regole ferme sui testi dello Studio, in ogni pagina e lingua, compresi
+  commenti nel codice e testi alternativi. Non si parla mai di clienti di
+  Ivan né di lavori svolti: niente casi, niente "lavoro con...", nessun
+  numero attribuito a clienti. Si presenta solo il metodo. Una professione
+  sola è esclusa del tutto dal sito, e non va nominata: quella di chi
+  autentica gli atti, con il suo ordine e il suo consiglio. Il controllo
+  `grep -rniIE --exclude-dir=.git 'nota(i|io|ri)' .` non deve trovare
+  niente (l'espressione è scritta così per non nominarla qui). Niente
+  trattini lunghi, nessuna promessa di risultati, nessun prezzo, tono
+  sobrio.
+- Le frasi che vanno controllate sulle fonti ufficiali (numeri di articoli,
+  leggi, date) cominciano con il segno visibile `[DA VERIFICARE]`, con un
+  commento accanto. **Prima di pubblicare la pagina**,
+  `grep -rn --include='*.html' "DA VERIFICARE" .` non deve dare risultati.
+  Sui testi di legge niente virgolette, e i link alle norme li aggiunge
+  Ivan dopo averle verificate.
 - I link a indirizzi che non esistono ancora portano l'attributo
   `data-provvisorio`, per esempio un `#ancora` al posto del sito dei viaggi
   finché non esiste. **Prima del merge su `main`**,
