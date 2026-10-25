@@ -84,27 +84,45 @@ link "English" del piede portano a `/en/studio`.
      `<a href="/avvocati">Avvocati</a>`. In `avvocati.html` la voce porta
      `aria-current="page"`.
    - Nel `nav` del piede, dopo Studio: `<a href="/avvocati">Avvocati</a>`.
-   - Da valutare: un link anche dal corpo di `/studio`, nella colonna per
+   - In `avvocati.html`, nel commento sopra il `nav` della barra, togliere
+     la frase "Questa pagina non è nel menu finché è in preparazione."
+   - Da valutare: un link anche dal corpo di `/studio`, nella fascia per
      avvocati e studi legali della sezione "Per chi".
-8. Se il menu diventa troppo lungo su un telefono stretto (sotto i 360 px),
-   provarlo prima di pubblicare: la barra ha marchio, voci e lingue sulla
-   stessa riga.
+8. Prima di pubblicare, provare la barra in alto su un telefono stretto
+   (sotto i 360 px): con la voce Avvocati in più, marchio, voci e lingue
+   devono stare ancora sulla stessa riga.
 
 ## Documentazione
 
-9. Nel README, tabella "Pagine", togliere "in preparazione" dalla riga di
-   `/avvocati`. In `CLAUDE.md`, stessa cosa nella tabella dei file.
-10. Cancellare questo file e la sua regola 404 in `netlify.toml`, oppure
-    lasciarlo come promemoria per la prossima pagina.
+9. Nel README:
+   - nella tabella "Pagine", togliere "(in preparazione)" dalla riga di
+     `/avvocati`;
+   - nel paragrafo sull'eccezione della lingua, togliere la frase "Per ora
+     è in preparazione: non è indicizzata, non è nel menu, nel piede o
+     nella sitemap, e cosa cambiare il giorno in cui si pubblica è scritto
+     in `PUBBLICAZIONE.md`."
 
-## Controlli finali, prima del merge su `main`
+   In `CLAUDE.md`, nella riga di `avvocati.html` della tabella dei file,
+   togliere tutta la parte "**In preparazione**: `noindex`, nessun link da
+   menu o piede, fuori dalla sitemap".
+10. Cancellare questo file, la sua regola 404 in `netlify.toml` e la sua
+    riga nella tabella dei file di `CLAUDE.md`. Oppure lasciarlo come
+    promemoria per la prossima pagina.
+
+## Controlli finali, il giorno della pubblicazione
 
 ```
 grep -rn --include='*.html' "DA VERIFICARE" .
 grep -rn --include='*.html' "data-provvisorio" .
+grep -rniIE --include='*.html' --include='*.css' --include='*.toml' --include='*.xml' 'nota(i|io|ri)' .
+grep -rn -i "preparazione" README.md CLAUDE.md avvocati.html
 grep -rn --include='*.html' 'name="robots"' .
 grep -ho 'site\.css?v=[0-9a-f]*' $(git ls-files '*.html') | sort | uniq -c
 ```
 
-I primi due non devono dare risultati. Il terzo deve trovare solo le due
-pagine 404. L'ultimo deve dare una sola impronta.
+I primi tre non devono dare risultati. Il quarto non deve trovare niente
+che parli di `/avvocati`. Il quinto deve trovare solo le due pagine 404.
+L'ultimo deve dare una sola impronta.
+
+Finché la pagina resta in preparazione, i controlli sul segno
+`[DA VERIFICARE]` e sul `noindex` la trovano di proposito.

@@ -190,8 +190,9 @@ La seconda rete è l'header `Cache-Control: max-age=0, must-revalidate` su
   numero attribuito a clienti. Si presenta solo il metodo. Una professione
   sola è esclusa del tutto dal sito, e non va nominata: quella di chi
   autentica gli atti, con il suo ordine e il suo consiglio. Il controllo
-  `grep -rniIE --exclude-dir=.git 'nota(i|io|ri)' .` non deve trovare
-  niente (l'espressione è scritta così per non nominarla qui). Niente
+  `grep -rniIE --include='*.html' --include='*.css' --include='*.toml' --include='*.xml' 'nota(i|io|ri)' .`
+  non deve trovare niente nei file del sito, commenti compresi
+  (l'espressione è scritta così per non nominarla qui). Niente
   trattini lunghi, nessuna promessa di risultati, nessun prezzo, tono
   sobrio.
 - Le frasi che vanno controllate sulle fonti ufficiali (numeri di articoli,

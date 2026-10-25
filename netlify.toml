@@ -105,7 +105,8 @@
   to = "/"
   status = 301
 
-# Versione inglese. Ogni pagina italiana ha la sua controparte.
+# Versione inglese. Ogni pagina italiana ha la sua controparte, tranne
+# /avvocati, solo in italiano per scelta (vedi CLAUDE.md).
 [[redirects]]
   from = "/en"
   to = "/en/"

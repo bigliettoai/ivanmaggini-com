@@ -106,7 +106,7 @@ grigio chiaro neutro scelto apposta, né il bianco dello schermo né una
 crema. Il nero è pieno. L'unico colore, l'ambra, compare solo sul campo
 nero e solo sull'azione.
 
-Il movimento sta all'apertura; sotto la prima schermata c'è solo la comparsa dei blocchi mentre entrano nella finestra, con lo stesso gesto dell'apertura (home, Studio e Biglietto). Nelle pagine
+Il movimento sta all'apertura; sotto la prima schermata c'è solo la comparsa dei blocchi mentre entrano nella finestra, con lo stesso gesto dell'apertura (home, Studio, Biglietto, avvocati). Nelle pagine
 interne il titolo viene scoperto da sinistra, cioè dall'asse da cui parte.
 In home e nelle pagine Studio l'apertura compare con calma: il titolo, poi
 il resto un elemento alla volta. Sono rifiutati esplicitamente gli effetti da template ("vibe
@@ -212,7 +212,7 @@ Esatti e asciutti. Al passaggio del mouse cambia lo spessore di una riga o si in
 - 13/20 sull'asse A, allineata alla linea di base della prima riga del contenuto. La prima riga è in grafite e nomina la sezione; la seconda, in `<b>`, è in nero e peso 500 e dà un dettaglio. Quando l'etichetta è l'unico titolo della sezione è un `h2` con il solo `<b>`, e conserva l'aspetto dell'etichetta.
 
 ### Marchio dello Studio
-- **Dove sta:** solo nell'etichetta di apertura delle pagine Studio (`.rail .logo`, la parola "Ivan Maggini Studio" in nero, alta 20 px come la riga dell'etichetta), sopra "in tutta Italia" / "in Italy". Mai grande e mai come nome gigante; non va nell'intestazione, nelle porte, nel piede o nel campo nero. Non è un link, non si anima e non ha hover.
+- **Dove sta:** solo nell'etichetta di apertura delle pagine Studio (`.rail .logo`, la parola "Ivan Maggini Studio" in nero, alta 20 px come la riga dell'etichetta), sopra il dettaglio dell'etichetta: "in tutta Italia" / "in Italy" nelle pagine Studio, "per avvocati e studi legali" nella pagina per avvocati. Mai grande e mai come nome gigante; non va nell'intestazione, nelle porte, nel piede o nel campo nero. Non è un link, non si anima e non ha hover.
 - **Colori:** nero su carta; la versione bianca solo su fondo nero. Il punto ambra esiste solo nel simbolo "IM." (usato fuori dalla pagina, per esempio come `logo` nel JSON-LD). Il marchio non si ricolora, non si allarga e non si usa come decorazione.
 
 ### Benvenuto e porte (home)
