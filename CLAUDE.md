@@ -13,12 +13,11 @@ come si lavora sul sito senza rompere niente.
 
 | File | A cosa serve |
 | --- | --- |
-| `index.html` | Home IT, la pagina personale: benvenuto breve, tre porte, poi "Chi sono" (`#chi-sono`): introduzione, le due foto affiancate in un solo blocco, poi il testo lungo in colonna unica |
+| `index.html` | Home IT, la pagina personale: benvenuto breve, due porte (Studio e viaggi), poi "Chi sono" (`#chi-sono`): introduzione, le due foto affiancate in un solo blocco, poi il testo lungo in colonna unica |
 | `studio.html` | La pagina di vendita di Ivan Maggini Studio (`/studio`): è l'indirizzo da usare nelle mail ai clienti |
-| `biglietto.html` | Il prodotto Biglietto, più il secondo progetto |
 | `privacy.html` | Informativa privacy IT (include §2.4, comunicazioni commerciali) |
 | `404.html` | Errore IT, `noindex` |
-| `en/index.html`, `en/biglietto.html`, `en/studio.html`, `en/privacy.html` | Versioni inglesi (`en/studio.html` presenta lo Studio in breve, senza vendita) |
+| `en/index.html`, `en/studio.html`, `en/privacy.html` | Versioni inglesi (`en/studio.html` presenta lo Studio in breve, senza vendita) |
 | `en/404.html` | Errore EN, servito per ogni `/en/*` sconosciuto |
 | `assets/site.css` | L'unico foglio di stile del sito |
 | `assets/fonts/archivo.woff2` | Archivo a larghezza normale, pesi 400–500, solo caratteri latini; licenza in `OFL-archivo.txt` |
@@ -59,11 +58,11 @@ quella più simile, non si parte da zero.
   `footer.foot` con indirizzo, P. IVA e link.
 - **Movimento**: un solo momento per pagina, all'apertura, tutto in CSS. In
   home e nelle pagine Studio è l'entrata lenta (`.entra-titolo` sull'h1 e
-  sull'etichetta accanto, `.entra` sul resto, comprese le tre porte della
+  sull'etichetta accanto, `.entra` sul resto, comprese le porte della
   home, con `--n` frazionario perché stiano più vicine fra loro; durate nelle
   variabili `--ingresso-*`); nelle altre
   pagine la classe `.scopri` sull'h1. In più, sotto la prima schermata, le pagine con
-  la classe `rivela` sul `main` (home, Studio e Biglietto, in IT e EN) fanno
+  la classe `rivela` sul `main` (home e Studio, in IT e EN) fanno
   comparire i blocchi mentre entrano nella finestra, con una timeline di
   scorrimento in CSS (`@supports`, solo schermo, mai con
   `prefers-reduced-motion`); le pagine legali e la 404 no. Nessun JavaScript.
@@ -82,7 +81,7 @@ solo per l'azione, un solo momento animato) sono scritte in testa a
 Esempio: la rotta `/nome`, con la versione inglese `/en/nome`.
 
 1. **File HTML.** Si copia la pagina più simile (`privacy.html` per un testo
-   legale, `biglietto.html` per una pagina di contenuto) in `nome.html`. Poi
+   legale, `studio.html` per una pagina di contenuto) in `nome.html`. Poi
    si aggiornano `title`, `description`, `canonical`
    `https://ivanmaggini.com/nome`, tutto il blocco OG (`og:url`,
    `og:title`, `og:description`, `og:image`, `og:image:alt`), gli
@@ -102,7 +101,9 @@ Esempio: la rotta `/nome`, con la versione inglese `/en/nome`.
    Netlify applica la prima regola che corrisponde. Le regole `/en/…` vanno
    quindi **prima** del catch-all `from = "/en/*"` → `/en/404.html`,
    altrimenti la pagina inglese risponde 404. Se una rotta viene rinominata,
-   si aggiunge un 301 dalla vecchia alla nuova, come per `/startup`.
+   si aggiunge un 301 dalla vecchia alla nuova, come per `/condizioni`. Se
+   una pagina esce solo per un periodo, come Biglietto, il redirect è un 302
+   verso la home della sua lingua (vedi il README).
 4. **`sitemap.xml`.** Si aggiunge un `<url>` con `loc` pulito, `lastmod` di
    oggi (`AAAA-MM-GG`) e `priority`: 0.9 per le pagine principali, 0.7–0.8
    per le versioni EN, 0.2 per le pagine legali. Entrambe le voci (IT ed EN)

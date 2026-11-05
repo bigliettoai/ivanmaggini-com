@@ -2,6 +2,13 @@
 
 <!-- impeccable:product-schema 1 -->
 
+> **Nota del 5 novembre 2026.** Biglietto è uscito dal sito pubblico, per
+> ora: il sito presenta solo Ivan Maggini Studio (video brevi per avvocati e
+> notai, dall'idea alla pubblicazione) e la pagina personale. Le parti qui
+> sotto che parlano di Biglietto descrivono la versione precedente e valgono
+> di nuovo solo se torna (come riportarlo: README). Il riposizionamento dello
+> Studio su avvocati e notai è nella home; `/studio` va ancora allineata.
+
 ## Platform
 
 web
@@ -99,7 +106,7 @@ founder.
   Ammette i limiti ("non fingo il contrario") e ai clienti Studio dà del
   voi.
 - La home è la pagina personale: un benvenuto breve ("Piacere, sono Ivan."),
-  tre porte (Studio, Biglietto, viaggi) e subito "Chi c'è dietro la camera",
+  due porte (Studio e viaggi) e subito "Chi c'è dietro la camera",
   con il testo completo. Lo Studio ha una pagina sua, `/studio` (in inglese
   `/en/studio`), raggiungibile dalla porta e dal menu: è lì che si vende, e
   le mail ai clienti puntano a `https://ivanmaggini.com/studio`. Scelta del
@@ -128,7 +135,7 @@ founder.
    capire quanto poco viene chiesto al cliente.
 5. **Due lingue, due toni.** Ogni pagina ha la sua controparte inglese,
    ma l'inglese non è una traduzione della pitch italiana: la home inglese
-   mette Biglietto per primo, e `/en/studio` presenta lo Studio in breve,
+   mette i viaggi per primi, e `/en/studio` presenta lo Studio in breve,
    senza venderlo (niente pulsante né consulenza gratuita). Chi vuole
    saperne di più scrive. Scelta del 13 ottobre 2026.
 
