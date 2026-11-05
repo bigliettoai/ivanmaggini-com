@@ -106,7 +106,7 @@ grigio chiaro neutro scelto apposta, né il bianco dello schermo né una
 crema. Il nero è pieno. L'unico colore, l'ambra, compare solo sul campo
 nero e solo sull'azione.
 
-Il movimento sta all'apertura; sotto la prima schermata c'è solo la comparsa dei blocchi mentre entrano nella finestra, con lo stesso gesto dell'apertura (home, Studio e Biglietto). Nelle pagine
+Il movimento sta all'apertura; sotto la prima schermata c'è solo la comparsa dei blocchi mentre entrano nella finestra, con lo stesso gesto dell'apertura (home e Studio). Nelle pagine
 interne il titolo viene scoperto da sinistra, cioè dall'asse da cui parte.
 In home e nelle pagine Studio l'apertura compare con calma: il titolo, poi
 il resto un elemento alla volta. Sono rifiutati esplicitamente gli effetti da template ("vibe
@@ -120,7 +120,7 @@ una frase alla dimensione display e non il nome in grande.
 - Carta grigia, nero pieno, ambra solo sul nero.
 - Un solo campo nero per pagina, dove si agisce.
 - Angoli vivi, nessuna ombra, nessuna card.
-- Movimento solo in CSS: l'apertura di ogni pagina e, nelle pagine con la classe `rivela` sul `main` (home, Studio, Biglietto), la comparsa dei blocchi mentre entrano nella finestra. Niente con `prefers-reduced-motion`.
+- Movimento solo in CSS: l'apertura di ogni pagina e, nelle pagine con la classe `rivela` sul `main` (home e Studio), la comparsa dei blocchi mentre entrano nella finestra. Niente con `prefers-reduced-motion`.
 
 ## Colors
 
@@ -216,8 +216,8 @@ Esatti e asciutti. Al passaggio del mouse cambia lo spessore di una riga o si in
 - **Colori:** nero su carta; la versione bianca solo su fondo nero. Il punto ambra esiste solo nel simbolo "IM." (usato fuori dalla pagina, per esempio come `logo` nel JSON-LD). Il marchio non si ricolora, non si allarga e non si usa come decorazione.
 
 ### Benvenuto e porte (home)
-- **Benvenuto** (`.sec.open.ingresso.benvenuto`): breve. Etichetta "Benvenuti" (EN "Welcome"), `h1` di saluto in dimensione display e un lede di due frasi, 4 o 5 righe da 820 px in su (`max-width: 56ch`, interlinea 36 px da 760 px in su, 32 sotto, `text-wrap: balance` perché l'ultima parola non resti sola a capo). Dice come ha imparato su Instagram cosa fa fermare una persona davanti a un video e i due modi in cui lo usa oggi: in italiano prima i video per studi e aziende, in inglese prima il prodotto per chi viaggia, come l'ordine delle porte. Età e luogo stanno in "Chi sono", come primo paragrafo dopo le foto. Le tre porte, nel `nav` "Le tre sezioni del sito" (EN "The three sections of the site"), seguono senza domande. Niente foto qui: le foto stanno in "Chi sono".
-- **Le porte** (`nav.porte` > `a.porta`): tre, ognuna un solo link grande. Dentro: etichetta piccola (`.porta-e`, 13/20 in grafite), titolo display (`.porta-t`), una frase (`.porta-s`) e in fondo il verbo sottolineato (`.porta-v`). In italiano l'ordine è Studio, Biglietto, Viaggi; in inglese Biglietto, Travel, Studio. La porta Studio porta alla pagina `/studio` (`/en/studio`). Niente card e niente campo nero: fondo carta e un indice a righe. Le tre righe sono impilate a ogni larghezza, a tutta larghezza e alte quanto il loro contenuto, con un filetto nero in testa (quello sotto l'ultima è il bordo della sezione che segue). Da 760 px la riga usa la griglia: titolo sulle colonne 1–8 e verbo a destra sulla linea del titolo; da 940 px l'etichetta sta sull'asse A e titolo e frase dall'asse B. Al passaggio del mouse o al focus il titolo scorre di 6 px e il verbo si ispessisce. Il focus è un contorno interno (`outline-offset: -2px`). Nel benvenuto non ci sono pulsanti.
+- **Benvenuto** (`.sec.open.ingresso.benvenuto`): breve. Etichetta "Benvenuti" (EN "Welcome"), `h1` di saluto in dimensione display e un lede di due frasi, 4 o 5 righe da 820 px in su (`max-width: 56ch`, interlinea 36 px da 760 px in su, 32 sotto, `text-wrap: balance` perché l'ultima parola non resti sola a capo). Dice come ha imparato su Instagram cosa fa fermare una persona davanti a un video e come lo usa oggi: video brevi per avvocati e notai, dall'idea alla pubblicazione. Età e luogo stanno in "Chi sono", come primo paragrafo dopo le foto. Le due porte, nel `nav` "Le sezioni del sito" (EN "The sections of the site"), seguono senza domande. Niente foto qui: le foto stanno in "Chi sono".
+- **Le porte** (`nav.porte` > `a.porta`): due (Biglietto è fuori dal sito per ora, vedi il README), ognuna un solo link grande. Dentro: etichetta piccola (`.porta-e`, 13/20 in grafite), titolo display (`.porta-t`), una frase (`.porta-s`) e in fondo il verbo sottolineato (`.porta-v`). In italiano l'ordine è Studio, Viaggi; in inglese Travel, Studio. La porta Studio porta alla pagina `/studio` (`/en/studio`). Niente card e niente campo nero: fondo carta e un indice a righe. Le righe sono impilate a ogni larghezza, a tutta larghezza e alte quanto il loro contenuto, con un filetto nero in testa (quello sotto l'ultima è il bordo della sezione che segue). Da 760 px la riga usa la griglia: titolo sulle colonne 1–8 e verbo a destra sulla linea del titolo; da 940 px l'etichetta sta sull'asse A e titolo e frase dall'asse B. Al passaggio del mouse o al focus il titolo scorre di 6 px e il verbo si ispessisce. Il focus è un contorno interno (`outline-offset: -2px`). Nel benvenuto non ci sono pulsanti.
 
 ### Chi sono (home)
 - **Testo lungo** (`.sec.chi-sono`), subito sotto le porte: righe di circa 56 caratteri, a sinistra. L'ordine è fisso: l'`h2`, il primo paragrafo come introduzione (`p.lede`), le due foto, poi tutto il resto del testo in colonna unica, che comincia con età e luogo. Nessuna foto spezza il testo.

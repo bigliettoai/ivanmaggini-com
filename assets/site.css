@@ -1,9 +1,8 @@
 /* ------------------------------------------------------------------
    ivanmaggini.com
 
-   Il sito di una persona che fa due mestieri: costruisce Biglietto, un
-   prodotto per chi viaggia, e gira i video di studi professionali e
-   aziende. L'impianto è svizzero: una griglia a dodici colonne, un solo
+   Il sito di una persona che racconta i suoi viaggi e gira video brevi
+   per avvocati e notai, dall'idea alla pubblicazione. L'impianto è svizzero: una griglia a dodici colonne, un solo
    carattere, e una gerarchia fatta di dimensione e di spazio bianco.
 
    Regole che il foglio si dà:
@@ -272,7 +271,7 @@ a:hover { text-decoration-thickness: 2px; }
 /* --- benvenuto della home ----------------------------------------------
    Breve: il saluto e una riga. Il lede resta in una misura da leggere. */
 
-/* Meno spazio sopra del solito: titolo, lede e le tre porte devono stare
+/* Meno spazio sopra del solito: titolo, lede e le porte devono stare
    nella prima schermata anche su un iPad in orizzontale. */
 .sec.open.benvenuto { padding-top: var(--s4); }
 

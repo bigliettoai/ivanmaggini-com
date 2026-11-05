@@ -1,8 +1,8 @@
 # ivanmaggini.com
 
-Sito personale di Ivan Maggini. Due cose in un posto solo: chi è e cosa sta
-costruendo (Biglietto), e il servizio video per studi professionali e
-aziende in tutta Italia (Ivan Maggini Studio).
+Sito personale di Ivan Maggini. Due cose in un posto solo: chi è, e il
+servizio di video brevi per avvocati e notai, dall'idea alla pubblicazione
+(Ivan Maggini Studio).
 
 Sono file statici: HTML, un foglio di stile e un carattere. Nessun build
 step, nessuna dipendenza, nessun framework, nessun JavaScript. Si apre
@@ -13,19 +13,39 @@ step, nessuna dipendenza, nessun framework, nessun JavaScript. Si apre
 | Rotta            | File                 | Cosa c'è                                |
 | ---------------- | -------------------- | --------------------------------------- |
 | `/`              | `index.html`         | Pagina personale: benvenuto, chi sono   |
-| `/biglietto`     | `biglietto.html`     | Il prodotto, e il secondo progetto      |
 | `/studio`        | `studio.html`        | La pagina di vendita dello Studio       |
 | `/privacy`       | `privacy.html`       | Informativa privacy                     |
 | `/en/`           | `en/index.html`      | Pagina personale, in inglese            |
-| `/en/biglietto`  | `en/biglietto.html`  | Il prodotto, in inglese                 |
 | `/en/studio`     | `en/studio.html`     | Lo Studio in breve, in inglese          |
 | `/en/privacy`    | `en/privacy.html`    | Informativa privacy in inglese          |
 
 Ogni pagina esiste in tutte e due le lingue: Studio lavora in tutta Italia e
 presto anche all'estero. Le versioni inglesi dei testi legali sono
-traduzioni, e in caso di differenze prevale l'italiano. I vecchi indirizzi
-`/startup` e `/en/startup` reindirizzano alle pagine Biglietto. Le mail ai
+traduzioni, e in caso di differenze prevale l'italiano. Le mail ai
 clienti dello Studio puntano a `https://ivanmaggini.com/studio`.
+
+### Biglietto, fuori dal sito per ora
+
+Dal 5 novembre 2026 Biglietto non è più sul sito pubblico: le pagine
+`biglietto.html` ed `en/biglietto.html`, le anteprime `og-biglietto*.png`, la
+porta in home e il paragrafo di "Chi sono" sono stati tolti sul branch
+`togli-biglietto`. L'ultimo commit che li contiene tutti è `b68a090`. Le
+vecchie rotte `/biglietto`, `/startup` e le controparti `/en/` (anche con
+`.html`) portano alla home della propria lingua con un **302**, temporaneo
+apposta.
+
+Per riportarlo:
+
+```
+git checkout b68a090 -- biglietto.html en/biglietto.html assets/og/og-biglietto.png assets/og/og-biglietto-en.png
+```
+
+poi, a mano: le riscritture `200` in `netlify.toml` al posto dei `302`
+(`/startup` torna a puntare a `/biglietto`), le due voci della sitemap, il link
+nel nav e nel piede di ogni pagina, la porta e il paragrafo in home (IT ed EN,
+si vedono con `git show b68a090:index.html`), la nota nell'informativa privacy
+con la sua data, e l'impronta del CSS. Nel frattempo il secondo progetto
+riservato, che viveva in fondo alla pagina Biglietto, è uscito con lei.
 
 ## Il sistema visivo
 
@@ -60,12 +80,12 @@ costruita con la dimensione e lo spazio bianco, senza decorazioni.
 
 Un solo momento per pagina, all'apertura, e tutto in CSS: il titolo viene
 scoperto da sinistra, cioè dall'asse da cui parte. In home e nelle pagine
-Studio l'apertura è più lenta: il saluto, poi il testo e le tre porte (in
+Studio l'apertura è più lenta: il saluto, poi il testo e le porte (in
 home) compaiono uno dopo l'altro con una dissolvenza e un piccolo spostamento
 verso l'alto. Niente rimbalzi, una sola curva.
 
 Al passaggio del mouse non si sposta niente: cambia solo lo spessore di una
-sottolineatura. Sotto la prima schermata i blocchi compaiono mentre entrano nella finestra (home, Studio, Biglietto), sempre in CSS. Con
+sottolineatura. Sotto la prima schermata i blocchi compaiono mentre entrano nella finestra (home e Studio), sempre in CSS. Con
 `prefers-reduced-motion: reduce` non si muove nulla, e da fermo ogni pagina
 è completa.
 
@@ -110,6 +130,6 @@ rete, per il giorno in cui l'impronta non venisse rigenerata.
 python3 -m http.server 8000
 ```
 
-Basta per leggere il contenuto. Per provare le rotte pulite (`/biglietto` invece
-di `/biglietto.html`) serve un server che applichi le riscritture di
+Basta per leggere il contenuto. Per provare le rotte pulite (`/studio` invece
+di `/studio.html`) serve un server che applichi le riscritture di
 `netlify.toml`, oppure `netlify dev`.
